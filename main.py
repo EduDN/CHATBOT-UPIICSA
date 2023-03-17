@@ -13,6 +13,7 @@ respuestas_vectorizadas = vectorizer.transform(respuestas)
 
 modelo = NearestNeighbors(n_neighbors=1)
 modelo.fit(preguntas_vectorizadas)
+
 def obtener_respuesta(pregunta):
     pregunta_vectorizada = vectorizer.transform([pregunta])
     indice_mas_cercano = modelo.kneighbors(pregunta_vectorizada)[1][0][0]
@@ -23,5 +24,7 @@ st.title("Chatbot-UPIICSA")
 pregunta = st.text_input("Pregunta:")
 if st.button("Enviar"):
     respuesta = obtener_respuesta(pregunta)
-    st.text("Respuesta: {}".format(respuesta))
-
+    if respuesta:
+        st.text("Respuesta: {}".format(respuesta))
+    else:
+        st.text("Lo siento, esta pregunta aún no soy capaz de responderla, hazla llegar a algún alumnx consejerx o mándala al forms https://forms.gle/YmpQqeLifvMDRymDA")
