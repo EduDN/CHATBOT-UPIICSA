@@ -20,6 +20,7 @@ def obtener_respuesta(pregunta):
     return respuestas[indice_mas_cercano]
 
 st.title("Chatbot-UPIICSA")
+st.write("Si no sientes que la respuesta del bot tenga sentido, hazla llegar a algún alumnx consejerx o mándala al formulario https://forms.gle/YmpQqeLifvMDRymDA para mejorar el bot.")
 
 pregunta = st.text_input("Pregunta:")
 if st.button("Enviar"):
