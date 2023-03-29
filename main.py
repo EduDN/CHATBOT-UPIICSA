@@ -1,25 +1,31 @@
-import openai
+import pandas as pd
 import streamlit as st
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.neighbors import NearestNeighbors
 
-openai.api_key = "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"
+data = pd.read_csv('dataset.csv', encoding='latin1')
+preguntas = data["pregunta"].tolist()
+respuestas = data["respuesta"].tolist()
 
-def generar_respuesta(pregunta):
-    response = openai.Completion.create(
-        engine="text-davinci-002",
-        prompt=pregunta,
-        max_tokens=1024,
-        n=1,
-        stop=None,
-        temperature=0.5,
-    )
-    return response.choices[0].text.strip()
+vectorizer = TfidfVectorizer()
+preguntas_vectorizadas = vectorizer.fit_transform(preguntas)
+respuestas_vectorizadas = vectorizer.transform(respuestas)
+
+modelo = NearestNeighbors(n_neighbors=1)
+modelo.fit(preguntas_vectorizadas)
+
+def obtener_respuesta(pregunta):
+    pregunta_vectorizada = vectorizer.transform([pregunta])
+    indice_mas_cercano = modelo.kneighbors(pregunta_vectorizada)[1][0][0]
+    return respuestas[indice_mas_cercano]
 
 st.title("Chatbot-UPIICSA")
 st.write("Si no sientes que la respuesta del bot tenga sentido, hazla llegar a algún alumnx consejerx o mándala al formulario https://forms.gle/YmpQqeLifvMDRymDA para mejorar el bot.")
 
+
 pregunta = st.text_input("Pregunta:")
 if st.button("Enviar"):
-    respuesta = generar_respuesta(pregunta)
+    respuesta = obtener_respuesta(pregunta)
     if respuesta:
         st.text("Respuesta: {}".format(respuesta))
     else:
