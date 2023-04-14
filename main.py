@@ -4,6 +4,7 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.neighbors import NearestNeighbors
 
 data = pd.read_csv('dataset.csv', encoding='latin1')
+data.fillna('', inplace=True)  # Reemplaza los valores NaN con cadenas vacías
 preguntas = data["pregunta"].tolist()
 respuestas = data["respuesta"].tolist()
 
@@ -22,11 +23,10 @@ def obtener_respuesta(pregunta):
 st.title("Chatbot-UPIICSA")
 st.write("Si no sientes que la respuesta del bot tenga sentido, hazla llegar a algún alumnx consejerx o mándala al formulario https://forms.gle/YmpQqeLifvMDRymDA para mejorar el bot.")
 
-
 pregunta = st.text_input("Pregunta:")
 if st.button("Enviar"):
     respuesta = obtener_respuesta(pregunta)
     if respuesta:
-        st.text("Respuesta: {}".format(respuesta))
+        st.markdown(f'**Respuesta:**\n\n{respuesta}')
     else:
-        st.text("Lo siento, esta pregunta aún no soy capaz de responderla, hazla llegar a algún alumnx consejerx o mándala al forms https://forms.gle/YmpQqeLifvMDRymDA")
+        st.markdown('Lo siento, esta pregunta aún no soy capaz de responderla, hazla llegar a algún alumnx consejerx o mándala al forms https://forms.gle/YmpQqeLifvMDRymDA')
