@@ -35,4 +35,5 @@ for _ in range(10):  # Añadir espacios en blanco
     st.write('')
 
 st.markdown('---')
-st.write('Creado por Eduardo Domínguez Navarrete, Alumno Consejero Ing. Informática')
+st.write('Creado por Eduardo Domínguez Navarrete')
+st.write('Alumno Consejero Ing. Informática')
