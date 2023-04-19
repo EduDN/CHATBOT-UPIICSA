@@ -31,5 +31,7 @@ if st.button("Enviar"):
     else:
         st.markdown('Lo siento, esta pregunta aún no soy capaz de responderla, hazla llegar a algún alumnx consejerx o mándala al forms https://forms.gle/YmpQqeLifvMDRymDA')
 
+        for _ in range(50):  # Añadir espacios en blanco
+    st.write('')
         st.markdown('---')
 st.write('Creado por Eduardo Domínguez Navarrete, Alumno Consejero Ing. Informática')
