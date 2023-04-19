@@ -30,3 +30,6 @@ if st.button("Enviar"):
         st.markdown(f'**Respuesta:**\n\n{respuesta}')
     else:
         st.markdown('Lo siento, esta pregunta aún no soy capaz de responderla, hazla llegar a algún alumnx consejerx o mándala al forms https://forms.gle/YmpQqeLifvMDRymDA')
+
+        st.markdown('---')
+st.write('Creado por Eduardo Domínguez Navarrete, Alumno Consejero Ing. Informática')
