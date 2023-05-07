@@ -24,7 +24,7 @@ El siguiente es un resumen del código:
 
 ## Contribuir
 
-Si desea contribuir a este proyecto, no dude en enviar preguntas que no hayan sido respondidas correctamente a través del formulario mencionado anteriormente.
+Si desea contribuir a este proyecto, no dude en ponerse en contacto.
 
 ---
 
