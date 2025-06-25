@@ -11,6 +11,7 @@ technologías web.
 - Web assembly (con python)
 - PWA (Progressive Web App)
 - Transformers.js
+- Web components
 
 ## Instalación del proyecto
 
