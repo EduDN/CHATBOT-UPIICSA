@@ -31,6 +31,20 @@ side-bar {
   border-right: 1px solid var(--color-border-primary);
 }
 
+.main-content {
+  color: var(--color-text-primary);
+  display: grid;
+  justify-content: center;
+  grid-template-rows: auto 1fr;
+  grid-template-columns: 1fr;
+}
+
+.messages-content {
+  display: grid;
+  grid-template-rows: 1fr auto;
+  gap: 1rem;
+}
+
 @media (prefers-color-scheme: dark) {
   :root {
     --color-background-dark: #0d1117;
