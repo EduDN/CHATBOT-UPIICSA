@@ -28,7 +28,7 @@ class ChatInput extends BaseComponent {
     this.$inputElement = this.shadowRoot?.querySelector("textarea");
     this.$sendButton = this.shadowRoot?.querySelector("button");
 
-    // NOTE: Check why this validation is not working
+    // TODO: Check why this validation is not working
     // if (!this.inputElement && !this.sendButton) return;
     if (!this.$inputElement || !this.$sendButton) return;
 
@@ -55,7 +55,7 @@ class ChatInput extends BaseComponent {
 
     this.$sendButton.addEventListener("click", () => {
       if (this.$inputElement?.value.trim() === "") return;
-      // this.sendMessage();
+      this.sendMessage();
     });
 
     this.$inputElement.addEventListener("keydown", (event) => {
@@ -70,8 +70,29 @@ class ChatInput extends BaseComponent {
       }
 
       event.preventDefault();
-      // this.sendMessage();
+      this.sendMessage();
     });
+  }
+
+  public sendMessage(): void {
+    if (!this.$inputElement) return;
+
+    const messageText = this.$inputElement.value.trim();
+    if (messageText.trim() === "") return;
+
+    console.log("Sending message:", messageText);
+    this.dispatchEvent(
+      new CustomEvent("message-sent", {
+        bubbles: true,
+        composed: true,
+        detail: { text: messageText },
+      }),
+    );
+
+    // 1. Clear the value
+    this.$inputElement.value = "";
+    this.$inputElement.rows = 1;
+    this.$inputElement.dispatchEvent(new Event("input"));
   }
 }
 
