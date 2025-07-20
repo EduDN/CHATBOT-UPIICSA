@@ -53,9 +53,13 @@ class ChatMessages extends BaseComponent {
 
     const $chatMessageElement = document.createElement("chat-message");
     $chatMessageElement.dataset.sender = sender;
-    const $template = this.shadowRoot.querySelector<HTMLTemplateElement>(
-      "#user-message-template",
-    );
+    const templateId =
+      sender === "user"
+        ? "#user-message-template"
+        : "#assistant-message-template";
+
+    const $template =
+      this.shadowRoot.querySelector<HTMLTemplateElement>(templateId);
     const $ul =
       this.shadowRoot.querySelector<HTMLUListElement>(".chat-messages");
 
