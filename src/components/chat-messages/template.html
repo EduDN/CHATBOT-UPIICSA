@@ -1,141 +1,17 @@
 <ul class="chat-messages">
-  <chat-message data-sender="user">
-    <li class="user">
-      <p>Hello!</p>
-      <span>L</span>
-    </li>
-  </chat-message>
-  <chat-message data-sender="assistant">
-    <li class="assistant">
-      <p>Hola UPIICSIANX, ¿cuál es tu duda? Estoy para ayudarte.</p>
-      <button>
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          class="lucide lucide-copy-icon lucide-copy"
-        >
-          <rect width="14" height="14" x="8" y="8" rx="2" ry="2" />
-          <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" />
-        </svg>
-      </button>
-    </li>
-  </chat-message>
-
-  <chat-message data-sender="user">
-    <li class="user">
-      <p>
-        ¿Cómo funciona específicamente la titulación por Experiencia laboral?
-      </p>
-      <span>L</span>
-    </li>
-  </chat-message>
-  <chat-message data-sender="assistant">
-    <li class="assistant">
-      <p>
-        Consiste en la elaboración de un informe escrito de las actividades
-        profesionales del pasante durante un periodo no menor de tres años,
-        donde se apliquen conocimientos de la especialidad.
-      </p>
-      <button class="copy-button">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          class="lucide lucide-copy-icon lucide-copy"
-        >
-          <rect width="14" height="14" x="8" y="8" rx="2" ry="2" />
-          <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" />
-        </svg>
-      </button>
-    </li>
-  </chat-message>
-
-  <chat-message data-sender="user">
-    <li class="user">
-      <p>Hello!</p>
-      <span>L</span>
-    </li>
-  </chat-message>
-  <chat-message data-sender="assistant">
-    <li class="assistant">
-      <p>Hola UPIICSIANX, ¿cuál es tu duda? Estoy para ayudarte.</p>
-      <button>
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          class="lucide lucide-copy-icon lucide-copy"
-        >
-          <rect width="14" height="14" x="8" y="8" rx="2" ry="2" />
-          <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" />
-        </svg>
-      </button>
-    </li>
-  </chat-message>
-
-  <chat-message data-sender="user">
-    <li class="user">
-      <p>
-        ¿Cómo funciona específicamente la titulación por Experiencia laboral?
-      </p>
-      <span>L</span>
-    </li>
-  </chat-message>
-  <chat-message data-sender="assistant">
-    <li class="assistant">
-      <p>
-        Consiste en la elaboración de un informe escrito de las actividades
-        profesionales del pasante durante un periodo no menor de tres años,
-        donde se apliquen conocimientos de la especialidad.
-      </p>
-      <button class="copy-button">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          class="lucide lucide-copy-icon lucide-copy"
-        >
-          <rect width="14" height="14" x="8" y="8" rx="2" ry="2" />
-          <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" />
-        </svg>
-      </button>
-    </li>
-  </chat-message>
-
   <slot>
     <h2>Template for chat messages component.</h2>
   </slot>
 </ul>
 
-<template>
+<template id="user-message-template">
   <li class="user">
     <p></p>
     <span></span>
   </li>
 </template>
 
-<template>
+<template id="assistant-message-template">
   <li class="assistant">
     <p></p>
     <button>
