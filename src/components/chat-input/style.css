@@ -1,8 +1,8 @@
 div {
-  padding: 0.625rem 1rem; /* 10px 16px */
   background-color: var(--color-background-light, #f0f0f0); /* Fallback color */
-  margin: 0 1rem; /* 16px */
+  margin: 0 1.5rem;
   margin-bottom: 1rem; /* 16px */
+  padding: 0.625rem 1rem; /* 10px 16px */
   border-radius: 1rem; /* 16px */
   display: flex;
   align-items: center;
@@ -40,13 +40,13 @@ textarea::placeholder {
     --color-background-medium,
     #e0e0e0
   ); /* Fallback color */
-  border: 1px solid var(--color-border-primary, #ccc); /* Fallback color */
-  outline: 1px solid var(--color-border-primary, #ccc); /* Fallback color */
+  border: 1px solid var(--color-text-secondary, #ccc); /* Fallback color */
+  outline: 1px solid var(--color-text-secondary, #ccc); /* Fallback color */
 }
 
 .send-button:focus {
-  border: 1px solid var(--color-border-primary, #ccc); /* Fallback color */
-  outline: 1px solid var(--color-border-primary, #ccc); /* Fallback color */
+  border: 1px solid var(--color-text-secondary, #ccc); /* Fallback color */
+  outline: 1px solid var(--color-text-secondary, #ccc); /* Fallback color */
   background-color: var(
     --color-background-medium,
     #e0e0e0
@@ -55,6 +55,14 @@ textarea::placeholder {
 
 .send-button svg {
   stroke: var(--color-text-primary, #333); /* Fallback color */
+}
+
+.hide-scrollbar {
+  -ms-overflow-style: none; /* IE 10+*/
+  scrollbar-width: none; /* Firefox */
+}
+.hide-scrollbar::-webkit-scrollbar {
+  display: none; /* Safari and Chrome */
 }
 
 /* Hello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assa */

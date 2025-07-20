@@ -1,0 +1,13 @@
+:host([data-sender="user"]) {
+  align-self: self-end;
+  max-width: 80%;
+}
+
+:host([data-sender="assistant"]) {
+  align-self: self-start;
+  max-width: 90%;
+}
+
+::slotted(li) {
+  list-style: none;
+}

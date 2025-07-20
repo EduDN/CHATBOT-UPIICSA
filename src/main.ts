@@ -3,6 +3,7 @@ import "@/styles/reset.css";
 import "@/components/chat-container";
 import "@/components/side-bar";
 import "@/components/chat-input";
+import "@/components/chat-messages";
 
 document.querySelector<HTMLDivElement>("#app")!.innerHTML = `
   <chat-container>
@@ -11,10 +12,36 @@ document.querySelector<HTMLDivElement>("#app")!.innerHTML = `
       <header-chat>
         Header
       </header-chat>
-      <div class="messages-content">
-        <messages-container></messages-container>
-        <chat-input></chat-input>
-      </div>
+        <chat-messages>
+        </chat-messages>
+      <chat-input></chat-input>
     </chat-window>
   </chat-container>
 `;
+
+// Wait for the DOM to be fully loaded before running the script
+// window.addEventListener("DOMContentLoaded", () => {
+//   // Check if the visualViewport API is supported
+//   if (window.visualViewport) {
+//     const mainContent =
+//       document.querySelector<HTMLHtmlElement>(".main-content");
+//
+//     if (!mainContent) {
+//       return;
+//     }
+//
+//     // This function sets the container's height to the visible area's height
+//     const handleViewportResize = () => {
+//       // Get the current height of the visible area
+//       const viewportHeight = window?.visualViewport?.height;
+//       // Apply this height directly to the main content element
+//       mainContent.style.height = `${viewportHeight}px`;
+//     };
+//
+//     // Run the function once on load
+//     handleViewportResize();
+//
+//     // Add an event listener to run the function whenever the viewport resizes
+//     window.visualViewport.addEventListener("resize", handleViewportResize);
+//   }
+// });
