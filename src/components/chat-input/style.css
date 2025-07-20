@@ -35,13 +35,15 @@ textarea::placeholder {
   border: none;
 }
 
-.send-button:hover {
-  background-color: var(
-    --color-background-medium,
-    #e0e0e0
-  ); /* Fallback color */
-  border: 1px solid var(--color-text-secondary, #ccc); /* Fallback color */
-  outline: 1px solid var(--color-text-secondary, #ccc); /* Fallback color */
+@media (hover: hover) {
+  .send-button:hover {
+    background-color: var(
+      --color-background-medium,
+      #e0e0e0
+    ); /* Fallback color */
+    border: 1px solid var(--color-text-secondary, #ccc); /* Fallback color */
+    outline: 1px solid var(--color-text-secondary, #ccc); /* Fallback color */
+  }
 }
 
 .send-button:focus {
@@ -51,6 +53,12 @@ textarea::placeholder {
     --color-background-medium,
     #e0e0e0
   ); /* Fallback color */
+}
+
+.send-button:disabled {
+  background-color: var(--color-background-light, #f0f0f0); /* Fallback color */
+  opacity: 0.5;
+  cursor: not-allowed;
 }
 
 .send-button svg {
