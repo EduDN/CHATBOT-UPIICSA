@@ -1,20 +1,9 @@
-// src/services/strategies/transformers.strategy.ts
-// import {
-//   pipeline,
-//   cos_sim,
-// } from "https://cdn.jsdelivr.net/npm/@xenova/transformers@2.17.2";
-
 import { pipeline, cos_sim } from "@xenova/transformers";
+
 import type { AnsweringStrategy } from "../answering-strategy";
 
 // You can move your knowledge base here or import it from another file
-const knowledge_base = [
-  {
-    question: "What are the library hours?",
-    answer:
-      "The main library is open from 8:00 AM to 10:00 PM on weekdays, and 10:00 AM to 6:00 PM on weekends.",
-  },
-];
+const knowledge_base = [];
 
 export class TransformersJsStrategy implements AnsweringStrategy {
   private extractor: any = null; // To hold the pipeline instance
@@ -31,7 +20,7 @@ export class TransformersJsStrategy implements AnsweringStrategy {
       normalize: true,
     });
 
-    const flat_embeddings = Array.from(result.data);
+    const flat_embeddings: number[] = Array.from(result.data);
     const embeddingDim = result.dims[1];
     for (let i = 0; i < result.dims[0]; i++) {
       this.corpus_embeddings.push(
@@ -50,11 +39,17 @@ export class TransformersJsStrategy implements AnsweringStrategy {
       pooling: "mean",
       normalize: true,
     });
-    const question_embedding = Array.from(question_embedding_result.data);
+    const question_embedding: number[] = Array.from(
+      question_embedding_result.data,
+    );
 
     let best_match = { index: -1, score: -1 };
     for (let i = 0; i < this.corpus_embeddings.length; i++) {
-      const score = cos_sim(question_embedding, this.corpus_embeddings[i]);
+      const corpus_embeddings = this.corpus_embeddings[i];
+      if (!corpus_embeddings) {
+        continue;
+      }
+      const score = cos_sim(question_embedding, corpus_embeddings);
       if (score > best_match.score) {
         best_match = { index: i, score: score };
       }
@@ -64,6 +59,11 @@ export class TransformersJsStrategy implements AnsweringStrategy {
       return "I'm sorry, I don't have information about that.";
     }
 
-    return knowledge_base[best_match.index].answer;
+    const answer = knowledge_base[best_match?.index]?.answer;
+    if (!answer) {
+      return "I'm sorry, I don't have an answer for that.";
+    }
+
+    return answer;
   }
 }

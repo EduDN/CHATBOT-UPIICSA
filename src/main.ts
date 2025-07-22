@@ -5,6 +5,11 @@ import "@/components/side-bar";
 import "@/components/chat-input";
 import "@/components/chat-messages";
 import { chatbotService } from "@/services/chatbot-service";
+import { env } from "@xenova/transformers";
+
+// Tell the library to NOT look for models locally.
+env.allowLocalModels = false;
+env.useBrowserCache = false;
 
 document.querySelector<HTMLDivElement>("#app")!.innerHTML = `
   <chat-container>
