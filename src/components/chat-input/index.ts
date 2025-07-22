@@ -33,6 +33,19 @@ class ChatInput extends BaseComponent {
     // if (!this.inputElement && !this.sendButton) return;
     if (!this.$inputElement || !this.$sendButton) return;
 
+    // Start in a disabled state
+    this.$inputElement.disabled = true;
+    this.$sendButton.disabled = true;
+    this.$inputElement.placeholder = "Initializing chatbot...";
+
+    document.addEventListener("app-ready", () => {
+      if (!this.$inputElement || !this.$sendButton) return;
+      // Start in a disabled state
+      this.$inputElement.disabled = false;
+      this.$sendButton.disabled = false;
+      this.$inputElement.placeholder = "Escribe tu pregunta";
+    });
+
     this.$inputElement.addEventListener("input", () => {
       if (!this.$inputElement) return;
 

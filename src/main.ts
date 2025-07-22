@@ -4,6 +4,12 @@ import "@/components/chat-container";
 import "@/components/side-bar";
 import "@/components/chat-input";
 import "@/components/chat-messages";
+import { chatbotService } from "@/services/chatbot-service";
+import { env } from "@xenova/transformers";
+
+// Tell the library to NOT look for models locally.
+env.allowLocalModels = false;
+env.useBrowserCache = false;
 
 document.querySelector<HTMLDivElement>("#app")!.innerHTML = `
   <chat-container>
@@ -18,6 +24,12 @@ document.querySelector<HTMLDivElement>("#app")!.innerHTML = `
     </chat-window>
   </chat-container>
 `;
+
+chatbotService.initialize().then(() => {
+  console.log("Chatbot service initialized and ready.");
+  // Maybe dispatch an event to enable the chat input
+  document.dispatchEvent(new CustomEvent("app-ready"));
+});
 
 // Wait for the DOM to be fully loaded before running the script
 window.addEventListener("DOMContentLoaded", () => {

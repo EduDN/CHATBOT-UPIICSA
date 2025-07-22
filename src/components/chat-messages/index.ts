@@ -2,11 +2,15 @@ import { BaseComponent } from "../core/base-component";
 import template from "./template.html?raw";
 import "@/components/chat-message"; // Importing the chat-message component to ensure it's registered
 import style from "./style.css?inline";
+import { chatbotService } from "@/services/chatbot-service";
+
+// Import our new service and strategy
 
 type Sender = "user" | "assistant";
 
 class ChatMessages extends BaseComponent {
   private resizeObserver: ResizeObserver | null = null;
+  private chatbotService = chatbotService; // Use the singleton instance
   constructor() {
     super();
     if (!this.shadowRoot) {
@@ -35,18 +39,29 @@ class ChatMessages extends BaseComponent {
   }
 
   protected override setupEventListeners(): void {
-    document.addEventListener("message-sent", (event) => {
+    document.addEventListener("message-sent", async (event) => {
       const customEvent = event as CustomEvent<{ text: string }>;
       const message = customEvent.detail.text;
+      // const thinkingMessageElement: void | null = null;
 
       this.addMessage(message, "user");
-      setTimeout(() => {
-        this.addMessage("Hi there", "assistant");
-      }, 1000);
+      const thinkingMessageElement = this.addMessage(
+        "Thinking...",
+        "assistant",
+      );
+
+      // Use the service to get an answer
+      const answer = await this.chatbotService.findAnswer(message);
+
+      // Update the "Thinking..." message with the real answer
+      const p = thinkingMessageElement?.querySelector("p");
+      if (p) {
+        p.textContent = answer;
+      }
     });
   }
 
-  public addMessage(message: string, sender: Sender): void {
+  public addMessage(message: string, sender: Sender): HTMLElement | undefined {
     if (this.shadowRoot === null) {
       return;
     }
@@ -89,6 +104,7 @@ class ChatMessages extends BaseComponent {
     $ul.appendChild($chatMessageElement);
 
     // this.scrollToBottom();
+    return $chatMessageElement;
   }
 
   public scrollToBottom(): void {
