@@ -746,5 +746,486 @@
   {
     "question": "¿Hay algún periodo concreto para realizar las prácticas?",
     "answer": "No se estipulan fechas específicas de inicio. El trámite debe definir un periodo y horario para la práctica que no sea mayor a seis meses, con el objetivo de cumplir 720 horas totales (máximo 8 horas diarias de lunes a viernes). Fuente: https://www.upiicsa.ipn.mx/estudiantes/titulacion.html"
+  },
+  {
+    "question": "¿Me puedo titular sin hacer servicio social?",
+    "answer": "No. La constancia o el oficio de liberación de servicio social es un requisito indispensable y un documento obligatorio para iniciar el trámite de titulación en cualquiera de sus modalidades. Fuentes: https://www.upiicsa.ipn.mx/estudiantes/titulacion.html, https://www.youtube.com/watch?v=Xhge9OHuckQ, https://www.spr.gob.mx/_pdf/registro-nacional/medios-publicos-federales/canal-11/II/reglamento_interno.pdf"
+  },
+  {
+    "question": "¿Me puedo titular sin tener ingles?",
+    "answer": "No. El documento de acreditación del idioma inglés es un requisito general y obligatorio para el proceso de titulación en los planes de estudio que así lo especifican. Fuentes: https://www.upiicsa.ipn.mx/estudiantes/titulacion.html, https://www.youtube.com/watch?v=Xhge9OHuckQ"
+  },
+  {
+    "question": "¿Cual es la mascota de la upiicsa?",
+    "answer": "La mascota oficial de todo el Instituto Politécnico Nacional (IPN) es una burra blanca. UPIICSA, como parte del IPN, comparte este símbolo institucional. No hay información que indique que UPIICSA tenga una mascota propia y con nombre específico, a diferencia de otras escuelas del instituto. Fuente: https://www.ipn.mx/assets/files/ceprobi/docs/mascota.pdf"
+  },
+  {
+    "question": "¿Cuanto tiempo dura la carrera de ingenieria en informatica?",
+    "answer": "La carrera de Ingeniería en Informática tiene una duración de 8 semestres, lo que equivale a 4 años. Fuentes: https://mextudia.com/universidades/ipn/carrera-de-ingenieria-en-informatica/ , https://unibetas.com/ingenieria-informatica-ipn/"
+  },
+  {
+    "question": "¿Cuanto tiempo dura la carrera de ciencias de la informatica?",
+    "answer": "La Licenciatura en Ciencias de la Informática tiene una duración de 8 semestres, lo que equivale a 4 años. Fuente: https://www.scribd.com/document/493683954/Ciencias-de-la-Informatica-UPIICSA"
+  },
+  {
+    "question": "¿Cuanto tiempo dura la carrera de Administración Industrial?",
+    "answer": "La Licenciatura en Administración Industrial tiene una duración de 8 semestres, lo que equivale a 4 años. Fuentes: https://www.educaedu.com.mx/licenciatura-en-administracion-industrial-carreras-universitarias-23831.html , https://www.upiicsa.ipn.mx/assets/files/upiicsa/docs/estudiantes/mallas-curriculares/admo-industrial-21-mapa"
+  },
+  {
+    "question": "¿Cuanto tiempo dura la carrera de Ingeniería en Transporte?",
+    "answer": "La carrera de Ingeniería en Transporte tiene una duración de 8 semestres, lo que equivale a 4 años y medio. Fuente: https://mextudia.com/universidades/ipn/carrera-de-ingenieria-en-transporte/"
+  },
+  {
+    "question": "¿Cuanto tiempo dura la carrera de Ingeniería Ferroviaria?",
+    "answer": "La carrera de Ingeniería Ferroviaria tiene una duración de 8 semestres, lo que equivale a 4 años. Fuentes: https://unibetas.com/ingenieria-ferroviaria-ipn/ , https://www.milenio.com/politica/amlo-recibe-a-primeros-ingenieros-ferroviarios-del-ipn"
+  },
+  {
+    "question": "¿Cuanto tiempo dura la carrera de Ingeniería Industrial?",
+    "answer": "La carrera de Ingeniería Industrial tiene una duración de 9 semestres, lo que equivale a 4 años y medio. Fuente: https://www.educaedu.com.mx/licenciatura-en-ingenieria-industrial-carreras-universitarias-21947.html"
+  },
+  {
+    "question": "¿Cuanto tiempo tengo para terminar la carrera de ingeniería en informática?",
+    "answer": "Según el Artículo 49 del Reglamento General de Estudios del IPN, el plazo máximo para cursar un programa académico es de 12 semestres. En caso de exceder este tiempo, se puede solicitar una ampliación mediante un dictamen de la COSIE. Fuente: https://sseis.upiicsa.ipn.mx/induccion/src/reglamento.pdf"
+  },
+  {
+    "question": "¿Cuanto tiempo tengo para terminar la carrera de ciencias de la informática?",
+    "answer": "Según el Artículo 49 del Reglamento General de Estudios del IPN, el plazo máximo para cursar un programa académico es de 12 semestres. En caso de exceder este tiempo, se puede solicitar una ampliación mediante un dictamen de la COSIE. Fuente: https://sseis.upiicsa.ipn.mx/induccion/src/reglamento.pdf"
+  },
+  {
+    "question": "¿Cuanto tiempo tengo para terminar la carrera de administración industrial?",
+    "answer": "Según el Artículo 49 del Reglamento General de Estudios del IPN, el plazo máximo para cursar un programa académico es de 12 semestres. En caso de exceder este tiempo, se puede solicitar una ampliación mediante un dictamen de la COSIE. Fuente: https://sseis.upiicsa.ipn.mx/induccion/src/reglamento.pdf"
+  },
+  {
+    "question": "¿Cuanto tiempo tengo para terminar la carrera de ingeniería en transporte?",
+    "answer": "Según el Artículo 49 del Reglamento General de Estudios del IPN, el plazo máximo para cursar un programa académico es de 12 semestres. En caso de exceder este tiempo, se puede solicitar una ampliación mediante un dictamen de la COSIE. Fuente: https://sseis.upiicsa.ipn.mx/induccion/src/reglamento.pdf"
+  },
+  {
+    "question": "¿Cuanto tiempo tengo para terminar la carrera de ingeniería ferroviaria?",
+    "answer": "Según el Artículo 49 del Reglamento General de Estudios del IPN, el plazo máximo para cursar un programa académico es de 12 semestres. En caso de exceder este tiempo, se puede solicitar una ampliación mediante un dictamen de la COSIE. Fuente: https://sseis.upiicsa.ipn.mx/induccion/src/reglamento.pdf"
+  },
+  {
+    "question": "¿Cuanto tiempo tengo para terminar la carrera de ingeniería industrial?",
+    "answer": "Según el Artículo 49 del Reglamento General de Estudios del IPN, el plazo máximo para cursar un programa académico es de 12 semestres. En caso de exceder este tiempo, se puede solicitar una ampliación mediante un dictamen de la COSIE. Fuente: https://sseis.upiicsa.ipn.mx/induccion/src/reglamento.pdf"
+  },
+  {
+    "question": "¿Cuanto tiempo tengo para terminar la carrera después de terminar las materias en ingeniería en informática?",
+    "answer": "La normativa del IPN establece un plazo máximo de 12 semestres para acreditar todas las materias del plan de estudios. La información recabada no especifica un plazo límite adicional para realizar el proceso de titulación una vez cubierto el 100% de los créditos. Sin embargo, es importante considerar que algunos requisitos, como la constancia de inglés, pueden tener una vigencia (por ejemplo, 5 años), lo que podría afectar el trámite si se deja pasar mucho tiempo. Fuente: https://celexupiicsa.wordpress.com/egresados-del-ipn/"
+  },
+  {
+    "question": "¿Cuanto tiempo tengo para terminar la carrera después de terminar las materias en ciencias de la informática?",
+    "answer": "La normativa del IPN establece un plazo máximo de 12 semestres para acreditar todas las materias del plan de estudios. La información recabada no especifica un plazo límite adicional para realizar el proceso de titulación una vez cubierto el 100% de los créditos. Sin embargo, es importante considerar que algunos requisitos, como la constancia de inglés, pueden tener una vigencia (por ejemplo, 5 años), lo que podría afectar el trámite si se deja pasar mucho tiempo. Fuente: https://celexupiicsa.wordpress.com/egresados-del-ipn/"
+  },
+  {
+    "question": "¿Cuanto tiempo tengo para terminar la carrera después de terminar las materias en administración industrial?",
+    "answer": "La normativa del IPN establece un plazo máximo de 12 semestres para acreditar todas las materias del plan de estudios. La información recabada no especifica un plazo límite adicional para realizar el proceso de titulación una vez cubierto el 100% de los créditos. Sin embargo, es importante considerar que algunos requisitos, como la constancia de inglés, pueden tener una vigencia (por ejemplo, 5 años), lo que podría afectar el trámite si se deja pasar mucho tiempo. Fuente: https://celexupiicsa.wordpress.com/egresados-del-ipn/"
+  },
+  {
+    "question": "¿Cuanto tiempo tengo para terminar la carrera después de terminar las materias en ingeniería en transporte?",
+    "answer": "La normativa del IPN establece un plazo máximo de 12 semestres para acreditar todas las materias del plan de estudios. La información recabada no especifica un plazo límite adicional para realizar el proceso de titulación una vez cubierto el 100% de los créditos. Sin embargo, es importante considerar que algunos requisitos, como la constancia de inglés, pueden tener una vigencia (por ejemplo, 5 años), lo que podría afectar el trámite si se deja pasar mucho tiempo. Fuente: https://celexupiicsa.wordpress.com/egresados-del-ipn/"
+  },
+  {
+    "question": "¿Cuanto tiempo tengo para terminar la carrera después de terminar las materias en ingeniería ferroviaria?",
+    "answer": "La normativa del IPN establece un plazo máximo de 12 semestres para acreditar todas las materias del plan de estudios. La información recabada no especifica un plazo límite adicional para realizar el proceso de titulación una vez cubierto el 100% de los créditos. Sin embargo, es importante considerar que algunos requisitos, como la constancia de inglés, pueden tener una vigencia (por ejemplo, 5 años), lo que podría afectar el trámite si se deja pasar mucho tiempo. Fuente: https://celexupiicsa.wordpress.com/egresados-del-ipn/"
+  },
+  {
+    "question": "¿Cuanto tiempo tengo para terminar la carrera después de terminar las materias en ingeniería industrial?",
+    "answer": "La normativa del IPN establece un plazo máximo de 12 semestres para acreditar todas las materias del plan de estudios. La información recabada no especifica un plazo límite adicional para realizar el proceso de titulación una vez cubierto el 100% de los créditos. Sin embargo, es importante considerar que algunos requisitos, como la constancia de inglés, pueden tener una vigencia (por ejemplo, 5 años), lo que podría afectar el trámite si se deja pasar mucho tiempo. Fuente: https://celexupiicsa.wordpress.com/egresados-del-ipn/"
+  },
+  {
+    "question": "¿Qué idiomas se ofrecen en el CELEX UPIICSA?",
+    "answer": "El CELEX de UPIICSA ofrece cursos de cuatro idiomas: Inglés, Francés, Alemán e Italiano. [1]"
+  },
+  {
+    "question": "¿Cuál es el costo de un curso en el CELEX UPIICSA para 2024?",
+    "answer": "El costo por cada nivel en 2024 es de $600.00 MXN para alumnos del IPN y de $1,200.00 MXN para el público general (Externos). [2]"
+  },
+  {
+    "question": "¿Cuánto cuesta el examen de colocación y la credencial?",
+    "answer": "El examen de colocación tiene un costo de $140.00 MXN. La credencial de estudiante del CELEX se tramita con un donativo de $150.00 MXN. [2, 3]"
+  },
+  {
+    "question": "¿Dónde están las oficinas y las aulas del CELEX UPIICSA?",
+    "answer": "La oficina administrativa se encuentra en el primer piso del Edificio Cultural de la UPIICSA. Las clases presenciales se imparten en aulas de los edificios de Sociales, Básicas y el mismo Edificio Cultural. [4, 5, 6]"
+  },
+  {
+    "question": "¿Cuánto dura cada nivel de idioma?",
+    "answer": "Cada nivel o módulo de cualquier idioma tiene una duración estándar de 40 horas de instrucción. [7, 8]"
+  },
+  {
+    "question": "¿Qué modalidades y horarios de curso existen?",
+    "answer": "Ofrecen cursos semanales (lunes a viernes, 2 o 4 horas diarias) y de fin de semana (sábados o domingos, 6.25 horas por día). También hay una modalidad 'Combo' intensiva de fin de semana. Existen formatos en línea y presenciales. [1]"
+  },
+  {
+    "question": "¿Cuál es la duración en semanas de los cursos?",
+    "answer": "Los cursos semanales regulares (2h/día) duran 4 semanas. Los intensivos (4h/día) duran 2 semanas. Los de fin de semana (sabatino o dominical) duran 7 semanas. [1, 7, 9]"
+  },
+  {
+    "question": "¿Cuántos niveles tiene en total el programa de inglés?",
+    "answer": "El programa completo de inglés se compone de 22 niveles, desde Introductorio hasta Superior 5. [10]"
+  },
+  {
+    "question": "¿Cuántos niveles tienen los programas de francés, alemán e italiano?",
+    "answer": "Cada uno de estos idiomas (francés, alemán e italiano) tiene un programa estructurado en 15 niveles en total. [10]"
+  },
+  {
+    "question": "¿Cuál es la calificación mínima para aprobar un nivel?",
+    "answer": "La calificación final mínima para aprobar cualquier nivel es de 80 sobre 100. Las calificaciones se asientan como números enteros, sin redondear. [4]"
+  },
+  {
+    "question": "¿Cómo se compone la calificación final?",
+    "answer": "La calificación final es el promedio de dos evaluaciones: la de medio curso (examen 80 pts, evaluación continua 20 pts) y la de fin de curso (examen final 60 pts, evaluación continua 20 pts, tarea integradora 20 pts). [4]"
+  },
+  {
+    "question": "¿Cuál es el porcentaje de asistencia obligatorio?",
+    "answer": "Se debe cubrir un mínimo del 80% de asistencia para tener derecho a examen. Esto permite un máximo de 4 faltas en cursos semanales y 1.5 faltas en cursos de fin de semana. [11, 4]"
+  },
+  {
+    "question": "¿Es obligatorio comprar los libros de texto?",
+    "answer": "Sí, es un requisito indispensable comprar los libros de texto originales para cada nivel y presentarlos desde la primera clase. El uso de fotocopias está estrictamente prohibido. [11, 4]"
+  },
+  {
+    "question": "¿Cómo me inscribo por primera vez?",
+    "answer": "Debes estar atento a las convocatorias que se publican en el blog oficial del CELEX UPIICSA. El registro se hace a través de un formulario de Google Forms en las fechas estipuladas para 'Nuevo Ingreso'. [9, 12]"
+  },
+  {
+    "question": "¿Qué necesito para inscribirme por primera vez?",
+    "answer": "Los requisitos son tener al menos 15 años de edad y una cuenta de correo electrónico personal. Para los cursos en línea, también se requiere un equipo de cómputo con cámara web y una conexión a internet estable. [9, 12]"
+  },
+  {
+    "question": "Si repruebo un nivel, ¿puedo hacer examen de colocación para pasarlo?",
+    "answer": "No. El examen de colocación no se puede utilizar para acreditar un curso que ha sido reprobado. Su función es únicamente de diagnóstico para asignar un nivel. [4, 13]"
+  },
+  {
+    "question": "¿Qué sucede si repruebo el mismo nivel varias veces?",
+    "answer": "Un estudiante puede cursar el mismo nivel hasta tres veces consecutivas. Si reprueba la tercera vez, debe tomar una pausa obligatoria de un ciclo y luego presentar un examen de colocación para poder reingresar. [4, 6]"
+  },
+  {
+    "question": "¿Hay alguna actividad extra para practicar el idioma?",
+    "answer": "Sí, el CELEX UPIICSA ofrece un Club de Conversación gratuito para todos sus alumnos inscritos, con sesiones tanto entre semana como en fin de semana. [14]"
+  },
+  {
+    "question": "Al terminar todos los niveles, ¿recibo algún documento oficial?",
+    "answer": "Sí, al concluir satisfactoriamente todos los niveles del programa de un idioma, puedes tramitar un Diploma oficial, el cual tiene un costo. También puedes solicitar historiales académicos sin costo al terminar cada bloque de niveles (Básico, Intermedio, etc.). [8]"
+  },
+  {
+    "question": "¿Qué es la Defensoría de los Derechos Politécnicos (DDP)?",
+    "answer": "Es un órgano autónomo e independiente de las autoridades del IPN, creado para proteger, defender y promover los derechos de toda la comunidad politécnica. Investiga quejas sobre posibles violaciones a tus derechos cometidas por autoridades académicas o administrativas del Instituto y busca soluciones a través de la conciliación o emitiendo recomendaciones."
+  },
+
+  {
+    "question": "Tengo un problema con un profesor en UPIICSA, ¿a quién puedo acudir primero?",
+    "answer": "Tu primer punto de contacto en UPIICSA es el 'Equipo Promotor de Derechos Humanos'. Puedes contactar a la Lic. María Corey Ortiz Galindo (mcortiz@ipn.mx, Ext. 70072) o al equipo de la Coordinación de Enlace y Gestión Técnica (CEGET), que incluye a la M.A.R.H. Laura Andrómeda Fonseca y al Lic. Marco Antonio Gutiérrez (cegetupiicsa@ipn.mx, Ext. 70008). Ellos pueden ofrecerte orientación y asesoría de manera local y confidencial. https://www.sites.upiicsa.ipn.mx/uteycv/derechos_humanos/"
+  },
+  {
+    "question": "¿Cuál es la diferencia entre una 'orientación' y una 'queja'?",
+    "answer": "Una 'orientación' es una consulta para recibir asesoría sobre una situación que crees que podría estar afectando tus derechos. Es un paso informativo. Una 'queja' es una acusación formal por escrito contra una autoridad del IPN por presuntamente violar tus derechos politécnicos, lo que inicia un proceso de investigación formal por parte de la Defensoría. https://www.sites.upiicsa.ipn.mx/uteycv/derechos_humanos/"
+  },
+  {
+    "question": "Creo que un profesor me está calificando injustamente por mis opiniones políticas, ¿qué puedo hacer?",
+    "answer": "Esto podría ser un caso de discriminación, que está prohibida por los Derechos Politécnicos. El primer paso es documentar todo: guarda correos, trabajos, y cualquier evidencia de la situación. Luego, puedes buscar 'orientación' con los Promotores de Derechos Humanos de UPIICSA. Si decides proceder, puedes presentar una 'queja' formal ante la Defensoría, detallando cómo tus opiniones políticas han sido la causa de un trato injusto. https://www.sites.upiicsa.ipn.mx/uteycv/derechos_humanos/"
+  },
+  {
+    "question": "¿Cómo presento una queja formal?",
+    "answer": "Debes presentar un escrito en original y copias en la Defensoría. El escrito debe incluir tu nombre completo, número de boleta, la autoridad a la que acusas, una descripción detallada de los hechos, tu información de contacto y tu firma. Debes adjuntar todas las pruebas que tengas. Tienes un plazo de 90 días desde que ocurrieron los hechos para presentarla. https://www.sites.upiicsa.ipn.mx/uteycv/derechos_humanos/"
+  },
+  {
+    "question": "¿Qué se considera 'hostigamiento sexual' en el IPN?",
+    "answer": "El hostigamiento sexual implica un ejercicio de poder, donde hay una relación de subordinación (por ejemplo, profesor-alumno). Se manifiesta con conductas verbales o físicas de naturaleza sexual no deseadas. Si rechazar estas conductas te puede traer consecuencias negativas (como afectar tus calificaciones), se considera hostigamiento. https://www.sites.upiicsa.ipn.mx/uteycv/derechos_humanos/pdf/Hostigamiento-Acoso-Sexual.pdf"
+  },
+  {
+    "question": "¿Y qué es el 'acoso sexual'?",
+    "answer": "El acoso sexual no requiere una relación de poder o subordinación; puede ocurrir entre compañeros. Es cualquier comportamiento (verbal o físico) de naturaleza sexual que crea un ambiente intimidatorio, hostil u ofensivo para ti, atentando contra tu dignidad. Por ejemplo, comentarios lascivos persistentes de un compañero. https://www.sites.upiicsa.ipn.mx/uteycv/derechos_humanos/pdf/Hostigamiento-Acoso-Sexual.pdf"
+  },
+  {
+    "question": "Un compañero de clase no deja de enviarme mensajes inapropiados y me hace sentir incómodo en el salón. ¿Eso es acoso?",
+    "answer": "Sí, ese comportamiento puede constituir acoso sexual al crear un 'ambiente hostil'. No es necesario que sea tu superior. Debes reportarlo. Puedes acudir con los Promotores de Derechos Humanos de UPIICSA para recibir orientación sobre cómo proceder y, si lo decides, presentar una queja formal. https://www.sites.upiicsa.ipn.mx/uteycv/derechos_humanos/pdf/Hostigamiento-Acoso-Sexual.pdf"
+  },
+  {
+    "question": "¿Dónde está la oficina de la Defensoría y cuál es su horario?",
+    "answer": "La Defensoría de los Derechos Politécnicos se encuentra en la Unidad Profesional 'Adolfo López Mateos' en Zacatenco, en la planta baja del Edificio 'Adolfo Ruíz Cortines'. Su horario de atención es de lunes a viernes de 9:00 a 14:00 y de 16:00 a 19:00 hrs. Su correo es defensoria@ipn.mx y sus teléfonos son 5729-6000 Ext. 57277 y 57278. https://www.sites.upiicsa.ipn.mx/uteycv/derechos_humanos/"
+  },
+  {
+    "question": "Necesito contactar a alguien en UPIICSA por la tarde, ¿quién está disponible?",
+    "answer": "El Lic. Marco Antonio Gutiérrez Montes, Promotor de Derechos Humanos en UPIICSA, tiene un horario de atención de lunes a viernes de 16:30 a 21:00 h. Puedes contactarlo en el correo magutierrezm@ipn.mx o en la extensión 70008. https://www.sites.upiicsa.ipn.mx/uteycv/derechos_humanos/"
+  },
+  {
+    "question": "Los enlaces a los manuales de procedimiento en la página de la Defensoría no funcionan. ¿Qué hago si necesito esa información?",
+    "answer": "Este es un problema real. Lo recomendable es basar tu queja en la información que sí está disponible en la página principal. Asegúrate de cumplir con todos los requisitos listados allí. Es aconsejable que tomes una captura de pantalla de los enlaces rotos y menciones en tu escrito de queja que los manuales detallados no eran accesibles, para protegerte de cualquier objeción procesal. https://www.sites.upiicsa.ipn.mx/uteycv/derechos_humanos/"
+  },
+  {
+    "question": "¿Quiénes forman parte de la Red de Género de UPIICSA y cómo puedo contactarlos?",
+    "answer": "La red está integrada por una titular (Psic. Blanca Rosalía Pantoja Aviléz), una asistente, docentes, personal de apoyo y estudiantes. Puedes contactarlos a través de los correos electrónicos redgeneroupiicsa@ipn.mx y bpantojaa@ipn.mx, su página de Facebook 'Red de género upiicsa-ipn', o en el teléfono 55 5624 2000 ext. 42073. \n\nhttps://www.sites.upiicsa.ipn.mx/uteycv/genero/"
+  },
+  {
+    "question": "¿Qué es la Unidad Politécnica de Gestión con Perspectiva de Género (UPGPG)?",
+    "answer": "La UPGPG es la instancia oficial del IPN responsable de incorporar la perspectiva de género en toda la institución. Las Redes de Género, como la de UPIICSA, son el brazo operativo de la UPGPG en cada unidad académica y administrativa. \n\nhttps://www.sites.upiicsa.ipn.mx/uteycv/genero/"
+  },
+  {
+    "question": "¿En qué marco legal se basa la Red de Género?",
+    "answer": "Se sustenta en el Acuerdo de 2012 que crea la UPGPG, el Reglamento Orgánico del IPN, leyes nacionales como la Ley General para la Igualdad entre Mujeres y Hombres, y tratados internacionales como la CEDAW y la Convención “Belém Do Pará”. \n\nhttps://www.sites.upiicsa.ipn.mx/uteycv/genero/"
+  },
+  {
+    "question": "¿Cómo puedo denunciar un caso de violencia de género?",
+    "answer": "La vía principal es la plataforma en línea 'Denuncia Segura'. También se ofrecen contactos de emergencia como el WhatsApp 55 4897 3384 y el hashtag #IPNsinviolencia en Twitter. Tu denuncia es completamente confidencial. \n\nhttps://denunciasegura.ipn.mx/"
+  },
+  {
+    "question": "¿Cómo presento una denuncia a través de la plataforma en línea 'Denuncia Segura'?",
+    "answer": "Debes ingresar a denunciasegura.ipn.mx, aceptar el aviso de privacidad, llenar el formulario con tus datos, los de la persona denunciada y testigos (si los hay). Es crucial que adjuntes todas las pruebas que tengas (imágenes, audios, videos) y, al finalizar, guardes el número de folio que te proporcionará el sistema. \n\nhttps://denunciasegura.ipn.mx/denuncia/web/index.php?r=site%2Fmanual"
+  },
+  {
+    "question": "¿Puedo hacer una denuncia anónima?",
+    "answer": "Sí, la plataforma te permite explícitamente hacer una denuncia anónima. El IPN garantiza la confidencialidad de tus datos. Sin embargo, una denuncia totalmente anónima puede dificultar la investigación, ya que las autoridades no podrán contactarte para ratificarla, lo que es un paso importante del protocolo. \n\nhttps://denunciasegura.ipn.mx/index.php?r=site%2Findex"
+  },
+  {
+    "question": "¿Qué información y pruebas necesito para que mi denuncia sea más sólida?",
+    "answer": "Para fortalecer tu denuncia, proporciona tantos detalles como sea posible: una descripción clara de los hechos, fechas, horas y lugares. Adjunta cualquier evidencia que tengas, como capturas de pantalla de conversaciones, correos, fotos, videos o audios. Si hay testigos, incluye sus nombres. \n\nhttps://denunciasegura.ipn.mx/denuncia/web/index.php?r=site%2Fmanual"
+  },
+  {
+    "question": "¿Qué pasa después de que presento mi denuncia?",
+    "answer": "La UPGPG recibe tu denuncia, la valora y, si procede, te contacta para una entrevista. Luego, el caso se turna a la Oficina del Abogado General, que inicia un procedimiento disciplinario (si el agresor es alumno) o laboral/administrativo (si es personal del IPN), garantizando el derecho de defensa de ambas partes antes de emitir una resolución. \n\nhttps://www.ipn.mx/assets/files/ccs/docs/gaceta-extraordinaria/2019/12/1519-modificado-21-feb-2020.pdf"
+  },
+  {
+    "question": "Presenté mi denuncia y me dieron un folio. ¿Cómo sé qué está pasando con mi caso?",
+    "answer": "El folio es tu número de expediente. Aunque el IPN anunció que actualizaría la plataforma para mejorar el seguimiento en línea, la forma más directa de saber el estatus de tu caso es contactar a la Red de Género o a la UPGPG por correo o teléfono, proporcionando tu número de folio para que puedan identificarte y darte información. \n\nhttps://oncenoticias.digital/agenda-ipn/ipn-actualizara-el-portal-denuncia-segura-este-ano/234176/"
+  },
+  {
+    "question": "¿Qué medidas de protección existen si la persona que me acosa es mi profesor?",
+    "answer": "El protocolo contempla medidas para proteger tu trayectoria académica. Se puede solicitar que seas evaluado/a por un profesor distinto, un cambio de grupo o turno, e incluso un cambio de unidad académica. Estas medidas buscan que puedas continuar tus estudios sin miedo a represalias. \n\nhttps://www.ipn.mx/genero/materiales/protocolo.pdf"
+  },
+  {
+    "question": "¿El IPN ofrece apoyo psicológico o médico a las víctimas?",
+    "answer": "Sí, y es gratuito. El protocolo establece que si se detecta que necesitas apoyo médico o psicológico, serás canalizada para recibirlo sin costo alguno. Se busca darte acompañamiento emocional durante todo el proceso. \n\nhttps://www.youtube.com/watch?v=ZBHeTlu9LtY"
+  },
+  {
+    "question": "¿Qué es el 'Violentómetro'?",
+    "answer": "Es una herramienta gráfica, en forma de regla, creada por el IPN para visualizar y medir las diferentes manifestaciones de violencia que a menudo se ocultan en la vida cotidiana. Ayuda a identificar las señales de alerta en tres niveles de colores, desde las más sutiles hasta las más graves. \n\nhttps://www.ipn.mx/genero/materiales/violentometro.html"
+  },
+  {
+    "question": "¿Qué es el 'Acosómetro'?",
+    "answer": "Es otra herramienta del IPN, diseñada en 2021, para visibilizar y detectar conductas específicas de acoso y hostigamiento sexual en los ámbitos escolar y laboral. Describe acciones como miradas morbosas, piropos ofensivos, condicionar vestimenta, hasta contacto físico no consentido. \n\nhttps://www.ipn.mx/genero/materiales/acosometro.html"
+  },
+  {
+    "question": "¿Qué es el 'Violentómetro Laboral'?",
+    "answer": "Es una versión del Violentómetro enfocada específicamente en el ámbito del trabajo. Ayuda a identificar conductas de acoso y hostigamiento entre compañeros (acoso) o de un superior a un subordinado (hostigamiento), como la asignación de tareas injustas, críticas constantes, humillaciones o propuestas sexuales. \n\nhttps://www.ipn.mx/genero/materiales/violentometro-laboral.pdf"
+  },
+  {
+    "question": "¿Qué tipo de sanciones puede recibir un estudiante culpable de acoso?",
+    "answer": "Las sanciones para estudiantes, según el Reglamento Interno, van desde una amonestación escrita y la suspensión de becas, hasta la baja temporal por un semestre o la baja definitiva del Instituto Politécnico Nacional en los casos más graves. \n\nhttps://www.ipn.mx/assets/files/ccs/docs/gaceta-extraordinaria/2019/12/1519-modificado-21-feb-2020.pdf"
+  },
+  {
+    "question": "¿Qué tipo de sanciones puede recibir un docente o administrativo culpable de acoso?",
+    "answer": "Para el personal, las sanciones pueden ser laborales (desde una suspensión sin salario hasta el cese del nombramiento o despido) o administrativas (desde una amonestación hasta la destitución e inhabilitación para ocupar cargos públicos por un tiempo). \n\nhttps://www.ipn.mx/assets/files/ccs/docs/gaceta-extraordinaria/2019/12/1519-modificado-21-feb-2020.pdf"
+  },
+  {
+    "question": "¿La sanción es más grave si una persona reincide en conductas de violencia?",
+    "answer": "Sí, la reincidencia es un agravante. El protocolo establece que una persona que reincida en estas conductas podrá recibir la sanción máxima correspondiente, que es la baja definitiva para estudiantes o la separación del cargo para el personal. \n\nhttps://www.ipn.mx/assets/files/ccs/docs/gaceta-extraordinaria/2019/12/1519-modificado-21-feb-2020.pdf"
+  },
+  {
+    "question": "Si los hechos que sufrí son un delito (ej. abuso sexual), ¿el proceso del IPN es suficiente?",
+    "answer": "No. El proceso del IPN es administrativo/laboral y su sanción máxima es la expulsión o el despido. No puede imponer penas de cárcel. Si los hechos constituyen un delito penal, debes presentar una denuncia ante la Fiscalía o el Ministerio Público, que es la única vía para sanciones penales como la prisión. Son procesos distintos que pueden llevarse al mismo tiempo. \n\nhttps://www.ipn.mx/assets/files/ccs/docs/gaceta-extraordinaria/2019/12/1519-modificado-21-feb-2020.pdf"
+  },
+  {
+    "question": "¿El IPN me apoya si decido denunciar penalmente?",
+    "answer": "Sí. El protocolo establece que si deseas presentar una denuncia penal, la Oficina del Abogado General (OAG) del IPN te brindará el acompañamiento y la asesoría legal correspondiente durante ese proceso externo. \n\nhttps://www.ipn.mx/assets/files/ccs/docs/gaceta-extraordinaria/2019/12/1519-modificado-21-feb-2020.pdf"
+  },
+  {
+    "question": "¿Qué pasa si me encuentran vendiendo sustancias prohibidas dentro de la escuela?",
+    "answer": "Distribuir psicotrópicos o estupefacientes es una de las faltas más graves. Según el Artículo 67, Fracción VI, del Reglamento Escolar, esta acción es causa de baja disciplinaria, que muy probablemente será la baja definitiva del Instituto.  https://www.aplicaciones.abogadogeneral.ipn.mx/reglamentos/REGLAMENTO_ESCOLAR.pdf"
+  },
+  {
+    "question": "¿Qué pasa si me encuentran drogado dentro de la escuela?",
+    "answer": "Consumir o estar bajo la influencia de psicotrópicos o estupefacientes dentro de las instalaciones del IPN es una falta grave. El Artículo 67, Fracción VI, del Reglamento Escolar lo establece como una causa de baja, que puede ser temporal o definitiva.  https://www.aplicaciones.abogadogeneral.ipn.mx/reglamentos/REGLAMENTO_ESCOLAR.pdf"
+  },
+  {
+    "question": "¿Qué castigos puedo recibir por pelearme en la escuela?",
+    "answer": "Cometer cualquier acto de violencia contra una persona o contra los bienes del Instituto es una falta grave. Según el Artículo 67, Fracción II, del Reglamento Escolar, esto puede ser causa de baja disciplinaria, que puede ser temporal o definitiva.  https://www.aplicaciones.abogadogeneral.ipn.mx/reglamentos/REGLAMENTO_ESCOLAR.pdf"
+  },
+  {
+    "question": "¿Qué castigos puedo recibir si me encuentran vendiendo sustancias prohibidas?",
+    "answer": "La distribución de sustancias prohibidas es una falta de máxima gravedad. El Artículo 67, Fracción VI, del Reglamento Escolar lo sanciona con la baja disciplinaria. Dada la seriedad de la ofensa, la sanción más probable es la baja definitiva del Instituto Politécnico Nacional.  https://www.aplicaciones.abogadogeneral.ipn.mx/reglamentos/REGLAMENTO_ESCOLAR.pdf"
+  },
+  {
+    "question": "¿Qué castigos puedo tener si me encuentran drogado dentro de la escuela?",
+    "answer": "La sanción por consumir o estar bajo la influencia de drogas es la baja disciplinaria. El director de la unidad académica, previa opinión del Consejo Técnico Consultivo Escolar, determinará si la baja es temporal (hasta por un semestre) o definitiva.  https://www.aplicaciones.abogadogeneral.ipn.mx/reglamentos/REGLAMENTO_ESCOLAR.pdf"
+  },
+  {
+    "question": "¿Qué pasa si me encuentran jugando barajas o apostando dentro de la escuela?",
+    "answer": "Aunque el Reglamento Escolar general no lo menciona explícitamente, normativas específicas de algunas unidades académicas, como el CECyT 10 y 19, prohíben los juegos de azar y apuestas. Esta conducta podría ser sancionada a nivel local o ser considerada un 'comportamiento que no enaltezca el nombre del Instituto' (Artículo 67, Fracción I del Reglamento Escolar), lo que puede llevar a sanciones que van desde un apercibimiento hasta la baja.  https://www.ipn.mx/assets/files/cecyt19/docs/2024/Estudiantes/Servicios%20y%20Apoyo/pautas-de-conducta-(1).pdf"
+  },
+  {
+    "question": "¿Qué pasa si me encuentran teniendo sexo dentro de la escuela?",
+    "answer": "El reglamento no menciona explícitamente los actos sexuales. Sin embargo, esta conducta muy probablemente sería considerada una falta grave bajo el Artículo 67, Fracción I, del Reglamento Escolar, que sanciona el 'dejar de observar un comportamiento que enaltezca el nombre y la calidad académica del Instituto'. La sanción sería determinada por las autoridades y podría ir desde una amonestación hasta la baja definitiva.  https://www.aplicaciones.abogadogeneral.ipn.mx/reglamentos/REGLAMENTO_ESCOLAR.pdf"
+  },
+  {
+    "question": "¿Qué castigos puedo recibir si me encuentran teniendo sexo dentro de la escuela?",
+    "answer": "La sanción por realizar actos que no enaltezcan el nombre del Instituto es determinada por el director de la unidad, previa opinión del Consejo. Según el Artículo 69 del Reglamento Escolar, las sanciones pueden ser: apercibimiento, amonestación escrita, baja temporal de hasta un semestre, o la baja definitiva del IPN.  https://www.aplicaciones.abogadogeneral.ipn.mx/reglamentos/REGLAMENTO_ESCOLAR.pdf"
+  },
+  {
+    "question": "¿Cuáles son las sanciones generales que puede aplicar el IPN a un alumno?",
+    "answer": "Según el Artículo 69 del Reglamento Escolar, las sanciones aplicables a los alumnos que incurran en una causa de responsabilidad son: Apercibimiento, Amonestación escrita, Baja temporal de la escuela (hasta por un semestre), y Baja definitiva del Instituto Politécnico Nacional.  https://www.aplicaciones.abogadogeneral.ipn.mx/reglamentos/REGLAMENTO_ESCOLAR.pdf"
+  },
+  {
+    "question": "¿Qué pasa si copio en un examen?",
+    "answer": "Copiar en un examen es un acto que afecta la autenticidad de los procesos de evaluación. La suplantación o permitir ser suplantado es una causa de responsabilidad explícita (Artículo 68). La sanción puede ir desde un apercibimiento hasta la baja definitiva, dependiendo de la gravedad del acto.  https://www.aplicaciones.abogadogeneral.ipn.mx/reglamentos/REGLAMENTO_ESCOLAR.pdf"
+  },
+  {
+    "question": "¿Qué sanción recibo si intento sobornar a un maestro para que me ponga una calificación?",
+    "answer": "Intentar influir indebidamente en un profesor para acreditar una asignatura o modificar una calificación es una causa de baja disciplinaria, según el Artículo 67, Fracción V, del Reglamento Escolar. Dada la gravedad, es muy probable que la sanción sea la baja definitiva.  https://www.aplicaciones.abogadogeneral.ipn.mx/reglamentos/REGLAMENTO_ESCOLAR.pdf"
+  },
+  {
+    "question": "¿Qué pasa si falsifico mi historial académico o un certificado?",
+    "answer": "Falsificar, alterar o utilizar indebidamente documentos escolares, sellos y papeles oficiales es una causa de baja disciplinaria, como lo estipula el Artículo 67, Fracción III, del Reglamento Escolar. La sanción más probable es la baja definitiva del IPN.  https://www.aplicaciones.abogadogeneral.ipn.mx/reglamentos/REGLAMENTO_ESCOLAR.pdf"
+  },
+  {
+    "question": "¿Y si entrego un certificado de bachillerato falso para inscribirme?",
+    "answer": "La inscripción será nula de pleno derecho. Esto significa que legalmente nunca fuiste alumno, pierdes todos tus avances y no podrás volver a inscribirte. Además, el IPN notificará a las autoridades legales correspondientes, ya que es un delito.  https://www.ipn.mx/assets/files/cecyt19/docs/2024/Estudiantes/Gesti%C3%B3n%20Escolar%20/reglamento-gral-estudios-ipn-2011-06.pdf"
+  },
+  {
+    "question": "¿Dañar el mobiliario o pintar graffiti en la escuela tiene consecuencias?",
+    "answer": "Sí. Dañar, destruir o deteriorar instalaciones, equipos, libros u otros bienes del Instituto es una causa de baja disciplinaria según el Artículo 67, Fracción IV, del Reglamento Escolar. La sanción dependerá de la gravedad del daño.  https://www.aplicaciones.abogadogeneral.ipn.mx/reglamentos/REGLAMENTO_ESCOLAR.pdf"
+  },
+  {
+    "question": "¿Qué significa 'observar un comportamiento que enaltezca el nombre del Instituto'?",
+    "answer": "Es una obligación general de los alumnos (Artículo 107 del Reglamento Interno). Incumplirla es una causa de baja disciplinaria (Artículo 67 del Reglamento Escolar). Es una cláusula amplia que abarca cualquier conducta, dentro o fuera de la escuela, que desprestigie al IPN, como insultos, acoso o actos deshonrosos.  https://www.aplicaciones.abogadogeneral.ipn.mx/reglamentos/REGLAMENTO_ESCOLAR.pdf"
+  },
+  {
+    "question": "¿Puedo ser sancionado por insultar a un profesor o a un compañero?",
+    "answer": "Sí. Guardar respeto a todos los miembros de la comunidad es una obligación. Insultar a alguien se considera una falta de respeto y un comportamiento que no enaltece el nombre del Instituto, por lo que puede ser sancionado con base en el Artículo 67, Fracción I, del Reglamento Escolar.  https://www.aplicaciones.abogadogeneral.ipn.mx/reglamentos/REGLAMENTO_ESCOLAR.pdf"
+  },
+  {
+    "question": "¿Qué pasa si le presto mi credencial a un amigo para que entre a la escuela?",
+    "answer": "Emplear o permitir el uso indebido de la credencial de estudiante es una causa de responsabilidad, según el Artículo 68, Fracción II, del Reglamento Escolar. La sanción puede ir desde un apercibimiento hasta la baja definitiva.  https://www.aplicaciones.abogadogeneral.ipn.mx/reglamentos/REGLAMENTO_ESCOLAR.pdf"
+  },
+  {
+    "question": "¿Qué es la suplantación de identidad en un examen y cuál es el castigo?",
+    "answer": "Es cuando permites que otra persona haga un examen por ti, o tú lo haces por alguien más. Es una falta muy grave, tipificada en el Artículo 68, Fracción III, del Reglamento Escolar. El castigo puede ser la baja temporal o, más probablemente, la baja definitiva del IPN.  https://www.aplicaciones.abogadogeneral.ipn.mx/reglamentos/REGLAMENTO_ESCOLAR.pdf"
+  },
+  {
+    "question": "¿Quién decide qué sanción me aplican?",
+    "answer": "Corresponde al director de tu escuela, centro o unidad determinar la sanción, pero siempre debe hacerlo 'previa opinión del Consejo Técnico Consultivo Escolar'. La decisión debe ser informada y colegiada.  https://www.aplicaciones.abogadogeneral.ipn.mx/reglamentos/REGLAMENTO_ESCOLAR.pdf"
+  },
+  {
+    "question": "¿Cómo me deben notificar una sanción?",
+    "answer": "La sanción debe ser fijada por escrito y notificarse de forma fehaciente (es decir, que quede constancia de que la recibiste). El documento debe explicar los hechos que motivaron la sanción y las normas que se violaron.  https://www.aplicaciones.abogadogeneral.ipn.mx/reglamentos/REGLAMENTO_ESCOLAR.pdf"
+  },
+  {
+    "question": "¿Puedo apelar una sanción disciplinaria?",
+    "answer": "Sí. Si consideras que tus derechos fueron afectados, puedes presentar un 'recurso de reconsideración' ante la Comisión de Honor del Consejo General Consultivo. Tienes cinco días hábiles después de la notificación para presentarlo.  https://es.slideshare.net/slideshow/reglamento-interno-del-ipn-2014/39626790"
+  },
+  {
+    "question": "¿Qué es el hostigamiento sexual según la normativa del IPN?",
+    "answer": "Es el ejercicio de poder en una relación de subordinación (ej. profesor-alumno) que se manifiesta en conductas verbales o físicas de connotación lasciva. La negativa de la víctima a estas conductas puede acarrearle consecuencias negativas.  https://www.sites.upiicsa.ipn.mx/uteycv/derechos_humanos/pdf/Hostigamiento-Acoso-Sexual.pdf"
+  },
+  {
+    "question": "¿Qué es el acoso sexual?",
+    "answer": "Es un comportamiento de naturaleza sexual que no requiere una relación de poder formal (puede ser entre pares) y que atenta contra la dignidad de una persona al crear un entorno intimidatorio, degradante u ofensivo.  https://www.sites.upiicsa.ipn.mx/uteycv/derechos_humanos/pdf/Hostigamiento-Acoso-Sexual.pdf"
+  },
+  {
+    "question": "¿Acosar a un compañero es causa de baja?",
+    "answer": "Sí. El acoso es una forma de violencia y puede ser sancionado bajo el Artículo 67, Fracción II, del Reglamento Escolar ('cometer cualquier acto de violencia en contra de persona'). La sanción puede ser la baja temporal o definitiva.  https://www.aplicaciones.abogadogeneral.ipn.mx/reglamentos/REGLAMENTO_ESCOLAR.pdf"
+  },
+  {
+    "question": "¿Qué es un 'apercibimiento'?",
+    "answer": "Es la sanción más leve. Es una llamada de atención o advertencia formal para que no repitas la falta, pero no implica una suspensión de tus derechos como alumno.  https://www.aplicaciones.abogadogeneral.ipn.mx/reglamentos/REGLAMENTO_ESCOLAR.pdf"
+  },
+  {
+    "question": "¿Qué implica una 'baja temporal'?",
+    "answer": "Es una suspensión de tus derechos como alumno hasta por un semestre. Durante ese tiempo no puedes asistir a clases ni realizar trámites, pero puedes reincorporarte una vez cumplido el periodo de la sanción.  https://www.aplicaciones.abogadogeneral.ipn.mx/reglamentos/REGLAMENTO_ESCOLAR.pdf"
+  },
+  {
+    "question": "¿Qué significa la 'baja definitiva del Instituto'?",
+    "answer": "Es la expulsión permanente del IPN. Es la sanción más grave y significa que no podrás volver a inscribirte en ningún programa académico de la institución.  https://www.aplicaciones.abogadogeneral.ipn.mx/reglamentos/REGLAMENTO_ESCOLAR.pdf"
+  },
+  {
+    "question": "¿Portar armas en la escuela es una falta?",
+    "answer": "Sí. Aunque no se menciona explícitamente en el Reglamento Escolar, estatutos de unidades académicas como el CECyT 7 lo prohíben. Se considera una forma de violencia y una falta grave que atenta contra la seguridad de la comunidad, sancionable con baja definitiva.  https://www.test.desarrolloweb.ipn.mx/assets/files/cecyt7/docs/estudiantes/extension-apoyo/cosecovi/estatutos-cecyt7.pdf"
+  },
+  {
+    "question": "¿Puedo ser sancionado por no asistir a clases?",
+    "answer": "Asistir con puntualidad y constancia es una obligación (Artículo 107 del Reglamento Interno). Si bien no es una causa directa de baja disciplinaria, la falta de asistencia puede llevar a reprobar materias, y adeudar cuatro o más asignaturas sí es causa de baja académica.  https://www.aplicaciones.abogadogeneral.ipn.mx/reglamentos/REGLAMENTO_ESCOLAR.pdf"
+  },
+  {
+    "question": "¿Qué pasa si repruebo muchas materias?",
+    "answer": "Si al inicio del periodo de reinscripciones adeudas cuatro o más asignaturas, causarás baja académica y no podrás reinscribirte, a menos que obtengas un dictamen favorable de la Comisión de Situación Escolar.  https://www.aplicaciones.abogadogeneral.ipn.mx/reglamentos/REGLAMENTO_ESCOLAR.pdf"
+  },
+  {
+    "question": "¿Hay un tiempo límite para terminar la carrera?",
+    "answer": "Sí. Tienes como máximo el número de semestres de tu plan de estudios más un 50% adicional. Agotar este tiempo es causa de baja del Instituto, aunque puedes solicitar una ampliación a la Comisión de Situación Escolar.  https://www.ipn.mx/assets/files/cecyt19/docs/2024/Estudiantes/Gesti%C3%B3n%20Escolar%20/reglamento-gral-estudios-ipn-2011-06.pdf"
+  },
+  {
+    "question": "¿Puedo ser sancionado por algo que haga fuera de la escuela?",
+    "answer": "Sí, si el acto afecta o desprestigia el nombre del IPN. La obligación de 'observar un comportamiento que enaltezca el nombre del Instituto' no se limita a las instalaciones. Por ejemplo, cometer actos de violencia usando el nombre de la institución es una falta sancionable.  https://www.aplicaciones.abogadogeneral.ipn.mx/reglamentos/REGLAMENTO_ESCOLAR.pdf"
+  },
+  {
+    "question": "¿Qué es el 'chantaje sexual' o 'quid pro quo'?",
+    "answer": "Ocurre cuando el rechazo o la sumisión a un comportamiento sexual se utiliza como base para tomar una decisión que afecta tu situación académica o laboral (ej. 'si sales conmigo, te apruebo'). Es una forma de acoso y una falta muy grave.  https://www.sites.upiicsa.ipn.mx/uteycv/derechos_humanos/pdf/Hostigamiento-Acoso-Sexual.pdf"
+  },
+  {
+    "question": "¿Puedo ser sancionado por no portar mi credencial?",
+    "answer": "Portar la credencial y usarla de forma personal es una obligación. El incumplimiento puede llevar a que se te niegue el acceso o a un reporte. Si la negativa es recurrente o desafiante, podría considerarse una falta a la normativa.  https://es.scribd.com/document/815428251/Reglamento-Estudiantes-IPN-Art-107-108-110-y-111-24-1-1"
+  },
+  {
+    "question": "¿Qué pasa si me acusan de una falta que no cometí?",
+    "answer": "Tienes derecho a un procedimiento donde serás escuchado. Podrás presentar tus argumentos y pruebas para demostrar tu inocencia. Es fundamental que busques asesoría en la Defensoría de los Derechos Politécnicos para que te orienten.  https://www.sites.upiicsa.ipn.mx/uteycv/derechos_humanos/"
+  },
+  {
+    "question": "¿Fumar dentro de la escuela está prohibido?",
+    "answer": "Estatutos de diversas unidades académicas, como el CECyT 7, prohíben explícitamente fumar cualquier tipo de sustancia, incluyendo vaporizadores. Esta acción puede ser sancionada.  https://www.test.desarrolloweb.ipn.mx/assets/files/cecyt7/docs/estudiantes/extension-apoyo/cosecovi/estatutos-cecyt7.pdf"
+  },
+  {
+    "question": "¿Puedo realizar actividades comerciales o vender cosas en la escuela?",
+    "answer": "No sin autorización. Realizar cualquier tipo de actividad comercial de productos o servicios sin permiso de las autoridades es una falta que puede ser sancionada según los estatutos de las unidades académicas.  https://www.test.desarrolloweb.ipn.mx/assets/files/cecyt7/docs/estudiantes/extension-apoyo/cosecovi/estatutos-cecyt7.pdf"
+  },
+  {
+    "question": "¿Qué es una 'causa de responsabilidad'?",
+    "answer": "Es una acción u omisión que viola los reglamentos del IPN. El Artículo 108 del Reglamento Interno y los Artículos 67 y 68 del Reglamento Escolar listan estas causas, que son el fundamento para iniciar un procedimiento y aplicar una sanción.  https://www.aplicaciones.abogadogeneral.ipn.mx/reglamentos/REGLAMENTO_ESCOLAR.pdf"
+  },
+  {
+    "question": "¿Puedo solicitar una baja temporal voluntariamente?",
+    "answer": "Sí. Los directores de las escuelas pueden acordar la baja temporal de un alumno si este lo solicita durante el primer mes de clases, o en cualquier momento por causas graves debidamente justificadas.  https://www.spr.gob.mx/_pdf/registro-nacional/medios-publicos-federales/canal-11/II/reglamento_interno.pdf"
+  },
+  {
+    "question": "¿Qué pasa si me acusan de plagio en mi tesis?",
+    "answer": "El plagio en trabajos de titulación es una falta extremadamente grave. Puede llevar a la anulación del trabajo, la pérdida de la opción de titulación y, si ya te titulaste, a la revocación del título profesional.  https://atenea.epn.edu.ec/bitstream/25000/964/1/3.%20Reglamento%20de%20Disciplina%20y%20Sanciones%20de%20la%20Escuela%20Polit%C3%A9cnica%20Nacional.pdf"
+  },
+  {
+    "question": "¿Puedo ser sancionado por impedir que otros entren a clases o a la escuela?",
+    "answer": "Sí. Impedir a los miembros de la comunidad el ejercicio de sus funciones o el uso de instalaciones es una falta sancionable, como se indica en los estatutos de unidades como el CECyT 7.  https://www.test.desarrolloweb.ipn.mx/assets/files/cecyt7/docs/estudiantes/extension-apoyo/cosecovi/estatutos-cecyt7.pdf"
+  },
+  {
+    "question": "¿Qué es la Defensoría de los Derechos Politécnicos (DDP)?",
+    "answer": "Es un órgano autónomo e independiente creado para proteger, defender y promover los derechos de toda la comunidad politécnica. Investiga quejas sobre posibles violaciones a tus derechos y busca soluciones.  https://www.sites.upiicsa.ipn.mx/uteycv/derechos_humanos/"
+  },
+  {
+    "question": "¿La DDP puede ayudarme si enfrento un proceso de sanción?",
+    "answer": "Sí. Una de las funciones de la DDP es proporcionar orientación para prevenir afectaciones a los derechos. Pueden asesorarte sobre el procedimiento y vigilar que se respeten tus garantías, como el derecho de audiencia.  https://www.sites.upiicsa.ipn.mx/uteycv/derechos_humanos/"
+  },
+  {
+    "question": "¿Qué es una 'amonestación escrita'?",
+    "answer": "Es una sanción formal que queda registrada en tu expediente. Es más grave que un apercibimiento y sirve como una advertencia severa de que una reincidencia podría llevar a una sanción mayor, como la baja temporal.  https://www.aplicaciones.abogadogeneral.ipn.mx/reglamentos/REGLAMENTO_ESCOLAR.pdf"
+  },
+  {
+    "question": "¿Puedo ser sancionado por una falta que no está en el reglamento?",
+    "answer": "Es poco probable. Las sanciones deben estar 'fundadas y motivadas', lo que significa que deben basarse en una norma específica que se considere violada. Sin embargo, cláusulas amplias como 'comportamiento que no enaltezca el nombre del Instituto' permiten a las autoridades sancionar una gran variedad de actos.  https://www.aplicaciones.abogadogeneral.ipn.mx/reglamentos/REGLAMENTO_ESCOLAR.pdf"
+  },
+  {
+    "question": "¿Activar una alarma de emergencia sin motivo es una falta?",
+    "answer": "Sí. Estatutos específicos de unidades académicas lo consideran una falta sancionable, ya que altera el orden y puede causar pánico o la movilización innecesaria de recursos.  https://www.test.desarrolloweb.ipn.mx/assets/files/cecyt7/docs/estudiantes/extension-apoyo/cosecovi/estatutos-cecyt7.pdf"
+  },
+  {
+    "question": "¿Puedo usar el escudo o logo del IPN para mis propios fines?",
+    "answer": "No sin autorización. Utilizar para fines distintos a los académicos el nombre, escudo, lema o himno del Instituto es una falta que puede ser sancionada.  https://www.test.desarrolloweb.ipn.mx/assets/files/cecyt7/docs/estudiantes/extension-apoyo/cosecovi/estatutos-cecyt7.pdf"
+  },
+  {
+    "question": "¿Qué pasa si adeudo 3 materias al inicio de la reinscripción?",
+    "answer": "Según el Reglamento Escolar de 2004, si adeudas tres asignaturas, puedes solicitar tu reinscripción a éstas (si el plantel las ofrece y hay cupo) o intentar acreditarlas en exámenes a título de suficiencia en el siguiente semestre. No es causa de baja automática como adeudar cuatro.  https://es.scribd.com/document/49987617/REGLAMENTO-DE-ESTUDIOS-ESCOLARIZADO-IPN"
+  },
+  {
+    "question": "¿Cuál es la diferencia entre una baja del programa académico y una baja del Instituto?",
+    "answer": "La baja del programa académico te saca de esa carrera específica, pero podrías intentar ingresar a otra en el futuro. La baja definitiva del Instituto es la expulsión total y permanente de toda la institución, sin posibilidad de reingreso a ningún programa.  https://www.ipn.mx/assets/files/cecyt19/docs/2024/Estudiantes/Gesti%C3%B3n%20Escolar%20/reglamento-gral-estudios-ipn-2011-06.pdf"
+  },
+  {
+    "question": "¿Incitar a otros alumnos a cometer faltas es sancionable?",
+    "answer": "Sí. Incitar o inducir a otros alumnos a que realicen actos u omisiones que violen la ley o los reglamentos es una falta grave que puede ser sancionada.  https://www.test.desarrolloweb.ipn.mx/assets/files/cecyt7/docs/estudiantes/extension-apoyo/cosecovi/estatutos-cecyt7.pdf"
   }
 ]
