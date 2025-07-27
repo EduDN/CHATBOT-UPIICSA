@@ -58,8 +58,7 @@ def get_answer(user_question):
     distances, indices = model.kneighbors(question_vectorized)
 
     # If the similarity is too low, consider it a poor match
-    # The 0.7 threshold is an example, you can adjust it
-    if distances[0][0] > 0.7:
+    if distances[0][0] > 0.55:
         return "Disculpa, No tengo información sobre eso."
 
     closest_index = indices[0][0]

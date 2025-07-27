@@ -58,7 +58,7 @@ export class TransformersJsStrategy implements AnsweringStrategy {
       }
     }
 
-    if (best_match.score < 0.7) {
+    if (best_match.score < 0.55) {
       return "Disculpa, No tengo información sobre eso.";
       // return "I'm sorry, I don't have information about that.";
     }
