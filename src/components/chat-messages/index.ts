@@ -4,8 +4,6 @@ import "@/components/chat-message"; // Importing the chat-message component to e
 import style from "./style.css?inline";
 import { chatbotService } from "@/services/chatbot-service";
 
-// Import our new service and strategy
-
 type Sender = "user" | "assistant";
 
 class ChatMessages extends BaseComponent {
@@ -21,7 +19,6 @@ class ChatMessages extends BaseComponent {
   }
   protected override connectedCallback(): void {
     super.connectedCallback();
-    console.log("ChatMessages component connected");
     const $ul =
       this.shadowRoot?.querySelector<HTMLUListElement>(".chat-messages");
     if (!$ul) {
@@ -42,22 +39,47 @@ class ChatMessages extends BaseComponent {
     document.addEventListener("message-sent", async (event) => {
       const customEvent = event as CustomEvent<{ text: string }>;
       const message = customEvent.detail.text;
-      // const thinkingMessageElement: void | null = null;
 
       this.addMessage(message, "user");
+
+      await new Promise((resolve) => setTimeout(resolve, 500));
       const thinkingMessageElement = this.addMessage(
         "Thinking...",
         "assistant",
       );
-
-      // Use the service to get an answer
-      const answer = await this.chatbotService.findAnswer(message);
-
-      // Update the "Thinking..." message with the real answer
       const p = thinkingMessageElement?.querySelector("p");
-      if (p) {
-        p.textContent = answer;
+
+      if (!p) {
+        return;
       }
+      p?.classList.add("loading");
+
+      console.log("Message sent:", message);
+
+      const answer = await this.chatbotService.findAnswer(message);
+      await new Promise((resolve) => setTimeout(resolve, 1500));
+      p.classList.remove("loading");
+
+      p.textContent = answer;
+
+      p.classList.add("typing-animation");
+      thinkingMessageElement?.querySelector("li")?.classList.remove("brain");
+      thinkingMessageElement?.querySelector("div")?.remove();
+
+      p.addEventListener(
+        "animationend",
+        () => {
+          console.log("Animation ended");
+          thinkingMessageElement
+            ?.querySelector("button")
+            ?.classList.remove("hide");
+          p.classList.remove("typing-animation"); // Clean up the animation class
+          document.dispatchEvent(
+            new CustomEvent("assistant-response-finished"),
+          );
+        },
+        { once: true },
+      ); // { once: true } automatically removes the listener
     });
   }
 

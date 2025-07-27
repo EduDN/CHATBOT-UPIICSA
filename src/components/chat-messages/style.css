@@ -1,5 +1,5 @@
 :host {
-  overflow-y: scroll;
+  overflow-y: auto;
   scroll-behavior: smooth;
 }
 
@@ -37,6 +37,10 @@
   border-radius: 50%;
 }
 
+.hide {
+  display: none;
+}
+
 .assistant button {
   margin-top: 0.5rem;
   background: none;
@@ -63,6 +67,80 @@
 
 .template {
   display: none;
+}
+
+.brain {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem; /* Space between spinner and text */
+}
+
+.loading-spinner {
+  position: relative; /* Needed to position the spinning border */
+  width: 30px; /* Set the size of your spinner */
+  height: 30px;
+}
+
+/* Style the image inside the spinner */
+.loading-spinner img {
+  width: 90%;
+  height: 90%;
+  border-radius: 50%; /* Make the image circular */
+}
+
+/* This ::before pseudo-element IS the spinning border */
+.loading-spinner::before {
+  content: "";
+  position: absolute;
+  /* Make the border slightly larger than the container */
+  top: -4px;
+  left: -4px;
+  right: -4px;
+  bottom: -4px;
+
+  border: 3px solid transparent;
+  border-top-color: #3498db;
+  border-radius: 50%;
+
+  animation: spin 1s linear infinite;
+}
+
+/* Typing animation for the final answer text */
+.typing-animation {
+  /* Adjust width and steps based on your longest expected message */
+  width: fit-content;
+  white-space: nowrap;
+  overflow: hidden;
+  /* border-right: 3px solid; /* Simulates the typing caret */
+  animation:
+    typing 1s steps(20, end),
+    /* Adjust steps and duration as needed */ caret 0.75s step-end infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    /* Ensure it reveals the full width */
+    width: 100%;
+  }
+}
+
+@keyframes caret {
+  /* from 0%, */
+  /* to 10% { */
+  /*   border-color: transparent; */
+  /* } */
+  50% {
+    border-color: currentColor;
+  }
 }
 
 @media (700px >= width) {

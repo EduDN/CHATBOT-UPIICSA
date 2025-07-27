@@ -7,7 +7,7 @@ import "@/components/chat-messages";
 import { chatbotService } from "@/services/chatbot-service";
 import { env } from "@xenova/transformers";
 
-// Tell the library to NOT look for models locally.
+// // Tell the library to NOT look for models locally.
 env.allowLocalModels = false;
 env.useBrowserCache = false;
 
