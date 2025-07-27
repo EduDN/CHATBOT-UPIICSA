@@ -1,5 +1,4 @@
 import { pipeline, cos_sim } from "@xenova/transformers";
-
 import type { AnsweringStrategy } from "../answering-strategy";
 
 // You can move your knowledge base here or import it from another file
@@ -59,13 +58,15 @@ export class TransformersJsStrategy implements AnsweringStrategy {
       }
     }
 
-    if (best_match.score < 0.5) {
-      return "I'm sorry, I don't have information about that.";
+    if (best_match.score < 0.7) {
+      return "Disculpa, No tengo información sobre eso.";
+      // return "I'm sorry, I don't have information about that.";
     }
 
     const answer = this.knowledge_base[best_match?.index]?.answer;
     if (!answer) {
-      return "I'm sorry, I don't have an answer for that.";
+      return "Disculpa, No tengo información sobre eso.";
+      // return "I'm sorry, I don't have an answer for that.";
     }
 
     return answer;

@@ -1,0 +1,86 @@
+.dropdown {
+  position: relative;
+  display: inline-block;
+  margin-top: 0.5rem;
+  margin-left: 0.8rem;
+}
+
+.dropdown-btn {
+  display: flex;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0.4rem;
+  padding-left: 0.7rem;
+  padding-right: 0.7rem;
+  font-size: 1.25rem;
+}
+
+.dropdown-btn:hover,
+.dropdown-btn:focus {
+  background-color: var(--color-background-light);
+  border-radius: 0.5rem;
+  outline: 3px solid var(--color-border-primary);
+}
+
+.dropdown-btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  outline: none;
+  border-radius: 0.5rem;
+}
+
+.dropdown-btn p {
+  color: var(--color-text-primary);
+}
+
+.dropdown-btn svg {
+  stroke: var(--color-text-primary);
+  height: 1.2rem;
+  align-self: center;
+}
+
+li[data-strategy] svg {
+  display: none;
+  stroke: var(--color-text-primary);
+  height: 1.2rem;
+  align-self: center;
+}
+
+li[data-strategy].active svg {
+  display: block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: var(--color-border-primary);
+  min-width: 180px;
+  box-shadow: 0px 8px 16px 0px var(--color-shadow);
+  z-index: 1;
+  margin-top: 0.5rem;
+  padding: 0.3rem;
+  border-radius: 0.5rem;
+}
+
+.dropdown-content li {
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0.4rem;
+  padding-left: 0.7rem;
+  padding-right: 0.7rem;
+  font-size: 1rem;
+}
+
+.dropdown-content li:hover {
+  background-color: var(--color-background-light);
+  border-radius: 0.5rem;
+}
+
+.show {
+  display: block;
+}

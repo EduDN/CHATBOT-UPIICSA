@@ -12,7 +12,7 @@ class ChatMessage extends BaseComponent {
 
   protected override connectedCallback(): void {
     super.connectedCallback();
-    const $li = this.querySelector("li");
+    // const $li = this.querySelector("li");
   }
 
   protected override get htmlTemplate(): string {

@@ -36,9 +36,8 @@ class ChatInput extends BaseComponent {
     // Start in a disabled state
     this.disableInput("Iniciando...");
 
-    document.addEventListener(
-      "assistant-response-finished",
-      () => this.enableInput,
+    document.addEventListener("assistant-response-finished", () =>
+      this.enableInput(),
     );
     document.addEventListener("app-ready", () => this.enableInput());
 
@@ -95,21 +94,18 @@ class ChatInput extends BaseComponent {
   }
 
   private enableInput() {
-    console.log("this", this);
     if (!this.$inputElement || !this.$sendButton) return;
-    if (window.visualViewport?.width ?? 0 > 700) {
-      this.$inputElement.focus();
-    }
-    console.log("Enabling input");
     this.$inputElement.disabled = false;
     this.$sendButton.disabled = false;
     this.$inputElement.value = "";
     this.$inputElement.placeholder = "Escribe tu pregunta";
+    if (window.visualViewport?.width ?? 0 > 700) {
+      this.$inputElement.focus();
+    }
   }
 
   private disableInput(placeholder = "Escribe tu pregunta") {
     if (!this.$inputElement || !this.$sendButton) return;
-    console.log("Disabling input");
     this.$inputElement.disabled = true;
     this.$inputElement.value = "";
     this.$sendButton.disabled = true;
