@@ -6,6 +6,7 @@
   --color-text-muted: #6b7280;
   --color-text-primary: #e6edf3;
   --color-text-secondary: #9c9d9d;
+  --color-shadow: rgba(30, 41, 59, 0.3);
   scroll-behavior: smooth;
 }
 
@@ -28,7 +29,9 @@ chat-container {
   max-height: 100dvh;
   height: 100dvh;
   display: grid;
-  grid-template-columns: minmax(15rem, 1fr) 5fr;
+  /* TODO: uncomment this later when we add the chat history feature */
+  /* grid-template-columns: minmax(15rem, 1fr) 5fr; */
+  grid-template-columns: 1fr;
 }
 
 side-bar {

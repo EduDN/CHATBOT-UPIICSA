@@ -54,8 +54,6 @@ class ChatMessages extends BaseComponent {
       }
       p?.classList.add("loading");
 
-      console.log("Message sent:", message);
-
       const answer = await this.chatbotService.findAnswer(message);
       await new Promise((resolve) => setTimeout(resolve, 1500));
       p.classList.remove("loading");
@@ -69,7 +67,6 @@ class ChatMessages extends BaseComponent {
       p.addEventListener(
         "animationend",
         () => {
-          console.log("Animation ended");
           thinkingMessageElement
             ?.querySelector("button")
             ?.classList.remove("hide");
@@ -137,7 +134,6 @@ class ChatMessages extends BaseComponent {
     const rootNode = this.shadowRoot.getRootNode() as ShadowRoot;
     const host = rootNode.host;
     host.scrollTop = host.scrollHeight; // Scroll to the bottom of the chat messages
-    console.log(host);
   }
 
   protected override disconnectedCallback(): void {

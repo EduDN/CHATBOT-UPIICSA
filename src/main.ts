@@ -4,20 +4,23 @@ import "@/components/chat-container";
 import "@/components/side-bar";
 import "@/components/chat-input";
 import "@/components/chat-messages";
+import "@/components/chat-header";
+
 import { chatbotService } from "@/services/chatbot-service";
 import { env } from "@xenova/transformers";
 
-// // Tell the library to NOT look for models locally.
+// Tell the library to NOT look for models locally.
 env.allowLocalModels = false;
 env.useBrowserCache = false;
 
 document.querySelector<HTMLDivElement>("#app")!.innerHTML = `
   <chat-container>
-    <side-bar></side-bar>
+    <!-- TODO: uncomment this later when we add the chat history feature-->
+    <!-- <side-bar></side-bar> -->
     <chat-window class="main-content">
-      <header-chat>
+      <chat-header>
         Header
-      </header-chat>
+      </chat-header>
         <chat-messages>
         </chat-messages>
       <chat-input></chat-input>

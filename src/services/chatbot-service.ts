@@ -1,4 +1,3 @@
-// src/services/chatbot.service.ts
 import type { AnsweringStrategy } from "./answering-strategy";
 import { TransformersJsStrategy } from "./strategies/transformers-strategy";
 
@@ -9,10 +8,13 @@ class ChatbotService {
     this.strategy = initialStrategy;
   }
 
-  public setStrategy(strategy: AnsweringStrategy) {
+  // Make this method async to await the initialization
+  public async setStrategy(strategy: AnsweringStrategy): Promise<void> {
     this.strategy = strategy;
-    // You might want to re-initialize when the strategy changes
-    // this.strategy.initialize();
+    console.log("Strategy changed to:", this.strategy.constructor.name);
+
+    // Await the initialization of the new strategy
+    await this.strategy.initialize();
   }
 
   public async initialize(): Promise<void> {
