@@ -58,7 +58,22 @@ class ChatMessages extends BaseComponent {
       await new Promise((resolve) => setTimeout(resolve, 1500));
       p.classList.remove("loading");
 
-      p.textContent = answer;
+      const sanitize = answer
+        .split(" ")
+        .map((a) => {
+          if (a.includes("http") || a.includes("https") || a.includes("www")) {
+            console.log("Link detected:", a);
+            return `<a href="${a.trim()}" target="_blank" rel="noopener noreferrer">${a.trim()}</a>`;
+          }
+          return a;
+        })
+        .join(" ");
+
+      if (!sanitize) {
+        return;
+      }
+
+      p.innerHTML = sanitize;
 
       p.classList.add("typing-animation");
       thinkingMessageElement?.querySelector("li")?.classList.remove("brain");

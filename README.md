@@ -18,9 +18,13 @@ technologías web.
 ### **Mejoras de UI/UX**
 
 - [ ] Implementar un estado de carga global para deshabilitar la entrada de chat mientras se inicializan las estrategias.
-- [ ] Sanitizar las respuestas del asistente para convertir automáticamente las URLs en enlaces clicables.
-- [ ] Añadir un botón "Copiar Mensaje" a las respuestas del asistente.
+- [x] Sanitizar las respuestas del asistente para convertir automáticamente las URLs en enlaces clicables.
+- [x] Añadir un botón "Copiar Mensaje" a las respuestas del asistente.
 - [ ] Implementar un historial de chat persistente usando `localStorage`.
+- [ ] Crear un componente tooltip para sugerencias de UI.
+- [ ] Crear un componente de modal para mostrar información adicional o
+      configuraciones. (Por ejemplo, "Texto copiado").
+- [ ] Create a Toast component for non-blocking notifications (e.g., "Text Copied!").
 
 ### **Arquitectura y Despliegue**
 

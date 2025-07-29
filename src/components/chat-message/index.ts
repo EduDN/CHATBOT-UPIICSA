@@ -12,7 +12,6 @@ class ChatMessage extends BaseComponent {
 
   protected override connectedCallback(): void {
     super.connectedCallback();
-    // const $li = this.querySelector("li");
   }
 
   protected override get htmlTemplate(): string {
@@ -23,7 +22,24 @@ class ChatMessage extends BaseComponent {
     return style;
   }
 
-  protected override setupEventListeners(): void {}
+  protected override setupEventListeners(): void {
+    const $button = this.querySelector("button");
+    const $p = this.querySelector("p");
+    if (!$button || !$p) {
+      return;
+    }
+
+    $button.addEventListener("click", () => {
+      $button.classList.add("is-active");
+
+      setTimeout(() => {
+        $button.classList.remove("is-active");
+      }, 150);
+
+      navigator.clipboard.writeText($p.textContent || "");
+      $button.blur();
+    });
+  }
 }
 
 customElements.define("chat-message", ChatMessage);

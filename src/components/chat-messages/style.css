@@ -41,6 +41,15 @@
   display: none;
 }
 
+.assistant a {
+  color: var(--color-link-primary);
+}
+
+.assistant a:active,
+.assistant a:hover {
+  color: var(--color-link-secondary);
+}
+
 .assistant button {
   margin-top: 0.5rem;
   background: none;
@@ -48,14 +57,22 @@
   padding: 0.5rem;
 }
 
-.assistant button:hover,
-.assistant button:focus {
+.assistant button.is-active {
   background-color: var(--color-background-light);
   border-radius: 50%;
 }
 
-.assistant button:focus {
+/* Style ONLY for keyboard navigation (accessibility) */
+.assistant button:focus-visible {
   outline: 2px solid var(--color-text-muted);
+}
+
+/* These :hover styles will ONLY apply to devices with a mouse */
+@media (hover: hover) and (pointer: fine) {
+  .assistant button:hover {
+    background-color: var(--color-background-light);
+    border-radius: 50%;
+  }
 }
 
 .assistant svg {
@@ -113,7 +130,7 @@
   overflow: hidden;
   /* border-right: 3px solid; /* Simulates the typing caret */
   animation:
-    typing 1s steps(20, end),
+    typing 1.5s steps(20, end),
     /* Adjust steps and duration as needed */ caret 0.75s step-end infinite;
 }
 

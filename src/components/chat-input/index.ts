@@ -99,7 +99,8 @@ class ChatInput extends BaseComponent {
     this.$sendButton.disabled = false;
     this.$inputElement.value = "";
     this.$inputElement.placeholder = "Escribe tu pregunta";
-    if (window.visualViewport?.width ?? 0 > 700) {
+    const windowWith = window.visualViewport?.width || window.innerWidth;
+    if (windowWith > 700) {
       this.$inputElement.focus();
     }
   }
