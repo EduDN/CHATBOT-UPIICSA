@@ -6,7 +6,10 @@
   --color-text-muted: #6b7280;
   --color-text-primary: #e6edf3;
   --color-text-secondary: #9c9d9d;
+
   --color-shadow: rgba(30, 41, 59, 0.3);
+  --color-link-primary: #a8c7fa;
+  --color-link-secondary: #38bdf8;
   scroll-behavior: smooth;
 }
 
