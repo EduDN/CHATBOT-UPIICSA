@@ -2,14 +2,11 @@ import { BaseComponent } from "../core/base-component";
 import template from "./template.html?raw";
 import style from "./style.css?inline";
 import { chatbotService } from "@/services/chatbot-service";
-import type { AnsweringStrategy } from "@/services/answering-strategy";
-import { TransformersJsStrategy } from "@/services/strategies/transformers-strategy";
-import { PyodideStrategy } from "@/services/strategies/pyodide-strategy";
 
-const strategyMap: Record<string, () => AnsweringStrategy> = {
-  transformers: () => new TransformersJsStrategy(),
-  pyodide: () => new PyodideStrategy(),
-};
+// const strategyMap: Record<string, () => AnsweringStrategy> = {
+//   transformers: () => new TransformersJsStrategy(),
+//   pyodide: () => new PyodideStrategy(),
+// };
 
 class ChatHeader extends BaseComponent {
   private $button: HTMLButtonElement | null = null;
@@ -77,7 +74,7 @@ class ChatHeader extends BaseComponent {
           this.$buttonText.textContent = selectedText;
         }
 
-        if (strategyKey && strategyMap[strategyKey]) {
+        if (strategyKey) {
           // --- Start Loading State ---
           this.$button?.blur();
           this.$button.disabled = true;
@@ -85,8 +82,7 @@ class ChatHeader extends BaseComponent {
           this.setLoading(true);
 
           this.$dropdownContent?.classList.remove("show");
-          const newStrategy = strategyMap[strategyKey]();
-          await chatbotService.setStrategy(newStrategy);
+          await chatbotService.setStrategy(strategyKey);
 
           // --- End Loading State ---
           this.setLoading(false);
