@@ -1,19 +1,24 @@
 import { pipeline, cos_sim } from "@xenova/transformers";
 import type { AnsweringStrategy } from "../answering-strategy";
-
-// You can move your knowledge base here or import it from another file
+import { env } from "@xenova/transformers";
 
 export class TransformersJsStrategy implements AnsweringStrategy {
   private extractor: any = null; // To hold the pipeline instance
   private corpus_embeddings: number[][] = [];
   private knowledge_base: { question: string; answer: string }[] = [];
+  private isInitialized = false;
 
   async initialize(): Promise<void> {
+    if (this.isInitialized) return;
+
+    // Tell the library to NOT look for models locally.
+    env.allowLocalModels = false;
+    env.useBrowserCache = false;
+
     console.log("Initializing Transformers.js model...");
     const modelName = "Xenova/paraphrase-multilingual-MiniLM-L12-v2";
     this.extractor = await pipeline("feature-extraction", modelName);
-    // Fetch local knowledge base in dataset.json
-    // You can replace this with an actual fetch call to your knowledge base
+
     const dataset = await fetch("/dataset.json");
     this.knowledge_base = await dataset.json();
 
@@ -30,6 +35,7 @@ export class TransformersJsStrategy implements AnsweringStrategy {
         flat_embeddings.slice(i * embeddingDim, (i + 1) * embeddingDim),
       );
     }
+    this.isInitialized = true;
     console.log("Transformers.js model ready.");
   }
 

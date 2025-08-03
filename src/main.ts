@@ -6,14 +6,50 @@ import "@/components/chat-input";
 import "@/components/chat-messages";
 import "@/components/chat-header";
 
-import { chatbotService } from "@/services/chatbot-service";
-import { env } from "@xenova/transformers";
+const aiWorker = new Worker(
+  new URL("./workers/ai-worker.ts", import.meta.url),
+  { type: "module" },
+);
 
-// Tell the library to NOT look for models locally.
-env.allowLocalModels = false;
-env.useBrowserCache = false;
+aiWorker.onmessage = (event) => {
+  const { status, answer, error } = event.data;
 
-document.querySelector<HTMLDivElement>("#app")!.innerHTML = `
+  if (status === "ready") {
+    document.dispatchEvent(new CustomEvent("app-ready"));
+  }
+  if (status === "strategy-ready") {
+    document.dispatchEvent(new CustomEvent("strategy-ready"));
+  }
+  if (status === "answer") {
+    document.dispatchEvent(
+      new CustomEvent("assistant-answer", { detail: { answer } }),
+    );
+  }
+  if (status === "error") {
+    console.error("Received error from AI Worker:", error);
+    // TODO: display the error in the UI
+  }
+};
+
+aiWorker.postMessage({ type: "initialize" });
+
+document.addEventListener("strategy-changed", (event) => {
+  const { strategy } = (event as CustomEvent).detail;
+  aiWorker.postMessage({
+    type: "setStrategy",
+    payload: { strategyKey: strategy },
+  });
+});
+
+document.addEventListener("question-asked", (event) => {
+  console.log("Question asked event received:", event);
+  const { question } = (event as CustomEvent).detail;
+  aiWorker.postMessage({ type: "findAnswer", payload: { question } });
+});
+
+// Wait for the DOM to be fully loaded before running the script
+window.addEventListener("DOMContentLoaded", () => {
+  document.querySelector<HTMLDivElement>("#app")!.innerHTML = `
   <chat-container>
     <!-- TODO: uncomment this later when we add the chat history feature-->
     <!-- <side-bar></side-bar> -->
@@ -28,14 +64,6 @@ document.querySelector<HTMLDivElement>("#app")!.innerHTML = `
   </chat-container>
 `;
 
-chatbotService.initialize().then(() => {
-  console.log("Chatbot service initialized and ready.");
-  // Maybe dispatch an event to enable the chat input
-  document.dispatchEvent(new CustomEvent("app-ready"));
-});
-
-// Wait for the DOM to be fully loaded before running the script
-window.addEventListener("DOMContentLoaded", () => {
   // Check if the visualViewport API is supported
   if (window.visualViewport) {
     const mainContent =

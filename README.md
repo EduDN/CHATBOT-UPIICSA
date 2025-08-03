@@ -10,7 +10,7 @@ technologías web.
 ### **Funcionalidad Principal y Rendimiento**
 
 - [x] Optimizar la carga de estrategias para evitar la reinicialización de una estrategia ya cargada.
-- [ ] Implementar un _Web Worker_ para gestionar la carga en segundo plano de estrategias secundarias (como Pyodide) sin congelar la interfaz de usuario.
+- [x] Implementar un _Web Worker_ para gestionar la carga en segundo plano de estrategias secundarias (como Pyodide) sin congelar la interfaz de usuario.
 - [ ] Crear un script de pre-cómputo para generar los _embeddings_ sin conexión.
 - [ ] Configurar un _Service Worker_ para almacenar en caché activos grandes (modelos de IA, Pyodide).
 - [ ] Usar `IndexedDB` para almacenar los _embeddings_ pre-calculados para cargas instantáneas en visitas recurrentes.
