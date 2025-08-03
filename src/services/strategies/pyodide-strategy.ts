@@ -1,6 +1,5 @@
 import type { AnsweringStrategy } from "../answering-strategy";
 
-// Make the global 'loadPyodide' function and our flag available to TypeScript
 declare global {
   var pyodideScriptLoaded: boolean;
   const loadPyodide: (config?: { indexURL: string }) => Promise<any>;
@@ -11,21 +10,16 @@ export class PyodideStrategy implements AnsweringStrategy {
   private isInitialized = false;
 
   async initialize(): Promise<void> {
-    if (this.isInitialized) {
-      console.log("Pyodide strategy already initialized.");
-      return;
-    }
+    if (this.isInitialized) return;
 
-    console.log("Initializing Pyodide strategy...");
+    console.log("Initializing Pyodide strategy with pre-trained models...");
 
-    // 1. Load the Pyodide script using modern dynamic import()
     if (!self.pyodideScriptLoaded) {
-      // @ts-ignore: This dynamically loads the script into the worker's global scope
+      // @ts-ignore
       await import("https://cdn.jsdelivr.net/pyodide/v0.28.0/full/pyodide.js");
       self.pyodideScriptLoaded = true;
     }
 
-    // 2. Initialize the Pyodide environment
     this.pyodide = await loadPyodide({
       indexURL: "https://cdn.jsdelivr.net/pyodide/v0.28.0/full/",
     });
@@ -33,18 +27,33 @@ export class PyodideStrategy implements AnsweringStrategy {
     console.log("Pyodide loaded. Installing packages...");
     await this.pyodide.loadPackage("micropip");
     const micropip = this.pyodide.pyimport("micropip");
-    await micropip.install(["pandas", "scikit-learn"]);
+    // Joblib is now needed to load the model files
+    await micropip.install(["scikit-learn", "joblib"]);
     console.log("Python packages installed.");
 
-    const [pythonCode, jsonData] = await Promise.all([
-      fetch("/main.py").then((res) => res.text()),
-      fetch("/dataset.json").then((res) => res.json()),
-    ]);
+    // Fetch the pre-trained models and the python script
+    const [pythonCode, vectorizerBlob, modelBlob, answersJson] =
+      await Promise.all([
+        fetch("/main.py").then((res) => res.text()),
+        fetch("/vectorizer.joblib").then((res) => res.arrayBuffer()),
+        fetch("/model.joblib").then((res) => res.arrayBuffer()),
+        fetch("/answers.json").then((res) => res.json()),
+      ]);
 
+    // Write the fetched files to Pyodide's virtual filesystem
+    this.pyodide.FS.writeFile(
+      "vectorizer.joblib",
+      new Uint8Array(vectorizerBlob),
+    );
+    this.pyodide.FS.writeFile("model.joblib", new Uint8Array(modelBlob));
+    this.pyodide.FS.writeFile("answers.json", JSON.stringify(answersJson));
+
+    // Run the Python script to define the functions
     this.pyodide.runPython(pythonCode);
 
+    // Call the initialization function in Python (which now loads from the virtual files)
     const initializeModelPy = this.pyodide.globals.get("initialize_model");
-    initializeModelPy(JSON.stringify(jsonData));
+    initializeModelPy();
     initializeModelPy.destroy();
 
     this.isInitialized = true;
@@ -55,11 +64,9 @@ export class PyodideStrategy implements AnsweringStrategy {
     if (!this.pyodide) {
       throw new Error("Pyodide strategy has not been initialized.");
     }
-
     const getAnswerPy = this.pyodide.globals.get("get_answer");
     const answer = getAnswerPy(question);
     getAnswerPy.destroy();
-
     return answer;
   }
 }
