@@ -2,13 +2,12 @@ import { BaseComponent } from "../core/base-component";
 import template from "./template.html?raw";
 import "@/components/chat-message"; // Importing the chat-message component to ensure it's registered
 import style from "./style.css?inline";
-import { chatbotService } from "@/services/chatbot-service";
 
 type Sender = "user" | "assistant";
 
 class ChatMessages extends BaseComponent {
   private resizeObserver: ResizeObserver | null = null;
-  private chatbotService = chatbotService; // Use the singleton instance
+  private thinkingMessageElement: HTMLElement | undefined;
   constructor() {
     super();
     if (!this.shadowRoot) {
@@ -43,51 +42,64 @@ class ChatMessages extends BaseComponent {
       this.addMessage(message, "user");
 
       await new Promise((resolve) => setTimeout(resolve, 500));
-      const thinkingMessageElement = this.addMessage(
-        "Thinking...",
-        "assistant",
-      );
-      const p = thinkingMessageElement?.querySelector("p");
+      this.thinkingMessageElement = this.addMessage("Thinking...", "assistant");
+      const p = this.thinkingMessageElement?.querySelector("p");
 
       if (!p) {
         return;
       }
       p?.classList.add("loading");
 
-      const answer = await this.chatbotService.findAnswer(message);
-      await new Promise((resolve) => setTimeout(resolve, 1500));
-      p.classList.remove("loading");
+      console.log("Message sent event received:", message);
+      this.dispatchEvent(
+        new CustomEvent("question-asked", {
+          bubbles: true,
+          composed: true,
+          detail: { question: message },
+        }),
+      );
+    });
 
-      const sanitize = answer
-        .split(" ")
-        .map((a) => {
-          if (a.includes("http") || a.includes("https") || a.includes("www")) {
-            console.log("Link detected:", a);
-            return `<a href="${a.trim()}" target="_blank" rel="noopener noreferrer">${a.trim()}</a>`;
-          }
-          return a;
-        })
-        .join(" ");
-
-      if (!sanitize) {
+    document.addEventListener("assistant-answer", async (event) => {
+      const customEvent = event as CustomEvent<{ answer: string }>;
+      console.log("Received answer from AI Worker:", customEvent.detail.answer);
+      console.log("CustomEvent", customEvent);
+      const p = this.thinkingMessageElement?.querySelector("p");
+      if (!p) {
         return;
       }
 
-      p.innerHTML = sanitize;
+      const answer = customEvent.detail.answer;
+      await new Promise((resolve) => setTimeout(resolve, 1500));
+      p.classList.remove("loading");
+
+      const urlRegex = /(https?:\/\/[^\s]+|www\.[^\s]+)/g;
+
+      const sanitizedHtml = answer.replace(urlRegex, (url) => {
+        const properUrl = url.startsWith("www.") ? `https:// ${url}` : url;
+        return `<a href="${properUrl}" target="_blank" rel="noopener noreferrer">${url}</a>`;
+      });
+
+      p.innerHTML = sanitizedHtml;
 
       p.classList.add("typing-animation");
-      thinkingMessageElement?.querySelector("li")?.classList.remove("brain");
-      thinkingMessageElement?.querySelector("div")?.remove();
+      this.thinkingMessageElement
+        ?.querySelector("li")
+        ?.classList.remove("brain");
+      this.thinkingMessageElement?.querySelector("div")?.remove();
 
       p.addEventListener(
         "animationend",
         () => {
-          thinkingMessageElement
+          this.thinkingMessageElement
             ?.querySelector("button")
             ?.classList.remove("hide");
           p.classList.remove("typing-animation"); // Clean up the animation class
-          document.dispatchEvent(
-            new CustomEvent("assistant-response-finished"),
+          this.dispatchEvent(
+            new CustomEvent("assistant-response-finished", {
+              bubbles: true,
+              composed: true,
+            }),
           );
         },
         { once: true },
