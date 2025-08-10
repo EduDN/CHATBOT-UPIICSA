@@ -18,6 +18,8 @@ textarea {
   resize: none;
   color: var(--color-text-primary, #333); /* Fallback color */
   outline: none;
+  user-select: text;
+  -webkit-user-select: text;
 }
 
 textarea::placeholder {
@@ -33,6 +35,8 @@ textarea::placeholder {
   height: 2.5rem; /* 40px */
   width: 2.5rem; /* 40px */
   border: none;
+  user-select: none;
+  -webkit-user-select: none;
 }
 
 @media (hover: hover) {

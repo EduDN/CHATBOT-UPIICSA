@@ -12,7 +12,7 @@ technologías web.
 - [x] Optimizar la carga de estrategias para evitar la reinicialización de una estrategia ya cargada.
 - [x] Implementar un _Web Worker_ para gestionar la carga en segundo plano de estrategias secundarias (como Pyodide) sin congelar la interfaz de usuario.
 - [x] Crear un script de pre-cómputo para generar los _embeddings_ sin conexión.
-- [ ] Configurar un _Service Worker_ para almacenar en caché activos grandes (modelos de IA, Pyodide).
+- [x] Configurar un _Service Worker_ para almacenar en caché activos grandes (modelos de IA, Pyodide).
 - [ ] Usar `IndexedDB` para almacenar los _embeddings_ pre-calculados para cargas instantáneas en visitas recurrentes.
 
 ### **Mejoras de UI/UX**
@@ -29,7 +29,7 @@ technologías web.
 
 - [ ] Implementar importación dinámica (`import()`) o _code-splitting_ para cargar de forma diferida (_lazy-load_) las librerías de IA después de que la interfaz de usuario principal se haya renderizado.
 - [ ] Introducir un enrutador (_router_) para manejar múltiples vistas (ej. una página de configuración).
-- [ ] Convertir la aplicación en una _Progressive Web App_ (PWA) completa.
+- [x] Convertir la aplicación en una _Progressive Web App_ (PWA) completa.
 
 ### **Futuras Funcionalidades y Características Avanzadas**
 
