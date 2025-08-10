@@ -1,12 +1,13 @@
 {
+  "id": "/",
   "scope": "/",
   "name": "UPIIChat",
-  "short_name": "UC",
+  "short_name": "UPIIChat",
   "display": "standalone",
-  "description": "AI-powered chatbot for UPIICSA students - get instant answers about academic procedures, campus facilities, and more.",
+  "description": "Never get lost in UPIICSA bureaucracy again! This AI chatbot provides instant answers about academic procedures, campus facilities, and student services. Works offline and learns from real student questions.",
   "theme_color": "#1e293b",
   "background_color": "#0d1117",
-  "orientation": "portrait-primary",
+  "orientation": "any",
   "start_url": "/",
   "icons": [
     {

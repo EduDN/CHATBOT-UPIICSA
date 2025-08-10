@@ -6,6 +6,11 @@ import "@/components/chat-input";
 import "@/components/chat-messages";
 import "@/components/chat-header";
 
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("/sw.js");
+  });
+}
 const aiWorker = new Worker(
   new URL("./workers/ai-worker.ts", import.meta.url),
   { type: "module" },

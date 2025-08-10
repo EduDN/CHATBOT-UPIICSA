@@ -35,11 +35,16 @@ chat-container {
   /* TODO: uncomment this later when we add the chat history feature */
   /* grid-template-columns: minmax(15rem, 1fr) 5fr; */
   grid-template-columns: 1fr;
+
+  user-select: none;
+  -webkit-user-select: none;
 }
 
 side-bar {
   background-color: var(--color-background-medium);
   border-right: 1px solid var(--color-border-primary);
+  user-select: none;
+  -webkit-user-select: none;
 }
 
 .main-content {
@@ -50,10 +55,8 @@ side-bar {
   grid-template-rows: auto 1fr auto;
   grid-template-columns: 1fr;
   overflow: hidden;
-}
-
-header-chat {
-  margin: 1rem;
+  user-select: none;
+  -webkit-user-select: none;
 }
 
 @media (prefers-color-scheme: dark) {
