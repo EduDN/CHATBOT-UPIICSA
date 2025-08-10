@@ -44,8 +44,13 @@ chat-container {
 }
 
 chat-container:has(side-bar:not(.collapsed)),
-chat-container:has(side-bar.collapsed:hover) {
+chat-container:has(side-bar.collapsed:hover:not(.manually-collapsed)) {
   grid-template-columns: var(--sidebar-expanded-width) 5fr;
+}
+
+/* When manually collapsed, disable hover expansion */
+chat-container:has(side-bar.manually-collapsed) {
+  grid-template-columns: var(--sidebar-collapsed-width) 5fr;
 }
 
 /* Wide desktops */
@@ -59,7 +64,6 @@ chat-container:has(side-bar.collapsed:hover) {
 @media (min-width: 1920px) {
   chat-container {
     --sidebar-expanded-width: 24rem;
-    background-color: red;
   }
 }
 .main-content {
@@ -87,11 +91,49 @@ chat-container:has(side-bar.collapsed:hover) {
 }
 
 @media (700px >= width) {
-  side-bar {
-    display: none;
-  }
-
   chat-container {
     grid-template-columns: 1fr;
+    position: relative; /* For sidebar overlay positioning */
   }
+
+  /* Mobile sidebar overlay */
+  side-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 75vw; /* 3/4 of screen width */
+    max-width: 300px;
+    z-index: 1000;
+    transform: translateX(-100%);
+    transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  }
+
+  /* Show sidebar when expanded on mobile */
+  side-bar:not(.collapsed) {
+    transform: translateX(0);
+  }
+
+  /* Backdrop blur overlay */
+  side-bar:not(.collapsed)::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 75vw; /* Start after sidebar */
+    width: 25vw; /* Remaining screen width */
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    z-index: -1; /* Behind sidebar, but above chat */
+    pointer-events: auto; /* Allow clicks to close sidebar */
+  }
+
+  /* Alternative: Full backdrop if you prefer */
+  /* 
+  side-bar:not(.collapsed)::before {
+    left: 0;
+    width: 100vw;
+  }
+  */
 }

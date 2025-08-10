@@ -143,30 +143,63 @@
 }
 
 /* Sidebar text (hidden when collapsed) */
-.sidebar-text {
+.sidebar-text,
+.chat-content {
   opacity: 1;
-  transition: opacity 0.2s ease;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  transform: translateX(0);
 }
 
+/* Hide content when collapsed */
 :host(.collapsed) .sidebar-text,
 :host(.collapsed) .chat-content {
   opacity: 0;
   pointer-events: none;
+  transform: translateX(-10px);
 }
 
-:host(.collapsed):hover {
-  padding: 0.5rem;
-  gap: 0.5rem;
-  opacity: 1;
-}
-
+/* Hide chat bubbles completely when collapsed */
 :host(.collapsed) .chat-bubble {
-  padding: 0.5rem;
-  justify-content: center;
+  display: none;
 }
 
-:host(.collapsed) .chat-icon {
-  margin: 0;
+/* Show content when hovering collapsed sidebar (via container hover) */
+:host(.collapsed.hover-expanded) .sidebar-text,
+:host(.collapsed.hover-expanded) .chat-content {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateX(0);
+  transition: opacity 0.3s ease 0.1s, transform 0.3s ease 0.1s; /* Slight delay */
+}
+
+/* Show chat bubbles when hovering collapsed sidebar */
+:host(.collapsed.hover-expanded) .chat-bubble {
+  display: flex;
+}
+
+/* Footer */
+.sidebar-footer {
+  padding: 0.75rem;
+  border-top: 1px solid var(--color-border-primary);
+  margin-top: auto;
+}
+
+/* Scrollbar styling */
+.chat-list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.chat-list::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.chat-list::-webkit-scrollbar-thumb {
+  background: var(--color-border-primary);
+  border-radius: 3px;
+}
+
+.chat-list::-webkit-scrollbar-thumb:hover {
+  background: var(--color-text-muted);
 }
 
 /* Footer */
@@ -197,4 +230,45 @@ svg {
 
 .chat-list::-webkit-scrollbar-thumb:hover {
   background: var(--color-text-muted);
+}
+
+/* Mobile specific styles */
+@media (max-width: 700px) {
+  :host {
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.3);
+  }
+
+  /* Ensure sidebar content is always visible on mobile when expanded */
+  :host:not(.collapsed) .sidebar-text,
+  :host:not(.collapsed) .chat-content {
+    opacity: 1 !important;
+    pointer-events: auto !important;
+    transform: translateX(0) !important;
+  }
+
+  :host:not(.collapsed) .chat-bubble {
+    display: flex !important;
+  }
+
+  /* Larger touch targets for mobile */
+  .toggle-btn,
+  .new-chat-btn,
+  .settings-btn {
+    padding: 0.75rem;
+    min-height: 44px; /* iOS minimum touch target */
+  }
+
+  .chat-bubble {
+    padding: 1rem 0.75rem;
+    min-height: 44px;
+  }
+
+  /* Slightly larger text on mobile for better readability */
+  .chat-title {
+    font-size: 0.9rem;
+  }
+
+  .chat-preview {
+    font-size: 0.8rem;
+  }
 }
