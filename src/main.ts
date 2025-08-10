@@ -56,8 +56,7 @@ document.addEventListener("question-asked", (event) => {
 window.addEventListener("DOMContentLoaded", () => {
   document.querySelector<HTMLDivElement>("#app")!.innerHTML = `
   <chat-container>
-    <!-- TODO: uncomment this later when we add the chat history feature-->
-    <!-- <side-bar></side-bar> -->
+    <side-bar></side-bar>
     <chat-window class="main-content">
       <chat-header>
         Header

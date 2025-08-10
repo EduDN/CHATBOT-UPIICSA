@@ -20,33 +20,48 @@ body,
 }
 
 chat-container {
+  --sidebar-collapsed-width: 5rem;
+  --sidebar-expanded-width: 15rem;
+
   background-color: var(--color-background-dark);
   min-height: 0;
   width: 100%;
   max-width: 100%;
   height: 100vh;
   max-height: 100vh;
-  /* Dynamic viewport units for better responsiveness */
   max-width: 100dvw;
   width: 100dvw;
   max-height: 100dvh;
   height: 100dvh;
   display: grid;
-  /* TODO: uncomment this later when we add the chat history feature */
-  /* grid-template-columns: minmax(15rem, 1fr) 5fr; */
-  grid-template-columns: 1fr;
+  grid-template-columns: var(--sidebar-collapsed-width) 5fr;
+
+  /* Smoother, longer transition */
+  transition: grid-template-columns 0.8s cubic-bezier(0.25, 0.8, 0.25, 1);
 
   user-select: none;
   -webkit-user-select: none;
 }
 
-side-bar {
-  background-color: var(--color-background-medium);
-  border-right: 1px solid var(--color-border-primary);
-  user-select: none;
-  -webkit-user-select: none;
+chat-container:has(side-bar:not(.collapsed)),
+chat-container:has(side-bar.collapsed:hover) {
+  grid-template-columns: var(--sidebar-expanded-width) 5fr;
 }
 
+/* Wide desktops */
+@media (min-width: 1440px) {
+  chat-container {
+    --sidebar-expanded-width: 22rem;
+  }
+}
+
+/* Ultra-wide displays */
+@media (min-width: 1920px) {
+  chat-container {
+    --sidebar-expanded-width: 24rem;
+    background-color: red;
+  }
+}
 .main-content {
   color: var(--color-text-primary);
   display: grid;
