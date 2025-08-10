@@ -7,6 +7,7 @@ class ChatHeader extends BaseComponent {
   private $dropdown: HTMLDivElement | null = null;
   private $dropdownContent: HTMLDivElement | null = null;
   private $buttonText: HTMLParagraphElement | null = null;
+  private $mobileMenuBtn: HTMLButtonElement | null = null;
 
   constructor() {
     super();
@@ -31,10 +32,13 @@ class ChatHeader extends BaseComponent {
     if (this.shadowRoot === null) {
       return;
     }
-    this.$button = this.shadowRoot.querySelector("button");
+    this.$button = this.shadowRoot.querySelector(".dropdown-btn");
     this.$dropdown = this.shadowRoot.querySelector(".dropdown");
     this.$dropdownContent = this.shadowRoot.querySelector(".dropdown-content");
     this.$buttonText = this.shadowRoot.querySelector(".dropdown-btn p");
+    this.$mobileMenuBtn = this.shadowRoot.querySelector(
+      "#mobile-sidebar-toggle",
+    );
 
     if (
       !this.$button ||
@@ -45,20 +49,30 @@ class ChatHeader extends BaseComponent {
       return;
     }
 
-    // Listener for the button to ONLY toggle the dropdown
-    this.$button.addEventListener("click", () => {
+    // Mobile menu button handler
+    this.$mobileMenuBtn?.addEventListener("click", (e) => {
+      e.stopPropagation(); // Prevent event bubbling
+      document.dispatchEvent(new CustomEvent("toggle-mobile-sidebar"));
+    });
+
+    // Listener for the dropdown button to ONLY toggle the dropdown
+    this.$button.addEventListener("click", (e) => {
+      e.stopPropagation(); // Prevent event bubbling
       this.$dropdownContent?.classList.toggle("show");
       this.$dropdown?.blur();
       this.$button?.blur();
+      this.showCheckedState();
     });
 
-    this.$dropdown.addEventListener("click", async (e) => {
+    this.$dropdown.addEventListener("click", (e) => {
+      console.log("Dropdown clicked");
       const target = e.target as HTMLElement;
       const selectedLi = target.closest("li");
+      console.log("Clicked outside:", target.tagName);
+
       if (!this.$button || !this.$dropdownContent) {
         return;
       }
-      this.showCheckedState();
 
       if (selectedLi?.tagName === "LI") {
         const strategyKey = selectedLi.getAttribute("data-strategy");
@@ -119,6 +133,14 @@ class ChatHeader extends BaseComponent {
       this.$button.disabled = isLoading;
       this.$button.classList.toggle("loading", isLoading);
     }
+  }
+
+  protected override disconnectedCallback(): void {
+    this.$button = null;
+    this.$dropdown = null;
+    this.$dropdownContent = null;
+    this.$buttonText = null;
+    this.$mobileMenuBtn = null;
   }
 }
 

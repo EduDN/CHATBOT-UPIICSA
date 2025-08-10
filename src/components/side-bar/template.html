@@ -25,17 +25,22 @@
       <button class="new-chat-btn" id="new-chat">
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          width="16"
-          height="16"
+          width="24"
+          height="24"
           viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"
           stroke-width="2"
           stroke-linecap="round"
           stroke-linejoin="round"
+          class="lucide lucide-square-pen-icon lucide-square-pen"
         >
-          <path d="M5 12h14" />
-          <path d="m12 5 7 7-7 7" />
+          <path
+            d="M12 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"
+          />
+          <path
+            d="M18.375 2.625a1 1 0 0 1 3 3l-9.013 9.014a2 2 0 0 1-.853.505l-2.873.84a.5.5 0 0 1-.62-.62l.84-2.873a2 2 0 0 1 .506-.852z"
+          />
         </svg>
         <span class="sidebar-text">New Chat</span>
       </button>
@@ -60,8 +65,89 @@
         </div>
         <div class="chat-content">
           <div class="chat-title">Como registrar materias?</div>
-          <div class="chat-preview">Necesito ayuda con el proceso...</div>
           <div class="chat-time">2h ago</div>
+        </div>
+      </li>
+
+      <li class="chat-bubble active" data-chat-id="chat-1">
+        <div class="chat-icon">
+          <svg
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path
+              d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"
+            />
+          </svg>
+        </div>
+        <div class="chat-content">
+          <div class="chat-title">Como registrar materias?</div>
+          <div class="chat-time">2h ago</div>
+        </div>
+      </li>
+
+      <li class="chat-bubble active" data-chat-id="chat-1">
+        <div class="chat-icon">
+          <svg
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path
+              d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"
+            />
+          </svg>
+        </div>
+        <div class="chat-content">
+          <div class="chat-title">Como registrar materias?</div>
+          <div class="chat-time">2h ago</div>
+        </div>
+      </li>
+      <li class="chat-bubble" data-chat-id="chat-2">
+        <div class="chat-icon">
+          <svg
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path
+              d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"
+            />
+          </svg>
+        </div>
+        <div class="chat-content">
+          <div class="chat-title">Horarios de biblioteca</div>
+          <div class="chat-time">1d ago</div>
+        </div>
+      </li>
+      <li class="chat-bubble" data-chat-id="chat-2">
+        <div class="chat-icon">
+          <svg
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path
+              d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"
+            />
+          </svg>
+        </div>
+        <div class="chat-content">
+          <div class="chat-title">Horarios de biblioteca</div>
+          <div class="chat-time">1d ago</div>
         </div>
       </li>
 
@@ -82,7 +168,6 @@
         </div>
         <div class="chat-content">
           <div class="chat-title">Horarios de biblioteca</div>
-          <div class="chat-preview">¿A qué hora abre la biblioteca?</div>
           <div class="chat-time">1d ago</div>
         </div>
       </li>
@@ -104,7 +189,6 @@
         </div>
         <div class="chat-content">
           <div class="chat-title">Tramites administrativos</div>
-          <div class="chat-preview">Como hacer el cambio de carrera?</div>
           <div class="chat-time">3d ago</div>
         </div>
       </li>
@@ -126,7 +210,6 @@
         </div>
         <div class="chat-content">
           <div class="chat-title">Profesores recomendados</div>
-          <div class="chat-preview">¿Qué profesores recomiendas para...?</div>
           <div class="chat-time">1w ago</div>
         </div>
       </li>
@@ -148,7 +231,6 @@
         </div>
         <div class="chat-content">
           <div class="chat-title">Cafeteria menu</div>
-          <div class="chat-preview">¿Cuál es el menú de hoy?</div>
           <div class="chat-time">2w ago</div>
         </div>
       </li>
@@ -158,8 +240,8 @@
   <div class="sidebar-footer">
     <button class="settings-btn">
       <svg
-        width="16"
-        height="16"
+        width="22"
+        height="22"
         viewBox="0 0 24 24"
         fill="none"
         stroke="currentColor"

@@ -1,6 +1,6 @@
-<div class="dropdown" disable>
-  <button class="dropdown-btn">
-    <p>Transformer</p>
+<header class="chat-header">
+  <!-- Mobile hamburger button (left side) -->
+  <button class="mobile-menu-btn" id="mobile-sidebar-toggle">
     <svg
       xmlns="http://www.w3.org/2000/svg"
       width="24"
@@ -11,46 +11,69 @@
       stroke-width="2"
       stroke-linecap="round"
       stroke-linejoin="round"
-      class="lucide lucide-chevron-down-icon lucide-chevron-down"
     >
-      <path d="m6 9 6 6 6-6" />
+      <path d="M3 12h18" />
+      <path d="M3 18h18" />
+      <path d="M3 6h18" />
     </svg>
   </button>
-  <ul id="dropdown" class="dropdown-content">
-    <li data-strategy="transformers">
-      <p>Transformer</p>
 
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="24"
-        height="24"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        class="lucide lucide-check-icon lucide-check"
-      >
-        <path d="M20 6 9 17l-5-5" />
-      </svg>
-    </li>
-    <li data-strategy="pyodide">
-      <p>Binary</p>
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="24"
-        height="24"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        class="lucide lucide-check-icon lucide-check"
-      >
-        <path d="M20 6 9 17l-5-5" />
-      </svg>
-    </li>
-  </ul>
-</div>
+  <!-- Header content (center/flex) -->
+  <div class="header-content">
+    <div class="dropdown" disable>
+      <button class="dropdown-btn">
+        <p>Transformer</p>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="lucide lucide-chevron-down-icon lucide-chevron-down"
+        >
+          <path d="m6 9 6 6 6-6" />
+        </svg>
+      </button>
+      <ul id="dropdown" class="dropdown-content">
+        <li data-strategy="transformers">
+          <p>Transformer</p>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="lucide lucide-check-icon lucide-check"
+          >
+            <path d="M20 6 9 17l-5-5" />
+          </svg>
+        </li>
+        <li data-strategy="pyodide">
+          <p>Binary</p>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="lucide lucide-check-icon lucide-check"
+          >
+            <path d="M20 6 9 17l-5-5" />
+          </svg>
+        </li>
+      </ul>
+    </div>
+  </div>
+</header>

@@ -1,3 +1,63 @@
+/* Chat Header Layout */
+.chat-header {
+  /* display: flex; */
+  /* align-items: center; */
+  /* justify-content: space-between; */
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 1rem;
+  padding: 0.75rem 1rem;
+
+  /* border-bottom: 1px solid var(--color-border-primary); */
+  /* background-color: var(--color-background-medium); */
+}
+
+/* Mobile hamburger button */
+.mobile-menu-btn {
+  display: none; /* Hidden by default on desktop */
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border: none;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--color-text-primary);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+.mobile-menu-btn:active {
+  transform: scale(0.95);
+}
+
+/* Header content wrapper */
+.header-content {
+  flex: 1;
+  display: flex;
+  /* align-items: center; */
+}
+
+/* Mobile layout */
+@media (max-width: 700px) {
+  .mobile-menu-btn {
+    display: flex;
+  }
+
+  .header-content {
+    /* Center the dropdown on mobile */
+    justify-content: center;
+  }
+}
+
+/* Mobile layout */
+@media (min-width: 700px) {
+  .header-content {
+    margin-left: 2rem;
+  }
+}
+
 /* Chat Header - buttons, controls, title */
 :host,
 li > *,
@@ -13,14 +73,14 @@ li > *,
   -webkit-user-select: none;
   position: relative;
   display: inline-block;
-  margin-top: 0.5rem;
-  margin-left: 0.8rem;
+  transform: translateX(-15%);
+  /* margin-left: 0.8rem; */
 }
 
 .dropdown-btn {
   display: flex;
   background-color: transparent;
-  border: none;
+  border: 1px solid var(--color-border-primary);
   cursor: pointer;
   padding: 0.4rem;
   padding-left: 0.7rem;
@@ -28,12 +88,13 @@ li > *,
   font-size: 1.25rem;
   user-select: none;
   -webkit-user-select: none;
+  border-radius: 0.5rem;
+  padding-left: 1.1rem;
 }
 
 .dropdown-btn:hover,
 .dropdown-btn:focus {
   background-color: var(--color-background-light);
-  border-radius: 0.5rem;
   outline: 3px solid var(--color-border-primary);
 }
 

@@ -34,6 +34,7 @@ chat-container {
   max-height: 100dvh;
   height: 100dvh;
   display: grid;
+  /* Desktop grid - default */
   grid-template-columns: var(--sidebar-collapsed-width) 5fr;
 
   /* Smoother, longer transition */
@@ -43,13 +44,57 @@ chat-container {
   -webkit-user-select: none;
 }
 
-chat-container:has(side-bar:not(.collapsed)),
-chat-container:has(side-bar.collapsed:hover:not(.manually-collapsed)) {
+/* Mobile layout - full width chat, sidebar as overlay */
+chat-container.mobile-layout {
+  grid-template-columns: 1fr;
+  position: relative;
+}
+
+/* Mobile backdrop when sidebar is expanded */
+chat-container.mobile-layout::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+  z-index: 999;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+/* Show backdrop when mobile sidebar is expanded */
+chat-container.mobile-layout:has(side-bar.mobile-mode:not(.collapsed))::before {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Mobile sidebar open state (triggered by hamburger button) */
+chat-container.mobile-layout.mobile-sidebar-open::before {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+chat-container.mobile-layout.mobile-sidebar-open side-bar {
+  transform: translateX(0);
+}
+
+/* Desktop-only hover expansion */
+chat-container:not(.mobile-layout):has(side-bar.desktop-mode:not(.collapsed)),
+chat-container:not(.mobile-layout):has(
+    side-bar.desktop-mode.collapsed:hover:not(.manually-collapsed)
+  ) {
   grid-template-columns: var(--sidebar-expanded-width) 5fr;
 }
 
-/* When manually collapsed, disable hover expansion */
-chat-container:has(side-bar.manually-collapsed) {
+/* When manually collapsed on desktop, disable hover expansion */
+chat-container:not(.mobile-layout):has(
+    side-bar.desktop-mode.manually-collapsed
+  ) {
   grid-template-columns: var(--sidebar-collapsed-width) 5fr;
 }
 
@@ -116,7 +161,7 @@ chat-container:has(side-bar.manually-collapsed) {
 
   /* Backdrop blur overlay */
   side-bar:not(.collapsed)::before {
-    content: '';
+    content: "";
     position: fixed;
     top: 0;
     left: 75vw; /* Start after sidebar */
