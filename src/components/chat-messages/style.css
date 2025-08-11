@@ -12,6 +12,25 @@
   gap: 1rem;
 }
 
+.chat-messages .initial-message {
+  margin-top: 6rem;
+}
+
+.chat-messages .initial-message h2 {
+  text-align: center;
+  color: var(--color-link-primary);
+  font-size: 2rem;
+  margin: auto;
+}
+
+.chat-messages .initial-message p {
+  margin-top: 1rem;
+  font-size: 1.1rem;
+  text-align: center;
+  line-height: 1.5;
+  color: var(--color-text-primary);
+}
+
 .user {
   display: flex;
   gap: 0.5rem;

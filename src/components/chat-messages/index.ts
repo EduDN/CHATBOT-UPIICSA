@@ -8,6 +8,8 @@ type Sender = "user" | "assistant";
 class ChatMessages extends BaseComponent {
   private resizeObserver: ResizeObserver | null = null;
   private thinkingMessageElement: HTMLElement | undefined;
+  private $ul: HTMLElement | null = null;
+  private $slot: HTMLElement | null = null;
   constructor() {
     super();
     if (!this.shadowRoot) {
@@ -16,15 +18,9 @@ class ChatMessages extends BaseComponent {
 
     this.resizeObserver = new ResizeObserver(() => this.scrollToBottom());
   }
-  protected override connectedCallback(): void {
-    super.connectedCallback();
-    const $ul =
-      this.shadowRoot?.querySelector<HTMLUListElement>(".chat-messages");
-    if (!$ul) {
-      return;
-    }
-    this.resizeObserver?.observe($ul);
-  }
+  // protected override connectedCallback(): void {
+  //   super.connectedCallback();
+  // }
 
   protected override get htmlTemplate(): string {
     return template;
@@ -35,6 +31,17 @@ class ChatMessages extends BaseComponent {
   }
 
   protected override setupEventListeners(): void {
+    this.$ul =
+      this.shadowRoot?.querySelector<HTMLUListElement>(".chat-messages") ||
+      null;
+
+    if (!this.$ul) {
+      return;
+    }
+    this.$slot = this.$ul.querySelector("slot");
+    console.log("slot", this.$slot);
+    this.resizeObserver?.observe(this.$ul);
+
     document.addEventListener("message-sent", async (event) => {
       const customEvent = event as CustomEvent<{ text: string }>;
       const message = customEvent.detail.text;
@@ -114,6 +121,7 @@ class ChatMessages extends BaseComponent {
 
     const $chatMessageElement = document.createElement("chat-message");
     $chatMessageElement.dataset.sender = sender;
+
     const templateId =
       sender === "user"
         ? "#user-message-template"
@@ -121,12 +129,12 @@ class ChatMessages extends BaseComponent {
 
     const $template =
       this.shadowRoot.querySelector<HTMLTemplateElement>(templateId);
-    const $ul =
-      this.shadowRoot.querySelector<HTMLUListElement>(".chat-messages");
 
-    if (!$template) {
+    if (!$template || !this.$ul) {
       return;
     }
+
+    this.removeSlot(); // Remove the slot if it exists to avoid duplication
 
     const $clone = $template.content.cloneNode(true) as DocumentFragment;
     // const $clone = $template.content.cloneNode(true);
@@ -143,11 +151,7 @@ class ChatMessages extends BaseComponent {
 
     $chatMessageElement.appendChild($clone);
 
-    if (!$ul) {
-      return;
-    }
-
-    $ul.appendChild($chatMessageElement);
+    this.$ul.appendChild($chatMessageElement);
 
     // this.scrollToBottom();
     return $chatMessageElement;
@@ -165,6 +169,13 @@ class ChatMessages extends BaseComponent {
 
   protected override disconnectedCallback(): void {
     this.resizeObserver?.disconnect();
+  }
+
+  private removeSlot() {
+    if (this.$slot) {
+      this.$slot.remove();
+      this.$slot = null; // Reset the slot after removing it
+    }
   }
 }
 

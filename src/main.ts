@@ -61,8 +61,7 @@ window.addEventListener("DOMContentLoaded", () => {
       <chat-header>
         Header
       </chat-header>
-        <chat-messages>
-        </chat-messages>
+        <chat-messages></chat-messages>
       <chat-input></chat-input>
     </chat-window>
   </chat-container>
