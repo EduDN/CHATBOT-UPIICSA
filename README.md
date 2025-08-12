@@ -17,7 +17,7 @@ technologías web.
 
 ### **Mejoras de UI/UX**
 
-- [ ] Implementar un estado de carga global para deshabilitar la entrada de chat mientras se inicializan las estrategias.
+- [x] Implementar un estado de carga global para deshabilitar la entrada de chat mientras se inicializan las estrategias.
 - [x] Sanitizar las respuestas del asistente para convertir automáticamente las URLs en enlaces clicables.
 - [x] Añadir un botón "Copiar Mensaje" a las respuestas del asistente.
 - [ ] Implementar un historial de chat persistente usando `localStorage`.

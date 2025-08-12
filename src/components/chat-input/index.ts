@@ -41,6 +41,12 @@ class ChatInput extends BaseComponent {
     );
     document.addEventListener("app-ready", () => this.enableInput());
 
+    document.addEventListener("strategy-changed", () => {
+      this.disableInput("Cambiando modelo...");
+    });
+
+    document.addEventListener("strategy-ready", () => this.enableInput());
+
     this.$inputElement.addEventListener("input", () => {
       if (!this.$inputElement) return;
 

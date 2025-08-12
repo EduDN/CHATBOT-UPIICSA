@@ -47,7 +47,6 @@ document.addEventListener("strategy-changed", (event) => {
 });
 
 document.addEventListener("question-asked", (event) => {
-  console.log("Question asked event received:", event);
   const { question } = (event as CustomEvent).detail;
   aiWorker.postMessage({ type: "findAnswer", payload: { question } });
 });
