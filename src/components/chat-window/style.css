@@ -1,0 +1,173 @@
+/* :host { */
+/*   overflow-y: auto; */
+/*   scroll-behavior: smooth; */
+/* } */
+/**/
+/* .chat-messages { */
+/*   margin: 0 1.5rem; */
+/*   padding: 0 1.8rem; */
+/*   display: flex; */
+/*   flex-direction: column; */
+/*   flex-grow: 0; */
+/*   gap: 1rem; */
+/* } */
+/**/
+/* .user { */
+/*   display: flex; */
+/*   gap: 0.5rem; */
+/*   margin-bottom: 0.5rem; */
+/* } */
+/**/
+/* .user > p { */
+/*   background-color: var(--color-background-light); */
+/*   padding: 0.5rem; */
+/*   border-radius: 1rem 1rem 0 1rem; */
+/* } */
+/**/
+/* .user > span { */
+/*   align-self: flex-end; */
+/*   display: inline-flex; */
+/*   align-items: center; */
+/*   justify-content: center; */
+/*   aspect-ratio: 1 / 1; */
+/*   background-color: var(--color-text-muted); */
+/*   height: 2.7rem; */
+/*   width: 2.7rem; */
+/*   font-size: 1.3rem; */
+/*   border-radius: 50%; */
+/* } */
+/**/
+/* .hide { */
+/*   display: none; */
+/* } */
+/**/
+/* .assistant a { */
+/*   color: var(--color-link-primary); */
+/* } */
+/**/
+/* .assistant a:active, */
+/* .assistant a:hover { */
+/*   color: var(--color-link-secondary); */
+/* } */
+/**/
+/* .assistant button { */
+/*   margin-top: 0.5rem; */
+/*   background: none; */
+/*   border: none; */
+/*   padding: 0.5rem; */
+/* } */
+/**/
+/* .assistant button.is-active { */
+/*   background-color: var(--color-background-light); */
+/*   border-radius: 50%; */
+/* } */
+
+/* Style ONLY for keyboard navigation (accessibility) */
+/* .assistant button:focus-visible { */
+/*   outline: 2px solid var(--color-text-muted); */
+/* } */
+
+/* These :hover styles will ONLY apply to devices with a mouse */
+/* @media (hover: hover) and (pointer: fine) { */
+/*   .assistant button:hover { */
+/*     background-color: var(--color-background-light); */
+/*     border-radius: 50%; */
+/*   } */
+/* } */
+/**/
+/* .assistant svg { */
+/*   fill: none; */
+/*   stroke: var(--color-text-secondary); */
+/*   height: 1.1rem; */
+/* height: 15px; */
+/* } */
+
+/* .template { */
+/*   display: none; */
+/* } */
+/**/
+/* .brain { */
+/*   display: flex; */
+/*   align-items: center; */
+/* Space between spinner and text */
+/*   gap: 0.75rem; */
+/* } */
+
+/* .loading-spinner { */
+/* Needed to position the spinning border */
+/* position: relative;  */
+/* Set the size of your spinner */
+/*   width: 30px; */
+/*   height: 30px; */
+/* } */
+
+/* Style the image inside the spinner */
+/* .loading-spinner img { */
+/*   width: 90%; */
+/*   height: 90%; */
+/* Make the image circular */
+/*   border-radius: 50%; */
+/* } */
+
+/* This ::before pseudo-element IS the spinning border */
+/* .loading-spinner::before { */
+/*   content: ""; */
+/*   position: absolute; */
+/* Make the border slightly larger than the container */
+/*   top: -4px; */
+/*   left: -4px; */
+/*   right: -4px; */
+/*   bottom: -4px; */
+/**/
+/*   border: 3px solid transparent; */
+/*   border-top-color: #3498db; */
+/*   border-radius: 50%; */
+/**/
+/*   animation: spin 1s linear infinite; */
+/* } */
+
+/* Typing animation for the final answer text */
+/* .typing-animation { */
+/* Adjust width and steps based on your longest expected message */
+/* width: fit-content; */
+/* white-space: nowrap; */
+/* overflow: hidden; */
+/* border-right: 3px solid; /* Simulates the typing caret */
+/* animation: */
+/*   typing 1.5s steps(20, end), */
+/* Adjust steps and duration as needed */
+/* caret 0.75s step-end infinite; */
+/* } */
+
+/* @keyframes spin { */
+/*   to { */
+/*     transform: rotate(360deg); */
+/*   } */
+/* } */
+/**/
+/* @keyframes typing { */
+/*   from { */
+/*     width: 0; */
+/*   } */
+/*   to { */
+/* Ensure it reveals the full width */
+/*     width: 100%; */
+/*   } */
+/* } */
+
+/* @keyframes caret { */
+/* from 0%, */
+/* to 10% { */
+/*   border-color: transparent; */
+/* } */
+/*   50% { */
+/*     border-color: currentColor; */
+/*   } */
+/* } */
+/**/
+/* @media (700px >= width) { */
+/*   .chat-messages { */
+/*     margin: 0 0.7rem; */
+/*     padding: 0 0.5rem; */
+/*   } */
+/* } */

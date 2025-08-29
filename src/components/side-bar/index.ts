@@ -1,6 +1,7 @@
 import { BaseComponent } from "../core/base-component";
 import template from "./template.html?raw";
 import style from "./style.css?inline";
+import { Router } from "@/services/router";
 
 class Sidebar extends BaseComponent {
   private isCollapsed = true; // Start collapsed
@@ -8,6 +9,7 @@ class Sidebar extends BaseComponent {
   private isManuallyCollapsed = false;
   private isMobile = false;
   private $toggleButton: HTMLButtonElement | null = null;
+  private router = Router;
 
   protected override connectedCallback(): void {
     // Add collapsed class immediately to prevent animation on load
@@ -138,7 +140,7 @@ class Sidebar extends BaseComponent {
   }
 
   private createNewChat(): void {
-    console.log("Creating new chat...");
+    this.router.goToRoute("/");
     // TODO: Implement new chat creation
   }
 
@@ -154,7 +156,6 @@ class Sidebar extends BaseComponent {
     );
     selectedBubble?.classList.add("active");
 
-    console.log("Selected chat:", chatId);
     // TODO: Emit event to load chat
   }
 
@@ -227,10 +228,6 @@ class Sidebar extends BaseComponent {
         .querySelector("chat-container")
         ?.classList.remove("mobile-layout");
     }
-
-    console.log(
-      `Sidebar initialized in ${this.isMobile ? "mobile" : "desktop"} mode`,
-    );
   }
 
   private setupModeHandling(): void {
@@ -241,7 +238,6 @@ class Sidebar extends BaseComponent {
 
       // Only update if mode actually changed
       if (wasMobile !== this.isMobile) {
-        console.log(`Mode changed to: ${this.isMobile ? "mobile" : "desktop"}`);
         this.initializeMode();
 
         // Reset sidebar state when switching modes

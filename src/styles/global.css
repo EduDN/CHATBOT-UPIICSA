@@ -91,21 +91,22 @@ chat-container:not(.mobile-layout):has(
   grid-template-columns: var(--sidebar-expanded-width) 5fr;
 }
 
-/* When manually collapsed on desktop, disable hover expansion */
 chat-container:not(.mobile-layout):has(
     side-bar.desktop-mode.manually-collapsed
   ) {
   grid-template-columns: var(--sidebar-collapsed-width) 5fr;
 }
 
-/* Wide desktops */
+hidden {
+  display: none;
+}
+
 @media (min-width: 1440px) {
   chat-container {
     --sidebar-expanded-width: 22rem;
   }
 }
 
-/* Ultra-wide displays */
 @media (min-width: 1920px) {
   chat-container {
     --sidebar-expanded-width: 24rem;
@@ -141,7 +142,6 @@ chat-container:not(.mobile-layout):has(
     position: relative; /* For sidebar overlay positioning */
   }
 
-  /* Mobile sidebar overlay */
   side-bar {
     position: fixed;
     top: 0;
@@ -159,7 +159,6 @@ chat-container:not(.mobile-layout):has(
     transform: translateX(0);
   }
 
-  /* Backdrop blur overlay */
   side-bar:not(.collapsed)::before {
     content: "";
     position: fixed;
@@ -173,12 +172,4 @@ chat-container:not(.mobile-layout):has(
     z-index: -1; /* Behind sidebar, but above chat */
     pointer-events: auto; /* Allow clicks to close sidebar */
   }
-
-  /* Alternative: Full backdrop if you prefer */
-  /* 
-  side-bar:not(.collapsed)::before {
-    left: 0;
-    width: 100vw;
-  }
-  */
 }
