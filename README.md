@@ -14,6 +14,7 @@ technologías web.
 - [x] Crear un script de pre-cómputo para generar los _embeddings_ sin conexión.
 - [x] Configurar un _Service Worker_ para almacenar en caché activos grandes (modelos de IA, Pyodide).
 - [ ] Usar `IndexedDB` para almacenar los _embeddings_ pre-calculados para cargas instantáneas en visitas recurrentes.
+- [ ] Resolver bug the service worker
 
 ### **Mejoras de UI/UX**
 
