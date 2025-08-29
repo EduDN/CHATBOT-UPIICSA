@@ -1,7 +1,8 @@
-import { BaseComponent } from "../core/base-component";
+import { BaseComponent } from "@/components/core/base-component";
 import template from "./template.html?raw";
 import "@/components/chat-message"; // Importing the chat-message component to ensure it's registered
 import style from "./style.css?inline";
+import { Router } from "@/services/router";
 
 type Sender = "user" | "assistant";
 
@@ -10,6 +11,7 @@ class ChatMessages extends BaseComponent {
   private thinkingMessageElement: HTMLElement | undefined;
   private $ul: HTMLElement | null = null;
   private $slot: HTMLElement | null = null;
+  private router = Router;
   constructor() {
     super();
     if (!this.shadowRoot) {
@@ -18,9 +20,6 @@ class ChatMessages extends BaseComponent {
 
     this.resizeObserver = new ResizeObserver(() => this.scrollToBottom());
   }
-  // protected override connectedCallback(): void {
-  //   super.connectedCallback();
-  // }
 
   protected override get htmlTemplate(): string {
     return template;
@@ -39,10 +38,19 @@ class ChatMessages extends BaseComponent {
       return;
     }
     this.$slot = this.$ul.querySelector("slot");
-    console.log("slot", this.$slot);
     this.resizeObserver?.observe(this.$ul);
 
+    document.addEventListener("route-changed", (e) => {
+      const { route } = (e as CustomEvent).detail as { route: string };
+      this.handleRouteChanged(route);
+    });
+
     document.addEventListener("message-sent", async (event) => {
+      const $li = this.$ul?.querySelector("li");
+      if (!$li) {
+        const uuid = crypto.randomUUID();
+        this.router.goToRoute(`chat?id=${uuid}`);
+      }
       const customEvent = event as CustomEvent<{ text: string }>;
       const message = customEvent.detail.text;
 
@@ -57,7 +65,6 @@ class ChatMessages extends BaseComponent {
       }
       p?.classList.add("loading");
 
-      console.log("Message sent event received:", message);
       this.dispatchEvent(
         new CustomEvent("question-asked", {
           bubbles: true,
@@ -69,8 +76,6 @@ class ChatMessages extends BaseComponent {
 
     document.addEventListener("assistant-answer", async (event) => {
       const customEvent = event as CustomEvent<{ answer: string }>;
-      console.log("Received answer from AI Worker:", customEvent.detail.answer);
-      console.log("CustomEvent", customEvent);
       const p = this.thinkingMessageElement?.querySelector("p");
       if (!p) {
         return;
@@ -127,17 +132,16 @@ class ChatMessages extends BaseComponent {
         ? "#user-message-template"
         : "#assistant-message-template";
 
-    const $template =
-      this.shadowRoot.querySelector<HTMLTemplateElement>(templateId);
-
-    if (!$template || !this.$ul) {
+    if (!this.$ul) {
       return;
     }
 
+    const $clone = this.getTemplate(templateId);
+    if (!$clone) {
+      return;
+    }
     this.removeSlot(); // Remove the slot if it exists to avoid duplication
 
-    const $clone = $template.content.cloneNode(true) as DocumentFragment;
-    // const $clone = $template.content.cloneNode(true);
     const $paragraph = $clone.querySelector("p");
     const $sender = $clone.querySelector("span");
     if (!$paragraph) {
@@ -175,6 +179,30 @@ class ChatMessages extends BaseComponent {
     if (this.$slot) {
       this.$slot.remove();
       this.$slot = null; // Reset the slot after removing it
+    }
+  }
+
+  private getTemplate(templateId: string): DocumentFragment | undefined {
+    if (this.shadowRoot === null) return;
+    const $template =
+      this.shadowRoot.querySelector<HTMLTemplateElement>(templateId);
+
+    if (!$template || !this.$ul) {
+      return;
+    }
+
+    return $template.content.cloneNode(true) as DocumentFragment;
+  }
+
+  private handleRouteChanged(route: string) {
+    if (route === "/") {
+      if (!this.$ul) return;
+
+      this.$ul.innerHTML = "";
+      const $initialTemplate = this.getTemplate("#initial-message-template");
+      if (!$initialTemplate) return;
+      this.$ul.appendChild<DocumentFragment>($initialTemplate);
+      this.$slot = this.$ul.querySelector("slot");
     }
   }
 }

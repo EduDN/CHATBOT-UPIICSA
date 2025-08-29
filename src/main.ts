@@ -6,11 +6,13 @@ import "@/components/chat-input";
 import "@/components/chat-messages";
 import "@/components/chat-header";
 
-if ("serviceWorker" in navigator) {
-  window.addEventListener("load", () => {
-    navigator.serviceWorker.register("/sw.js");
-  });
-}
+// TODO: fix service worker error
+// if ("serviceWorker" in navigator) {
+//   window.addEventListener("load", () => {
+//     navigator.serviceWorker.register("/sw.js");
+//   });
+// }
+
 const aiWorker = new Worker(
   new URL("./workers/ai-worker.ts", import.meta.url),
   { type: "module" },
@@ -56,13 +58,15 @@ window.addEventListener("DOMContentLoaded", () => {
   document.querySelector<HTMLDivElement>("#app")!.innerHTML = `
   <chat-container>
     <side-bar></side-bar>
-    <chat-window class="main-content">
+    <!-- <chat-window class="main-content"> -->
+    <main class="main-content">
       <chat-header>
         Header
       </chat-header>
         <chat-messages></chat-messages>
       <chat-input></chat-input>
-    </chat-window>
+    </main>
+    <!-- </chat-window> -->
   </chat-container>
 `;
 

@@ -1,14 +1,15 @@
 import { BaseComponent } from "@/components/core/base-component";
+import { Router } from "@/services/router";
 import template from "./template.html?raw";
-// import style from "./style.css?inline";
 
 class ChatContainer extends BaseComponent {
-  constructor() {
-    super();
-  }
-
   protected override get htmlTemplate(): string {
     return template;
+  }
+
+  protected override connectedCallback(): void {
+    super.connectedCallback();
+    Router.init();
   }
 
   protected override setupEventListeners(): void {}
