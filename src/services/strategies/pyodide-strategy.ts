@@ -1,4 +1,4 @@
-import type { AnsweringStrategy } from "../answering-strategy";
+import type { AnsweringStrategy } from "@/types/answering-strategy";
 
 declare global {
   var pyodideScriptLoaded: boolean;

@@ -1,5 +1,5 @@
 import { pipeline, cos_sim } from "@xenova/transformers";
-import type { AnsweringStrategy } from "../answering-strategy";
+import type { AnsweringStrategy } from "@/types/answering-strategy";
 import { env } from "@xenova/transformers";
 
 export class TransformersJsStrategy implements AnsweringStrategy {

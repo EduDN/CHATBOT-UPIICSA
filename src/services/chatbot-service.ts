@@ -1,9 +1,10 @@
-import type { AnsweringStrategy } from "./answering-strategy";
+import type { AnsweringStrategy } from "@/types/answering-strategy";
 import { TransformersJsStrategy } from "./strategies/transformers-strategy";
 import { PyodideStrategy } from "./strategies/pyodide-strategy";
+import type { StrategyType } from "@/types/chat";
 
 // The map of available strategies now lives inside the service.
-const strategyMap: Record<string, () => AnsweringStrategy> = {
+const strategyMap: Record<StrategyType, () => AnsweringStrategy> = {
   transformers: () => new TransformersJsStrategy(),
   pyodide: () => new PyodideStrategy(),
 };
@@ -12,7 +13,7 @@ class ChatbotService {
   private strategy: AnsweringStrategy;
   private strategyCache = new Map<string, AnsweringStrategy>();
 
-  constructor(initialStrategyKey: string) {
+  constructor(initialStrategyKey: StrategyType) {
     if (!strategyMap[initialStrategyKey]) {
       throw new Error(`Strategy "${initialStrategyKey}" not found.`);
     }
@@ -24,7 +25,7 @@ class ChatbotService {
     this.strategy = initialStrategy;
   }
 
-  public async setStrategy(strategyKey: string): Promise<void> {
+  public async setStrategy(strategyKey: StrategyType): Promise<void> {
     if (this.strategyCache.has(strategyKey)) {
       console.log(`Switching to cached strategy: ${strategyKey}`);
       this.strategy = this.strategyCache.get(strategyKey)!;
