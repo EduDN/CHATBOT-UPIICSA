@@ -23,13 +23,14 @@ technologías web.
 - [x] Añadir un botón "Copiar Mensaje" a las respuestas del asistente.
 - [ ] Implementar un historial de chat persistente usando `localStorage`.
 - [ ] Crear un componente tooltip para sugerencias de UI.
-- [ ] Crear un componente de modal para mostrar información adicional o
-      configuraciones. (Por ejemplo, "Texto copiado").
+- [ ] Crear un componente de modal para mostrar información adicional o configuraciones. (Por ejemplo, "Texto copiado").
+- [ ] Arreglar "New chat" en mobile
+- [x] Add vercel json to redirect everything to the SPA
 
 ### **Arquitectura y Despliegue**
 
 - [ ] Implementar importación dinámica (`import()`) o _code-splitting_ para cargar de forma diferida (_lazy-load_) las librerías de IA después de que la interfaz de usuario principal se haya renderizado.
-- [ ] Introducir un enrutador (_router_) para manejar múltiples vistas (ej. una página de configuración).
+- [x] Introducir un enrutador (_router_) para manejar múltiples vistas (ej. una página de configuración).
 - [x] Convertir la aplicación en una _Progressive Web App_ (PWA) completa.
 
 ### **Futuras Funcionalidades y Características Avanzadas**
