@@ -1,12 +1,14 @@
 export class Router {
-  private static currentRoute: string = window.location.pathname;
+  private static currentRoute: string =
+    window.location.pathname + window.location.search;
 
   static init(): void {
     window.addEventListener("popstate", () => {
       const url = window.location.pathname;
-      const id = new URLSearchParams(window.location.search).get("id");
-      const fullPath = id ? `${url}?id=${id}` : url;
-      this.handleRoute(url);
+      const search = window.location.search;
+      const fullPath = url + search;
+
+      this.handleRoute(fullPath); // Pass full path
       document.dispatchEvent(
         new CustomEvent("route-changed", {
           detail: { route: fullPath },
@@ -14,8 +16,8 @@ export class Router {
       );
     });
 
-    const url = window.location.pathname;
-    this.handleRoute(url);
+    const fullPath = window.location.pathname + window.location.search;
+    this.handleRoute(fullPath);
   }
 
   public static goToRoute(path: string, replace?: boolean): void {
@@ -24,7 +26,7 @@ export class Router {
     } else {
       window.history.pushState({}, "", path);
     }
-    this.currentRoute = path;
+    this.currentRoute = path; // Store full path now
     document.dispatchEvent(
       new CustomEvent("route-changed", {
         detail: { route: path },
@@ -33,25 +35,82 @@ export class Router {
   }
 
   public static handleRoute(path: string): void {
+    console.log("Current route:", this.currentRoute);
+    console.log("Handling route:", path);
+
     if (this.currentRoute === path) {
-      return;
+      return; // Now compares full paths including query params
     }
 
     this.currentRoute = path;
 
-    if (this.currentRoute === "/") {
-      // this.goToRoute("/");
+    // Parse the path
+    const [pathname, search] = path.split("?");
+
+    if (pathname === "/") {
       return;
     }
 
-    const id = new URLSearchParams(window.location.search).get("id");
-    const url = path.replaceAll("/", "");
-    const isValidId = this.isValidUUID(id || "");
+    // Validate chat routes
+    if (pathname === "/chat") {
+      const urlParams = new URLSearchParams(search || "");
+      const id = urlParams.get("id");
+      const isValidId = this.isValidUUID(id || "");
 
-    if (!isValidId || url !== "chat") {
+      if (!isValidId) {
+        this.goToRoute("/", true);
+        return;
+      }
+
+      // Valid chat route - let components handle it
+      return;
+    }
+
+    // Unknown route, redirect to home
+    this.goToRoute("/", true);
+  }
+
+  /**
+   * Get current chat ID from URL with built-in validation
+   */
+  public static getCurrentChatId(): string | null {
+    if (window.location.pathname !== "/chat") {
+      return null;
+    }
+
+    const params = new URLSearchParams(window.location.search);
+    const id = params.get("id");
+
+    return id && this.isValidUUID(id) ? id : null;
+  }
+
+  /**
+   * Check if we're currently on a valid chat route
+   */
+  public static isOnChatRoute(): boolean {
+    return (
+      window.location.pathname === "/chat" && this.getCurrentChatId() !== null
+    );
+  }
+
+  /**
+   * Check if we're on home route
+   */
+  public static isOnHomeRoute(): boolean {
+    const pathname = window.location.pathname;
+    return pathname === "/" || pathname === "";
+  }
+
+  /**
+   * Navigate to a specific chat (with validation)
+   */
+  public static goToChat(chatId: string): void {
+    if (!this.isValidUUID(chatId)) {
+      console.warn("Invalid chat ID provided:", chatId);
       this.goToRoute("/", true);
       return;
     }
+    this.goToRoute(`/chat?id=${chatId}`);
   }
 
   private static isValidUUID(uuid: string): boolean {
