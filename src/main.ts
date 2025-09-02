@@ -5,6 +5,7 @@ import "@/components/side-bar";
 import "@/components/chat-input";
 import "@/components/chat-messages";
 import "@/components/chat-header";
+import { storageService } from "@/services/store";
 
 // TODO: fix service worker error
 // if ("serviceWorker" in navigator) {
@@ -12,6 +13,8 @@ import "@/components/chat-header";
 //     navigator.serviceWorker.register("/sw.js");
 //   });
 // }
+
+const appState = storageService.getAppState();
 
 const aiWorker = new Worker(
   new URL("./workers/ai-worker.ts", import.meta.url),
@@ -39,9 +42,17 @@ aiWorker.onmessage = (event) => {
 };
 
 aiWorker.postMessage({ type: "initialize" });
+aiWorker.postMessage({
+  type: "setStrategy",
+  payload: { strategyKey: appState.activeStrategy },
+});
 
 document.addEventListener("strategy-changed", (event) => {
   const { strategy } = (event as CustomEvent).detail;
+  
+  // Save the new strategy to storage
+  storageService.updateAppState({ activeStrategy: strategy });
+  
   aiWorker.postMessage({
     type: "setStrategy",
     payload: { strategyKey: strategy },
