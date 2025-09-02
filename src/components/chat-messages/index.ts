@@ -3,15 +3,16 @@ import template from "./template.html?raw";
 import "@/components/chat-message"; // Importing the chat-message component to ensure it's registered
 import style from "./style.css?inline";
 import { Router } from "@/services/router";
-
-type Sender = "user" | "assistant";
+import { storageService } from "@/services/store";
+import type { Sender } from "@/types/chat";
 
 class ChatMessages extends BaseComponent {
   private resizeObserver: ResizeObserver | null = null;
   private thinkingMessageElement: HTMLElement | undefined;
   private $ul: HTMLElement | null = null;
   private $slot: HTMLElement | null = null;
-  private router = Router;
+  private pendingUserMessage: string | null = null;
+
   constructor() {
     super();
     if (!this.shadowRoot) {
@@ -40,21 +41,45 @@ class ChatMessages extends BaseComponent {
     this.$slot = this.$ul.querySelector("slot");
     this.resizeObserver?.observe(this.$ul);
 
+    // Handle initial route on page load
+    const currentRoute = window.location.pathname + window.location.search;
+    this.handleRouteChanged(currentRoute);
+
     document.addEventListener("route-changed", (e) => {
       const { route } = (e as CustomEvent).detail as { route: string };
       this.handleRouteChanged(route);
     });
 
     document.addEventListener("message-sent", async (event) => {
-      const $li = this.$ul?.querySelector("li");
-      if (!$li) {
-        const uuid = crypto.randomUUID();
-        this.router.goToRoute(`chat?id=${uuid}`);
-      }
       const customEvent = event as CustomEvent<{ text: string }>;
       const message = customEvent.detail.text;
 
+      // Get current chat ID or create new chat
+      let chatId = Router.getCurrentChatId();
+
+      if (!chatId) {
+        // Create new chat and navigate
+        const newChat = storageService.createChat();
+        chatId = newChat.id;
+        Router.goToChat(chatId);
+      } else {
+        // Verify chat exists, create if not
+        let chat = storageService.getChat(chatId);
+        if (!chat) {
+          const newChat = storageService.createChat();
+          Router.goToChat(newChat.id);
+          chatId = newChat.id;
+        }
+      }
+
+      // Set as active chat
+      storageService.setActiveChat(chatId);
+
+      // Show user message immediately in UI
       this.addMessage(message, "user");
+
+      // Store the user message temporarily (not saved to localStorage yet)
+      this.pendingUserMessage = message;
 
       await new Promise((resolve) => setTimeout(resolve, 500));
       this.thinkingMessageElement = this.addMessage("Thinking...", "assistant");
@@ -76,19 +101,27 @@ class ChatMessages extends BaseComponent {
 
     document.addEventListener("assistant-answer", async (event) => {
       const customEvent = event as CustomEvent<{ answer: string }>;
+      const answer = customEvent.detail.answer;
+      const chatId = Router.getCurrentChatId();
+
+      // Save the complete conversation to storage
+      if (chatId && this.pendingUserMessage) {
+        storageService.addConversation(chatId, this.pendingUserMessage, answer);
+        this.pendingUserMessage = null;
+      }
+
       const p = this.thinkingMessageElement?.querySelector("p");
       if (!p) {
         return;
       }
 
-      const answer = customEvent.detail.answer;
       await new Promise((resolve) => setTimeout(resolve, 1500));
       p.classList.remove("loading");
 
       const urlRegex = /(https?:\/\/[^\s]+|www\.[^\s]+)/g;
 
       const sanitizedHtml = answer.replace(urlRegex, (url) => {
-        const properUrl = url.startsWith("www.") ? `https:// ${url}` : url;
+        const properUrl = url.startsWith("www.") ? `https://${url}` : url;
         return `<a href="${properUrl}" target="_blank" rel="noopener noreferrer">${url}</a>`;
       });
 
@@ -106,7 +139,7 @@ class ChatMessages extends BaseComponent {
           this.thinkingMessageElement
             ?.querySelector("button")
             ?.classList.remove("hide");
-          p.classList.remove("typing-animation"); // Clean up the animation class
+          p.classList.remove("typing-animation");
           this.dispatchEvent(
             new CustomEvent("assistant-response-finished", {
               bubbles: true,
@@ -115,11 +148,46 @@ class ChatMessages extends BaseComponent {
           );
         },
         { once: true },
-      ); // { once: true } automatically removes the listener
+      );
+    });
+
+    // Handle assistant errors
+    document.addEventListener("assistant-error", (event) => {
+      const customEvent = event as CustomEvent<{ message: string }>;
+
+      // Clear pending user message
+      this.pendingUserMessage = null;
+
+      this.removeThinkingMessage(customEvent);
     });
   }
 
-  public addMessage(message: string, sender: Sender): HTMLElement | undefined {
+  public removeThinkingMessage(
+    customEvent?: CustomEvent<{
+      message: string;
+    }>,
+  ): void {
+    // Show error message
+    if (this.thinkingMessageElement) {
+      const p = this.thinkingMessageElement.querySelector("p");
+      if (p) {
+        p.classList.remove("loading");
+        if (customEvent) {
+          p.textContent = customEvent.detail.message;
+        }
+        this.thinkingMessageElement
+          .querySelector("li")
+          ?.classList.remove("brain");
+        this.thinkingMessageElement.querySelector("div")?.remove();
+      }
+    }
+  }
+
+  public addMessage(
+    message: string,
+    sender: Sender,
+    loadedChat?: boolean,
+  ): HTMLElement | undefined {
     if (this.shadowRoot === null) {
       return;
     }
@@ -155,9 +223,39 @@ class ChatMessages extends BaseComponent {
 
     $chatMessageElement.appendChild($clone);
 
+    // Handle loaded chat logic - only for assistant messages
+    if (loadedChat && sender === "assistant") {
+      // Remove thinking message if it exists
+      this.removeThinkingMessage();
+
+      // Find the message content and ensure proper structure
+      const messageContent = $chatMessageElement.querySelector("li");
+      if (messageContent) {
+        // Remove brain class if it exists
+        messageContent.classList.remove("brain");
+
+        // Remove any spinner div
+        const spinnerDiv = messageContent.querySelector("div");
+        if (spinnerDiv) {
+          spinnerDiv.remove();
+        }
+
+        // Find and show copy button with proper layout
+        const copyButton = messageContent.querySelector("button");
+        if (copyButton) {
+          copyButton.classList.remove("hide");
+        }
+
+        // Ensure the paragraph doesn't have typing animation
+        const paragraph = messageContent.querySelector("p");
+        if (paragraph) {
+          paragraph.classList.remove("typing-animation");
+        }
+      }
+    }
+
     this.$ul.appendChild($chatMessageElement);
 
-    // this.scrollToBottom();
     return $chatMessageElement;
   }
 
@@ -168,7 +266,7 @@ class ChatMessages extends BaseComponent {
 
     const rootNode = this.shadowRoot.getRootNode() as ShadowRoot;
     const host = rootNode.host;
-    host.scrollTop = host.scrollHeight; // Scroll to the bottom of the chat messages
+    host.scrollTop = host.scrollHeight;
   }
 
   protected override disconnectedCallback(): void {
@@ -178,7 +276,7 @@ class ChatMessages extends BaseComponent {
   private removeSlot() {
     if (this.$slot) {
       this.$slot.remove();
-      this.$slot = null; // Reset the slot after removing it
+      this.$slot = null;
     }
   }
 
@@ -194,16 +292,55 @@ class ChatMessages extends BaseComponent {
     return $template.content.cloneNode(true) as DocumentFragment;
   }
 
-  private handleRouteChanged(route: string) {
-    if (route === "/") {
-      if (!this.$ul) return;
-
-      this.$ul.innerHTML = "";
-      const $initialTemplate = this.getTemplate("#initial-message-template");
-      if (!$initialTemplate) return;
-      this.$ul.appendChild<DocumentFragment>($initialTemplate);
-      this.$slot = this.$ul.querySelector("slot");
+  private handleRouteChanged(_route: string) {
+    if (Router.isOnHomeRoute()) {
+      this.clearMessages();
+      this.showInitialTemplate();
+      storageService.setActiveChat(null);
+    } else if (Router.isOnChatRoute()) {
+      // Load the specific chat
+      const chatId = Router.getCurrentChatId();
+      if (chatId) {
+        this.loadChatFromStorage(chatId);
+      }
     }
+  }
+
+  private clearMessages(): void {
+    if (!this.$ul) return;
+    this.$ul.innerHTML = "";
+  }
+
+  private showInitialTemplate(): void {
+    if (!this.$ul) return;
+
+    const $initialTemplate = this.getTemplate("#initial-message-template");
+    if (!$initialTemplate) return;
+
+    this.$ul.appendChild($initialTemplate);
+    this.$slot = this.$ul.querySelector("slot");
+  }
+
+  private loadChatFromStorage(chatId: string): void {
+    const chat = storageService.getChat(chatId);
+    if (!chat) {
+      // Chat doesn't exist, redirect to home
+      Router.goToRoute("/", true);
+      return;
+    }
+
+    // Set as active chat
+    storageService.setActiveChat(chatId);
+
+    // Clear existing messages
+    this.clearMessages();
+
+    // Load messages from storage
+    const messages = storageService.getChatMessages(chatId);
+    // console.log("Loaded messages:", messages);
+    messages.forEach((message) => {
+      this.addMessage(message.content, message.sender, true);
+    });
   }
 }
 

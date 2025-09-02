@@ -1,6 +1,7 @@
 import { BaseComponent } from "../core/base-component";
 import template from "./template.html?raw";
 import style from "./style.css?inline";
+import { storageService } from "@/services/store";
 
 class ChatHeader extends BaseComponent {
   private $button: HTMLButtonElement | null = null;
@@ -18,6 +19,14 @@ class ChatHeader extends BaseComponent {
 
   protected override connectedCallback(): void {
     super.connectedCallback();
+    this.handleInitStrategy();
+    
+    document.addEventListener("strategy-ready", () => {
+      this.setLoading(false);
+      if (this.$button) {
+        this.$button.disabled = false;
+      }
+    });
   }
 
   protected override get htmlTemplate(): string {
@@ -55,7 +64,6 @@ class ChatHeader extends BaseComponent {
       document.dispatchEvent(new CustomEvent("toggle-mobile-sidebar"));
     });
 
-    // Listener for the dropdown button to ONLY toggle the dropdown
     this.$button.addEventListener("click", (e) => {
       e.stopPropagation(); // Prevent event bubbling
       this.$dropdownContent?.classList.toggle("show");
@@ -65,10 +73,8 @@ class ChatHeader extends BaseComponent {
     });
 
     this.$dropdown.addEventListener("click", (e) => {
-      console.log("Dropdown clicked");
       const target = e.target as HTMLElement;
       const selectedLi = target.closest("li");
-      console.log("Clicked outside:", target.tagName);
 
       if (!this.$button || !this.$dropdownContent) {
         return;
@@ -96,8 +102,7 @@ class ChatHeader extends BaseComponent {
             }),
           );
 
-          // --- End Loading State ---
-          this.setLoading(false);
+          // Loading state will be cleared when "strategy-ready" event fires
         }
       }
     });
@@ -109,6 +114,23 @@ class ChatHeader extends BaseComponent {
       }
     });
   }
+
+  private handleInitStrategy = () => {
+    const { activeStrategy } = storageService.getAppState();
+
+    const $currentButton = this.shadowRoot?.querySelector(
+      `[data-strategy='${activeStrategy}']`,
+    );
+
+    if (!this.$buttonText || !$currentButton) {
+      return;
+    }
+    const $contentStrategy =
+      $currentButton?.querySelector("p")?.textContent || "";
+    this.$buttonText.textContent = $contentStrategy;
+    console.log("text content", $contentStrategy);
+    this.showCheckedState();
+  };
 
   private showCheckedState() {
     const activeClass = this.shadowRoot?.querySelector("li.active");

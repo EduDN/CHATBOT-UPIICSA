@@ -2,6 +2,8 @@ import { BaseComponent } from "../core/base-component";
 import template from "./template.html?raw";
 import style from "./style.css?inline";
 import { Router } from "@/services/router";
+import { storageService } from "@/services/store";
+import type { ChatDisplayItem } from "@/types/chat";
 
 class Sidebar extends BaseComponent {
   private isCollapsed = true; // Start collapsed
@@ -9,17 +11,35 @@ class Sidebar extends BaseComponent {
   private isManuallyCollapsed = false;
   private isMobile = false;
   private $toggleButton: HTMLButtonElement | null = null;
+  private $chatList: HTMLUListElement | null = null;
   private router = Router;
 
   protected override connectedCallback(): void {
-    // Add collapsed class immediately to prevent animation on load
     this.classList.add("collapsed");
-
     super.connectedCallback();
+
     // Initialize mode first
     this.initializeMode();
+
+    // Load saved sidebar state for desktop mode
+    this.loadSidebarState();
+
     this.setupHoverCooldown();
     this.setupModeHandling();
+
+    // Load initial chat list
+    this.loadChatList();
+
+    // Listen for storage changes
+    document.addEventListener("storage-updated", () => {
+      this.loadChatList();
+    });
+
+    // Listen for route changes to update active chat highlight
+    document.addEventListener("route-changed", (e) => {
+      const { route } = (e as CustomEvent).detail as { route: string };
+      this.updateActiveChatHighlight(route);
+    });
   }
 
   protected override get htmlTemplate(): string {
@@ -34,7 +54,10 @@ class Sidebar extends BaseComponent {
     if (!this.shadowRoot) {
       return;
     }
+
     this.$toggleButton = this.shadowRoot?.querySelector(".toggle-btn");
+    this.$chatList = this.shadowRoot?.querySelector(".chat-list");
+
     // Toggle sidebar
     this.shadowRoot
       ?.querySelector("#sidebar-toggle")
@@ -47,23 +70,13 @@ class Sidebar extends BaseComponent {
         this.toggleMobileSidebar();
       }
     });
+
     // New chat button
     this.shadowRoot
       ?.querySelector("#new-chat")
       ?.addEventListener("click", () => {
         this.createNewChat();
-        this.toggleMobileSidebar();
       });
-
-    // Chat bubble clicks
-    this.shadowRoot?.querySelectorAll(".chat-bubble").forEach((bubble) => {
-      bubble.addEventListener("click", (e) => {
-        const chatId = (e.currentTarget as HTMLElement).dataset.chatId;
-        if (chatId) {
-          this.selectChat(chatId);
-        }
-      });
-    });
 
     // Mobile menu toggle handler
     document.addEventListener("toggle-mobile-sidebar", () => {
@@ -93,9 +106,28 @@ class Sidebar extends BaseComponent {
     });
   }
 
+  private loadSidebarState(): void {
+    // Only load saved state for desktop mode
+    if (!this.isMobile) {
+      const savedCollapsed = storageService.getSidebarCollapsed();
+      this.isCollapsed = savedCollapsed;
+      console.log("desktop - load saved state", this.isCollapsed);
+      this.classList.toggle("collapsed", this.isCollapsed);
+    } else {
+      // Mobile always starts collapsed
+      this.isCollapsed = true;
+      this.classList.add("collapsed");
+    }
+  }
+
   private toggleSidebar(): void {
     this.isCollapsed = !this.isCollapsed;
     this.classList.toggle("collapsed", this.isCollapsed);
+
+    // Save state for desktop mode only
+    if (!this.isMobile) {
+      storageService.setSidebarCollapsed(this.isCollapsed);
+    }
 
     // Always remove hover-expanded when toggling
     this.classList.remove("hover-expanded");
@@ -129,9 +161,11 @@ class Sidebar extends BaseComponent {
         // document
         //   .querySelector("chat-container")
         //   ?.classList.remove("mobile-sidebar-open");
+        console.log("close mobile sidebar");
       } else {
         // Open the sidebar - add overlay and expand content
         container.classList.add("mobile-sidebar-open");
+        console.log("close mobile sidebar");
         this.classList.remove("collapsed");
         // document.querySelector('chat-container')?.classList.remove('mobile-sidebar-open');
 
@@ -141,8 +175,84 @@ class Sidebar extends BaseComponent {
   }
 
   private createNewChat(): void {
+    // Create new chat and navigate to it
+    // const chat = storageService.createChat();
+    // this.router.goToRoute(`/chat/${chat.id}`);
     this.router.goToRoute("/");
-    // TODO: Implement new chat creation
+
+    // Close mobile sidebar if open
+    if (this.isMobile) {
+      const container = document.querySelector("chat-container");
+      container?.classList.remove("mobile-sidebar-open");
+      this.classList.add("collapsed");
+      this.isCollapsed = true;
+    }
+  }
+
+  private loadChatList(): void {
+    if (!this.$chatList) return;
+
+    const chats = storageService.getChatsForDisplay();
+
+    // Clear existing chats
+    this.$chatList.innerHTML = "";
+
+    // Add each chat
+    chats.forEach((chat) => {
+      const chatElement = this.createChatElement(chat);
+      this.$chatList!.appendChild(chatElement);
+    });
+
+    // Set up event listeners for the new chat bubbles
+    this.setupChatBubbleListeners();
+  }
+
+  private createChatElement(chat: ChatDisplayItem): HTMLLIElement {
+    const li = document.createElement("li");
+    li.className = "chat-bubble";
+    li.dataset.chatId = chat.id;
+
+    // Check if this is the current chat
+    const currentChatId = Router.getCurrentChatId();
+    if (currentChatId === chat.id) {
+      li.classList.add("active");
+    }
+
+    li.innerHTML = `
+      <div class="chat-icon">
+        <svg
+          width="16"
+          height="16"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+        >
+          <path
+            d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"
+          />
+        </svg>
+      </div>
+      <div class="chat-content">
+        <div class="chat-title">${chat.title}</div>
+        <div class="chat-time">${chat.timeDisplay}</div>
+      </div>
+    `;
+
+    return li;
+  }
+
+  private setupChatBubbleListeners(): void {
+    if (!this.$chatList) return;
+
+    this.$chatList.querySelectorAll(".chat-bubble").forEach((bubble) => {
+      bubble.addEventListener("click", (e) => {
+        const chatId = (e.currentTarget as HTMLElement).dataset.chatId;
+        if (chatId) {
+          this.selectChat(chatId);
+        }
+      });
+    });
   }
 
   private selectChat(chatId: string): void {
@@ -157,7 +267,34 @@ class Sidebar extends BaseComponent {
     );
     selectedBubble?.classList.add("active");
 
-    // TODO: Emit event to load chat
+    // Navigate to the chat - this will trigger route-changed event
+    this.router.goToRoute(`/chat?id=${chatId}`);
+
+    // Close mobile sidebar if open
+    if (this.isMobile) {
+      const container = document.querySelector("chat-container");
+      container?.classList.remove("mobile-sidebar-open");
+      this.classList.add("collapsed");
+      this.isCollapsed = true;
+    }
+  }
+
+  private updateActiveChatHighlight(_route: string): void {
+    // Remove active class from all bubbles
+    this.$chatList?.querySelectorAll(".chat-bubble").forEach((bubble) => {
+      bubble.classList.remove("active");
+    });
+
+    // Add active class if we're on a chat route
+    if (Router.isOnChatRoute()) {
+      const chatId = Router.getCurrentChatId();
+      if (chatId) {
+        const selectedBubble = this.$chatList?.querySelector(
+          `[data-chat-id="${chatId}"]`,
+        );
+        selectedBubble?.classList.add("active");
+      }
+    }
   }
 
   private setupHoverCooldown(): void {
@@ -202,11 +339,11 @@ class Sidebar extends BaseComponent {
     }
 
     // Wait a bit, then re-enable hover
-    this.hoverCooldownTimeout = window.setTimeout(() => {
-      this.isManuallyCollapsed = false;
-      this.classList.remove("manually-collapsed");
-      this.hoverCooldownTimeout = null;
-    }, 500); // 500ms cooldown before hover works again
+    // this.hoverCooldownTimeout = window.setTimeout(() => {
+    //   this.isManuallyCollapsed = false;
+    //   this.classList.remove("manually-collapsed");
+    //   this.hoverCooldownTimeout = null;
+    // }, 500); // 500ms cooldown before hover works again
   }
 
   private checkMobile(): boolean {
@@ -216,20 +353,21 @@ class Sidebar extends BaseComponent {
   private initializeMode(): void {
     this.isMobile = this.checkMobile();
 
+    // this.loadSidebarState();
+    console.log("this is mobile", this.isMobile);
     if (this.isMobile) {
       this.classList.add("mobile-mode");
       this.classList.remove("desktop-mode");
       // Update container layout
       document.querySelector("chat-container")?.classList.add("mobile-layout");
-      return;
+    } else {
+      this.classList.add("desktop-mode");
+      this.classList.remove("mobile-mode");
+      // Remove mobile layout from container
+      document
+        .querySelector("chat-container")
+        ?.classList.remove("mobile-layout");
     }
-
-    this.classList.add("desktop-mode");
-    this.classList.remove("mobile-mode");
-    // TODO: This will handle by default in desktop mode and depending of storage state for collapsed or not
-    this.classList.remove("collapsed");
-    // Remove mobile layout from container
-    document.querySelector("chat-container")?.classList.remove("mobile-layout");
   }
 
   private setupModeHandling(): void {
@@ -246,9 +384,9 @@ class Sidebar extends BaseComponent {
         if (this.isMobile) {
           // Mobile: start collapsed
           this.isCollapsed = true;
-          this.classList.add("collapsed");
         } else {
-          // Desktop: reset hover behavior
+          // Desktop: load saved state and reset hover behavior
+          this.loadSidebarState();
           this.isManuallyCollapsed = false;
           this.classList.remove("manually-collapsed");
         }
