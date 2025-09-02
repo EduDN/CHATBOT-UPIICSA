@@ -52,6 +52,7 @@ class Sidebar extends BaseComponent {
       ?.querySelector("#new-chat")
       ?.addEventListener("click", () => {
         this.createNewChat();
+        this.toggleMobileSidebar();
       });
 
     // Chat bubble clicks
@@ -220,14 +221,15 @@ class Sidebar extends BaseComponent {
       this.classList.remove("desktop-mode");
       // Update container layout
       document.querySelector("chat-container")?.classList.add("mobile-layout");
-    } else {
-      this.classList.add("desktop-mode");
-      this.classList.remove("mobile-mode");
-      // Remove mobile layout from container
-      document
-        .querySelector("chat-container")
-        ?.classList.remove("mobile-layout");
+      return;
     }
+
+    this.classList.add("desktop-mode");
+    this.classList.remove("mobile-mode");
+    // TODO: This will handle by default in desktop mode and depending of storage state for collapsed or not
+    this.classList.remove("collapsed");
+    // Remove mobile layout from container
+    document.querySelector("chat-container")?.classList.remove("mobile-layout");
   }
 
   private setupModeHandling(): void {

@@ -21,11 +21,12 @@ technologías web.
 - [x] Implementar un estado de carga global para deshabilitar la entrada de chat mientras se inicializan las estrategias.
 - [x] Sanitizar las respuestas del asistente para convertir automáticamente las URLs en enlaces clicables.
 - [x] Añadir un botón "Copiar Mensaje" a las respuestas del asistente.
+- [x] Arreglar "New chat" error para mobile
+- [x] Add vercel json to redirect everything to the SPA
 - [ ] Implementar un historial de chat persistente usando `localStorage`.
+- [ ] Implementar UUID si no está disponible `crypto.randomUUID()`.
 - [ ] Crear un componente tooltip para sugerencias de UI.
 - [ ] Crear un componente de modal para mostrar información adicional o configuraciones. (Por ejemplo, "Texto copiado").
-- [ ] Arreglar "New chat" en mobile
-- [x] Add vercel json to redirect everything to the SPA
 
 ### **Arquitectura y Despliegue**
 
