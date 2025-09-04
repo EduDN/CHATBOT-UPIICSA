@@ -17,7 +17,7 @@ technologías web.
 - [ ] Crear componente toast para notificaciones breves
 - [ ] Create componente tooltip para sugerencias de UI
 - [ ] Implementar UUID fallback si no está disponible `crypto.randomUUID()`
-- [ ] Crear un componente de modal para mostrar información adicional o configuraciones
+- [x] Crear un componente modal para mostrar información adicional o configuraciones
 - [ ] Implementar menú de tres puntos para editar/eliminar chats (con long-press en móvil)
 
 ### **Arquitectura y Despliegue**
