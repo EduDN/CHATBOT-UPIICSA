@@ -4,16 +4,20 @@ import style from "./style.css?inline";
 
 class ModalWindow extends BaseComponent {
   private triggerElement: HTMLElement | null = null;
-  private boundEscapeHandler: (e: KeyboardEvent) => void = () => {};
+  private $parentElement: HTMLElement | null = null;
+  private boundOpenHandler: () => void = this.open.bind(this);
+  private boundCloseHandler: () => void = this.close.bind(this);
+  private boundEscapeHandler: (e: KeyboardEvent) => void =
+    this.handleEscape.bind(this);
+
   constructor() {
     super();
-    if (!this.shadowRoot) {
-      this.attachShadow({ mode: "open" });
-    }
+    this.$parentElement = this.parentElement;
   }
 
   protected override connectedCallback(): void {
     super.connectedCallback();
+
     if (this.parentNode !== document.body) {
       document.body.appendChild(this);
     }
@@ -21,51 +25,55 @@ class ModalWindow extends BaseComponent {
 
   protected override setupEventListeners(): void {
     if (!this.shadowRoot) return;
-
-    const $trigger = this.getAttribute("for");
-    const $parent = this.parentElement;
-    if (!$trigger || !$parent) return;
-
-    this.triggerElement = $parent.querySelector<HTMLElement>(`#${$trigger}`);
-
-    if (this.triggerElement) {
-      this.triggerElement.addEventListener("click", this.open.bind(this));
-    }
+    const triggerId = this.getAttribute("for");
+    if (!triggerId) return;
+    if (!this.$parentElement) return;
+    this.triggerElement = this.$parentElement.querySelector<HTMLElement>(
+      `#${triggerId}`,
+    );
+    if (!this.triggerElement) return;
+    this.triggerElement.addEventListener("click", this.boundOpenHandler);
 
     const closeButtonSlot = this.shadowRoot.querySelector<HTMLSlotElement>(
       'slot[name="close-button"]',
     );
-    if (!closeButtonSlot) return;
+    if (closeButtonSlot) {
+      const closeButtons = closeButtonSlot.assignedElements();
+      closeButtons.forEach((button) =>
+        button.addEventListener("click", this.boundCloseHandler),
+      );
+    }
 
-    const closeButtons = closeButtonSlot.assignedElements();
-    closeButtons.forEach((button) =>
-      button.addEventListener("click", this.close.bind(this)),
-    );
-
-    this.boundEscapeHandler = this.handleEscape.bind(this);
     document.addEventListener("keydown", this.boundEscapeHandler);
 
-    this.shadowRoot
-      ?.querySelector(".modal-overlay")
-      ?.addEventListener("click", (e) => {
-        if (e.target === e.currentTarget) {
-          this.close();
-        }
-      });
-
-    document.addEventListener("click", (event) => {
+    this.addEventListener("click", (event) => {
       const path = event.composedPath();
       if (path[0] === this) {
         this.close();
       }
     });
   }
+
   protected override disconnectedCallback() {
     if (this.triggerElement) {
-      this.triggerElement.removeEventListener("click", this.open);
+      this.triggerElement.removeEventListener("click", this.boundOpenHandler);
     }
+
+    if (this.shadowRoot) {
+      const closeButtonSlot = this.shadowRoot.querySelector<HTMLSlotElement>(
+        'slot[name="close-button"]',
+      );
+      if (closeButtonSlot) {
+        const closeButtons = closeButtonSlot.assignedElements();
+        closeButtons.forEach((button) =>
+          button.removeEventListener("click", this.boundCloseHandler),
+        );
+      }
+    }
+
     document.removeEventListener("keydown", this.boundEscapeHandler);
   }
+
   private open() {
     this.setAttribute("open", "");
   }

@@ -111,7 +111,7 @@ class Sidebar extends BaseComponent {
     if (!this.isMobile) {
       const savedCollapsed = storageService.getSidebarCollapsed();
       this.isCollapsed = savedCollapsed;
-      console.log("desktop - load saved state", this.isCollapsed);
+      // console.log("desktop - load saved state", this.isCollapsed);
       this.classList.toggle("collapsed", this.isCollapsed);
     } else {
       // Mobile always starts collapsed
@@ -161,11 +161,11 @@ class Sidebar extends BaseComponent {
         // document
         //   .querySelector("chat-container")
         //   ?.classList.remove("mobile-sidebar-open");
-        console.log("close mobile sidebar");
+        // console.log("close mobile sidebar");
       } else {
         // Open the sidebar - add overlay and expand content
         container.classList.add("mobile-sidebar-open");
-        console.log("close mobile sidebar");
+        // console.log("close mobile sidebar");
         this.classList.remove("collapsed");
         // document.querySelector('chat-container')?.classList.remove('mobile-sidebar-open');
 
@@ -354,7 +354,7 @@ class Sidebar extends BaseComponent {
     this.isMobile = this.checkMobile();
 
     // this.loadSidebarState();
-    console.log("this is mobile", this.isMobile);
+    // console.log("this is mobile", this.isMobile);
     if (this.isMobile) {
       this.classList.add("mobile-mode");
       this.classList.remove("desktop-mode");
