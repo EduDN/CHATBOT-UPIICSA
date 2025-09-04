@@ -17,6 +17,7 @@ html,
 body,
 #app {
   background-color: var(--color-background-dark);
+  position: relative;
 }
 
 chat-container {

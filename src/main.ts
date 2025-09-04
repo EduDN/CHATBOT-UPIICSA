@@ -5,6 +5,7 @@ import "@/components/side-bar";
 import "@/components/chat-input";
 import "@/components/chat-messages";
 import "@/components/chat-header";
+import "@/components/common/modal-window";
 import { storageService } from "@/services/store";
 
 // TODO: fix service worker error
@@ -49,10 +50,10 @@ aiWorker.postMessage({
 
 document.addEventListener("strategy-changed", (event) => {
   const { strategy } = (event as CustomEvent).detail;
-  
+
   // Save the new strategy to storage
   storageService.updateAppState({ activeStrategy: strategy });
-  
+
   aiWorker.postMessage({
     type: "setStrategy",
     payload: { strategyKey: strategy },
