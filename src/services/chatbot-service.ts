@@ -1,12 +1,14 @@
 import type { AnsweringStrategy } from "@/types/answering-strategy";
 import { TransformersJsStrategy } from "./strategies/transformers-strategy";
 import { PyodideStrategy } from "./strategies/pyodide-strategy";
+import { WebLLMStrategy } from "./strategies/webllm-strategy";
 import type { StrategyType } from "@/types/chat";
 
 // The map of available strategies now lives inside the service.
 const strategyMap: Record<StrategyType, () => AnsweringStrategy> = {
   transformers: () => new TransformersJsStrategy(),
   pyodide: () => new PyodideStrategy(),
+  qwen: () => new WebLLMStrategy(),
 };
 
 class ChatbotService {
