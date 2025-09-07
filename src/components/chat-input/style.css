@@ -1,0 +1,80 @@
+div {
+  background-color: var(--color-background-light, #f0f0f0); /* Fallback color */
+  margin: 0 1.5rem;
+  margin-bottom: 1rem; /* 16px */
+  padding: 0.625rem 1rem; /* 10px 16px */
+  border-radius: 1rem; /* 16px */
+  display: flex;
+  align-items: center;
+  gap: 1rem; /* 10px */
+}
+
+textarea {
+  width: 100%;
+  border: none;
+  max-height: min(10rem, 160px); /* 160px */
+  max-height: min(9rem, 144px); /* 144px */
+  background-color: var(--color-background-light, #f0f0f0); /* Fallback color */
+  resize: none;
+  color: var(--color-text-primary, #333); /* Fallback color */
+  outline: none;
+  user-select: text;
+  -webkit-user-select: text;
+}
+
+textarea::placeholder {
+  color: var(--color-text-muted, #999); /* Fallback color */
+  /* margin: auto 0; */
+}
+
+.send-button {
+  align-self: flex-end;
+  cursor: pointer;
+  background-color: var(--color-background-light, #f0f0f0); /* Fallback color */
+  border-radius: 50%;
+  height: 2.5rem; /* 40px */
+  width: 2.5rem; /* 40px */
+  border: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+@media (hover: hover) {
+  .send-button:hover {
+    background-color: var(
+      --color-background-medium,
+      #e0e0e0
+    ); /* Fallback color */
+    border: 1px solid var(--color-text-secondary, #ccc); /* Fallback color */
+    outline: 1px solid var(--color-text-secondary, #ccc); /* Fallback color */
+  }
+}
+
+.send-button:focus {
+  border: 1px solid var(--color-text-secondary, #ccc); /* Fallback color */
+  outline: 1px solid var(--color-text-secondary, #ccc); /* Fallback color */
+  background-color: var(
+    --color-background-medium,
+    #e0e0e0
+  ); /* Fallback color */
+}
+
+.send-button:disabled {
+  background-color: var(--color-background-light, #f0f0f0); /* Fallback color */
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.send-button svg {
+  stroke: var(--color-text-primary, #333); /* Fallback color */
+}
+
+.hide-scrollbar {
+  -ms-overflow-style: none; /* IE 10+*/
+  scrollbar-width: none; /* Firefox */
+}
+.hide-scrollbar::-webkit-scrollbar {
+  display: none; /* Safari and Chrome */
+}
+
+/* Hello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assa */

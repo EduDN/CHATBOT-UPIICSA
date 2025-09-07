@@ -1,0 +1,319 @@
+/* filepath: /home/gomen/Documents/proyectos-personales/proyectos-comunitarios/ai/upiichat/src/components/side-bar/style.css */
+
+:host {
+  background-color: var(--color-background-medium);
+  border-right: 1px solid var(--color-border-primary);
+  user-select: none;
+  -webkit-user-select: none;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+}
+
+/* Desktop-only hover behavior */
+:host(.desktop-mode.collapsed.hover-expanded) .sidebar-text,
+:host(.desktop-mode.collapsed.hover-expanded) .chat-content {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateX(0);
+  transition:
+    opacity 0.3s ease 0.1s,
+    transform 0.3s ease 0.1s;
+}
+:host(.desktop-mode.collapsed.hover-expanded) .chat-bubble {
+  display: flex;
+}
+:host(.desktop-mode.collapsed) .section-header {
+  border: none;
+}
+:host(.desktop-mode.collapsed) .chat-list {
+  padding: 0rem;
+}
+/* When collapsed but NOT in hover-expanded state */
+:host(.desktop-mode.collapsed:not(.hover-expanded)) .new-chat-btn {
+  background: transparent;
+  border-color: transparent;
+}
+
+/* Mobile mode - completely different behavior */
+:host(.mobile-mode) {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 83.333vw; /* 5/6 of screen width */
+  max-width: 320px;
+  height: 100vh;
+  z-index: 1000;
+  transform: translateX(-100%);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 4px 0 20px rgba(0, 0, 0, 0.3);
+  border-right: none; /* No border on mobile */
+}
+
+/* Mobile expanded state */
+:host(.mobile-mode:not(.collapsed)) {
+  transform: translateX(0);
+}
+
+.sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  max-height: 100dvh;
+  width: 100%;
+}
+
+.sidebar-header {
+  padding: 1rem 0.75rem;
+  border-bottom: 1px solid var(--color-border-primary);
+}
+
+.toggle-btn,
+.new-chat-btn,
+.settings-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  width: 100%;
+  padding: 0.2rem 0.75rem;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  color: var(--color-text-primary);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.toggle-btn:hover,
+.new-chat-btn:hover,
+.settings-btn:hover {
+  background: var(--color-background-light);
+  border-color: var(--color-border-primary);
+}
+
+/* Chat section */
+.chat-section {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  min-height: 0;
+}
+
+.section-header {
+  padding: 0.75rem;
+  border-bottom: 1px solid var(--color-border-primary);
+}
+
+.new-chat-btn {
+  background: var(--color-background-light);
+  border-color: var(--color-border-primary);
+}
+
+/* Chat list */
+.chat-list {
+  flex: 1;
+  overflow-y: auto;
+  padding: 0.5rem;
+  list-style: none;
+  margin: 0;
+  min-height: 0; /* Allow flex item to shrink */
+}
+
+.chat-bubble {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  padding: 0.3rem 0.6rem;
+  margin-bottom: 0.5rem;
+  background: var(--color-background-light);
+  border: 1px solid transparent;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.chat-bubble:hover {
+  border-color: var(--color-border-primary);
+  background: rgba(59, 130, 246, 0.05);
+}
+
+.chat-bubble.active {
+  border-color: #3b82f6;
+  background: rgba(59, 130, 246, 0.1);
+}
+
+.chat-icon {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-muted);
+}
+
+.chat-content {
+  flex: 1;
+  min-width: 0; /* Allows text to truncate */
+}
+
+.chat-title {
+  color: var(--color-text-primary);
+  font-size: 0.875rem;
+  font-weight: 500;
+  margin-bottom: 0.25rem;
+  /* Truncate long titles */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.chat-time {
+  color: var(--color-text-muted);
+  font-size: 0.675rem;
+  opacity: 0.7;
+}
+
+/* Sidebar text (hidden when collapsed) */
+.sidebar-text,
+.chat-content {
+  opacity: 1;
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease;
+  transform: translateX(0);
+}
+
+/* Hide content when collapsed - applies to both modes */
+:host(.collapsed) .sidebar-text,
+:host(.collapsed) .chat-content {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(-10px);
+}
+
+/* Hide chat bubbles completely when collapsed - both modes */
+:host(.collapsed) .chat-bubble {
+  display: none;
+}
+
+/* Mobile mode - show all content when expanded */
+:host(.mobile-mode:not(.collapsed)) .sidebar-text,
+:host(.mobile-mode:not(.collapsed)) .chat-content {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateX(0);
+}
+
+:host(.mobile-mode:not(.collapsed)) .chat-bubble {
+  display: flex;
+}
+
+/* Ensure settings button is always visible in mobile expanded mode */
+:host(.mobile-mode:not(.collapsed)) .settings-btn {
+  display: flex;
+}
+
+:host(.mobile-mode:not(.collapsed)) .settings-btn .sidebar-text {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateX(0);
+}
+
+/* Ensure footer is visible in mobile mode */
+:host(.mobile-mode:not(.collapsed)) .sidebar-footer {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Footer */
+.sidebar-footer {
+  padding: 0.75rem;
+  border-top: 1px solid var(--color-border-primary);
+  /* margin-top: auto; */
+}
+
+/* Scrollbar styling */
+.chat-list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.chat-list::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.chat-list::-webkit-scrollbar-thumb {
+  background: var(--color-border-primary);
+  border-radius: 3px;
+}
+
+.chat-list::-webkit-scrollbar-thumb:hover {
+  background: var(--color-text-muted);
+}
+
+/* Footer */
+.sidebar-footer {
+  padding: 0.75rem;
+  border-top: 1px solid var(--color-border-primary);
+}
+
+/* SVG styling */
+svg {
+  stroke: currentColor;
+  flex-shrink: 0;
+}
+
+/* Custom scrollbar */
+.chat-list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.chat-list::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.chat-list::-webkit-scrollbar-thumb {
+  background: var(--color-border-primary);
+  border-radius: 3px;
+}
+
+.chat-list::-webkit-scrollbar-thumb:hover {
+  background: var(--color-text-muted);
+}
+
+@media (min-width: 700px) {
+  .chat-bubble {
+    margin-right: 0.5rem;
+  }
+}
+
+/* Mobile specific styles */
+@media (max-width: 700px) {
+  :host {
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.3);
+  }
+
+  /* Ensure sidebar content is always visible on mobile when expanded */
+  :host:not(.collapsed) .sidebar-text,
+  :host:not(.collapsed) .chat-content {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateX(0);
+  }
+
+  :host:not(.collapsed) .chat-bubble {
+    display: flex;
+  }
+
+  .toggle-btn,
+  .new-chat-btn,
+  .settings-btn {
+    padding: 0.75rem;
+    min-height: 44px; /* iOS minimum touch target */
+  }
+
+  /* Slightly larger text on mobile for better readability */
+  .chat-title {
+    font-size: 0.9rem;
+  }
+}

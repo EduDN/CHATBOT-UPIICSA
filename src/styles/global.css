@@ -1,0 +1,176 @@
+:root {
+  --color-background-dark: #0d1117;
+  --color-background-medium: #111827;
+  --color-background-light: #1e293b;
+  --color-border-primary: #374151;
+  --color-text-muted: #6b7280;
+  --color-text-primary: #e6edf3;
+  --color-text-secondary: #9c9d9d;
+
+  --color-shadow: rgba(30, 41, 59, 0.3);
+  --color-link-primary: #a8c7fa;
+  --color-link-secondary: #38bdf8;
+  scroll-behavior: smooth;
+}
+
+html,
+body,
+#app {
+  background-color: var(--color-background-dark);
+  position: relative;
+}
+
+chat-container {
+  --sidebar-collapsed-width: 5rem;
+  --sidebar-expanded-width: 15rem;
+
+  background-color: var(--color-background-dark);
+  min-height: 0;
+  width: 100%;
+  max-width: 100%;
+  height: 100vh;
+  max-height: 100vh;
+  max-width: 100dvw;
+  width: 100dvw;
+  max-height: 100dvh;
+  height: 100dvh;
+  display: grid;
+  /* Desktop grid - default */
+  grid-template-columns: var(--sidebar-collapsed-width) 5fr;
+
+  /* Smoother, longer transition */
+  transition: grid-template-columns 0.8s cubic-bezier(0.25, 0.8, 0.25, 1);
+
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* Mobile layout - full width chat, sidebar as overlay */
+chat-container.mobile-layout {
+  grid-template-columns: 1fr;
+  position: relative;
+}
+
+/* Mobile backdrop when sidebar is expanded */
+chat-container.mobile-layout::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+  z-index: 999;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+/* Show backdrop when mobile sidebar is expanded */
+chat-container.mobile-layout:has(side-bar.mobile-mode:not(.collapsed))::before {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Mobile sidebar open state (triggered by hamburger button) */
+chat-container.mobile-layout.mobile-sidebar-open::before {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+chat-container.mobile-layout.mobile-sidebar-open side-bar {
+  transform: translateX(0);
+}
+
+/* Desktop-only hover expansion */
+chat-container:not(.mobile-layout):has(side-bar.desktop-mode:not(.collapsed)),
+chat-container:not(.mobile-layout):has(
+    side-bar.desktop-mode.collapsed:hover:not(.manually-collapsed)
+  ) {
+  grid-template-columns: var(--sidebar-expanded-width) 5fr;
+}
+
+chat-container:not(.mobile-layout):has(
+    side-bar.desktop-mode.manually-collapsed
+  ) {
+  grid-template-columns: var(--sidebar-collapsed-width) 5fr;
+}
+
+hidden {
+  display: none;
+}
+
+@media (min-width: 1440px) {
+  chat-container {
+    --sidebar-expanded-width: 22rem;
+  }
+}
+
+@media (min-width: 1920px) {
+  chat-container {
+    --sidebar-expanded-width: 24rem;
+  }
+}
+.main-content {
+  color: var(--color-text-primary);
+  display: grid;
+  gap: 1rem;
+  justify-content: center;
+  grid-template-rows: auto 1fr auto;
+  grid-template-columns: 1fr;
+  overflow: hidden;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-background-dark: #0d1117;
+    --color-background-medium: #111827;
+    --color-background-light: #1e293b;
+    --color-border-primary: #374151;
+    --color-text-muted: #6b7280;
+    --color-text-primary: #e6edf3;
+    --color-text-secondary: #9c9d9d;
+  }
+}
+
+@media (700px >= width) {
+  chat-container {
+    grid-template-columns: 1fr;
+    position: relative; /* For sidebar overlay positioning */
+  }
+
+  side-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 75vw; /* 3/4 of screen width */
+    max-width: 300px;
+    z-index: 1000;
+    transform: translateX(-100%);
+    transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  }
+
+  /* Show sidebar when expanded on mobile */
+  side-bar:not(.collapsed) {
+    transform: translateX(0);
+  }
+
+  side-bar:not(.collapsed)::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 75vw; /* Start after sidebar */
+    width: 25vw; /* Remaining screen width */
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    z-index: -1; /* Behind sidebar, but above chat */
+    pointer-events: auto; /* Allow clicks to close sidebar */
+  }
+}

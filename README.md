@@ -1,31 +1,78 @@
-# CHATBOT-UPIICSA
+# UpiiChat
 
-Este proyecto es un chatbot creado con el propósito de ayudar a la comunidad de UPIICSA a obtener respuestas rápidas y eficientes a sus preguntas frecuentes. El código está construido utilizando Python, junto con las bibliotecas pandas, Streamlit, y Scikit-learn.
+Este proyecto está inspirado en el proyecto de [CHATBOT-UPIICSA](https://github.com/EduDN/CHATBOT-UPIICSA)
+de [Eduardo](https://github.com/EduDN), este proyecto igual busca ayudar a la
+comunidad de UPIICSA a resolver sus dudas de una manera rápida y eficiente con
+technologías web.
 
-## Código
+## **🚧 Funcionalidades Pendientes**
 
-El siguiente es un resumen del código:
+### **Funcionalidad Principal y Rendimiento**
 
-1. Se importan las bibliotecas necesarias (pandas, Streamlit, y Scikit-learn).
-2. Se carga el conjunto de datos que contiene las preguntas y respuestas, y se reemplazan los valores NaN con cadenas vacías.
-3. Se utiliza la técnica TF-IDF para vectorizar las preguntas y respuestas.
-4. Se crea un modelo NearestNeighbors para encontrar la respuesta más cercana a una pregunta ingresada.
-5. Se crea una función para obtener la respuesta basada en el modelo.
-6. Se utiliza Streamlit para crear una interfaz de usuario sencilla, que permite al usuario ingresar preguntas y obtener respuestas.
+- [ ] Usar `IndexedDB` para almacenar los _embeddings_ pre-calculados para cargas instantáneas en visitas recurrentes
+- [ ] Resolver bug del service worker
 
-## Instrucciones de uso
+### **Mejoras de UI/UX**
 
-1. Instale las bibliotecas necesarias: pandas, Streamlit y Scikit-learn.
-2. Ejecute el código en su entorno Python preferido.
-3. La interfaz de usuario de Streamlit se abrirá en su navegador web predeterminado.
-4. Ingrese su pregunta en el cuadro de texto y haga clic en "Enviar".
-5. La respuesta aparecerá en la misma página.
-6. Si el chatbot no puede responder a su pregunta, se le proporcionará un enlace para enviar la pregunta a través de un formulario de Google: https://forms.gle/YmpQqeLifvMDRymDA
+- [ ] Crear componente toast para notificaciones breves
+- [ ] Create componente tooltip para sugerencias de UI
+- [ ] Implementar UUID fallback si no está disponible `crypto.randomUUID()`
+- [x] Crear un componente modal para mostrar información adicional o configuraciones
+- [ ] Implementar menú de tres puntos para editar/eliminar chats (con long-press en móvil)
+
+### **Arquitectura y Despliegue**
+
+- [ ] Implementar importación dinámica (`import()`) o _code-splitting_ para cargar de forma diferida las librerías de IA
+
+### **Futuras Funcionalidades y Características Avanzadas**
+
+- [ ] Integrar WebLLM con RAG (_Retrieval-Augmented Generation_) para dispositivos potentes
+- [ ] Sistema de feedback con Google Sheets como backend
+- [ ] Funcionalidad de búsqueda en historial de chats
+- [ ] Agregar opción de "Más herramientas" para mostrar herramientas adicionales que pueden ser útiles para los estudiantes como [saes fill-form](https://chromewebstore.google.com/detail/saes%20fill-form/hlgobbbmkdngojnbhcfhnghjlpnkfelb)
+
+## **✅ Funcionalidades Completadas**
+
+### **Funcionalidad Principal y Rendimiento**
+
+- [x] Optimizar la carga de estrategias para evitar la reinicialización de una estrategia ya cargada
+- [x] Implementar un _Web Worker_ para gestionar la carga en segundo plano de estrategias secundarias (como Pyodide)
+- [x] Crear un script de pre-cómputo para generar los _embeddings_ sin conexión
+- [x] Configurar un _Service Worker_ para almacenar en caché activos grandes (modelos de IA, Pyodide)
+
+### **Mejoras de UI/UX**
+
+- [x] Implementar un estado de carga global para deshabilitar la entrada de chat mientras se inicializan las estrategias
+- [x] Sanitizar las respuestas del asistente para convertir automáticamente las URLs en enlaces clicables
+- [x] Añadir un botón "Copiar Mensaje" a las respuestas del asistente
+- [x] Arreglar "New chat" error para mobile
+- [x] Add vercel json to redirect everything to the SPA
+- [x] Implementar un historial de chat persistente usando `localStorage`
+- [x] Crear un componente tooltip para sugerencias de UI
+
+### **Arquitectura y Despliegue**
+
+- [x] Introducir un enrutador (_router_) para manejar múltiples vistas
+- [x] Convertir la aplicación en una _Progressive Web App_ (PWA) completa
+
+## Tecnologías utilizadas
+
+- TypeScript
+- Web assembly (con python)
+- PWA (Progressive Web App)
+- Transformers.js
+- Web components
+
+## Instalación del proyecto
+
+```bash
+$ pnpm install
+$ yarn install
+$ npm install
+$ deno install
+$ bun install
+```
 
 ## Contribuir
 
 Si desea contribuir a este proyecto, no dude en ponerse en contacto.
-
----
-
-Creado por Eduardo Domínguez Navarrete.

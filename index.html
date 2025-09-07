@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="es-MX">
+  <head>
+    <meta charset="UTF-8" />
+    <title>UPIIChatbot</title>
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="/binary-logo-x16.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="/binary-logo-x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="48x48"
+      href="/binary-logo-x48.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="64x64"
+      href="/binary-logo-x64.png"
+    />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, interactive-widget=resizes-content"
+    />
+    <link rel="manifest" href="app.webmanifest" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <script
+      async
+      src="https://unpkg.com/pwacompat"
+      crossorigin="anonymous"
+    ></script>
+    <meta name="theme-color" content="#1e293b" />
+    <meta
+      name="description"
+      content="Simple chatbot for UPIICSA students - get instant answers about academic procedures, campus facilities, and more."
+    />
+
+    <!-- NOTE: Check if it's necessary to add a specific icon for iphones or if
+          this good enough-->
+    <!-- <link rel="apple-touch-icon" sizes="180x180" href="/binary-logo-x180.png" /> -->
+    <!-- NOTE: Check if it's necessary to add a specific style for icons-->
+    <!-- <style>
+          link[rel="manifest"] {
+          --pwacompat-splash-font: 24px "Helvetica Neue", sans-serif;
+          }
+          </style> -->
+  </head>
+  <body>
+    <div id="app"></div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

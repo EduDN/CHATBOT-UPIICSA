@@ -1,0 +1,124 @@
+<nav class="sidebar-nav">
+  <div class="sidebar-header">
+    <button class="toggle-btn" id="sidebar-toggle">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="20"
+        height="20"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <path d="M3 12h18" />
+        <path d="M3 18h18" />
+        <path d="M3 6h18" />
+      </svg>
+      <span class="sidebar-text">Menu</span>
+    </button>
+  </div>
+
+  <div class="chat-section">
+    <div class="section-header">
+      <button class="new-chat-btn" id="new-chat">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="lucide lucide-square-pen-icon lucide-square-pen"
+        >
+          <path
+            d="M12 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"
+          />
+          <path
+            d="M18.375 2.625a1 1 0 0 1 3 3l-9.013 9.014a2 2 0 0 1-.853.505l-2.873.84a.5.5 0 0 1-.62-.62l.84-2.873a2 2 0 0 1 .506-.852z"
+          />
+        </svg>
+        <span class="sidebar-text">New Chat</span>
+      </button>
+    </div>
+
+    <ul class="chat-list">
+      <!-- Sample chat bubbles -->
+      <!-- <li class="chat-bubble active" data-chat-id="chat-1"> -->
+      <!--   <div class="chat-icon"> -->
+      <!--     <svg -->
+      <!--       width="16" -->
+      <!--       height="16" -->
+      <!--       viewBox="0 0 24 24" -->
+      <!--       fill="none" -->
+      <!--       stroke="currentColor" -->
+      <!--       stroke-width="2" -->
+      <!--     > -->
+      <!--       <path -->
+      <!--         d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" -->
+      <!--       /> -->
+      <!--     </svg> -->
+      <!--   </div> -->
+      <!--   <div class="chat-content"> -->
+      <!--     <div class="chat-title">Como registrar materias?</div> -->
+      <!--     <div class="chat-time">2h ago</div> -->
+      <!--   </div> -->
+      <!-- </li> -->
+    </ul>
+  </div>
+
+  <div class="sidebar-footer">
+    <button class="settings-btn" id="openSettingsModal">
+      <svg
+        width="22"
+        height="22"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+      >
+        <circle cx="12" cy="12" r="3" />
+        <path
+          d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1 1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"
+        />
+      </svg>
+      <span class="sidebar-text">Settings</span>
+    </button>
+    <modal-window for="openSettingsModal">
+      <h2>Modal Title</h2>
+      <p>
+        This modal content is rendered correctly, even though its component was
+        declared inside a "trapped" container. It has successfully "portaled"
+        itself to the end of the `body`.
+      </p>
+      <button slot="close-button">Close</button>
+    </modal-window>
+  </div>
+</nav>
+
+<template class="hidden">
+  <li class="chat-bubble" data-chat-id="chat-2">
+    <div class="chat-icon">
+      <svg
+        width="16"
+        height="16"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+      >
+        <path
+          d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"
+        />
+      </svg>
+    </div>
+    <div class="chat-content">
+      <div class="chat-title">Horarios de biblioteca</div>
+      <div class="chat-time">1d ago</div>
+    </div>
+  </li>
+</template>
