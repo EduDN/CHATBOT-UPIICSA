@@ -77,3 +77,59 @@
     </div>
   </div>
 </header>
+<template id="qwen-strategy-template" class="hidden">
+  <li data-strategy="qwen" id="openQwenModal">
+    <p>Qwen</p>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      class="lucide lucide-check-icon lucide-check"
+    >
+      <path d="M20 6 9 17l-5-5" />
+    </svg>
+  </li>
+  <modal-window for="openQwenModal">
+    <h2>🚀 Qwen (Experimental)</h2>
+    <p>
+      <strong>Esta es una funcionalidad experimental</strong>
+    </p>
+
+    <div class="qwen-modal-benefits">
+      <h3 class="qwen-modal-benefits-title">✨ Beneficios:</h3>
+      <ul class="qwen-modal-benefits-list">
+        <li>Respuestas más coherentes y naturales</li>
+        <li>Mejor comprensión del contexto</li>
+        <li>Procesamiento completamente privado (sin envío de datos)</li>
+      </ul>
+    </div>
+
+    <div class="qwen-modal-warning">
+      <h3 class="qwen-modal-warning-title">⚠️ Requisitos importantes:</h3>
+      <ul class="qwen-modal-warning-list">
+        <li>
+          <strong>Primera carga:</strong> Puede tomar 2-5 minutos dependiendo de
+          tu conexión
+        </li>
+        <li>
+          <strong>WebGPU requerido:</strong> Adopción parcial en navegadores
+        </li>
+        <li><strong>Descarga grande:</strong> ~800MB de datos del modelo</li>
+        <li><strong>Memoria RAM:</strong> Requiere al menos 4GB disponibles</li>
+      </ul>
+    </div>
+
+    <div class="qwen-modal-actions">
+      <button id="qwen-proceed-btn" class="qwen-btn-primary">
+        Continuar con Qwen
+      </button>
+      <button id="qwen-cancel-btn" class="qwen-btn-secondary">Cancelar</button>
+    </div>
+  </modal-window>
+</template>

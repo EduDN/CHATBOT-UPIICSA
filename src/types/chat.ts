@@ -1,5 +1,5 @@
 export type Sender = "user" | "assistant";
-export type StrategyType = "transformers" | "pyodide";
+export type StrategyType = "transformers" | "pyodide" | "qwen";
 
 export interface Message {
   id: string;

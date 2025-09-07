@@ -26,7 +26,7 @@
   color: var(--color-text-primary, #e6edf3);
   padding: 2rem;
   border-radius: 12px;
-  box-shadow: 
+  box-shadow:
     0 20px 25px -5px rgba(0, 0, 0, 0.5),
     0 10px 10px -5px rgba(0, 0, 0, 0.3),
     0 0 0 1px var(--color-border-primary, #374151);
@@ -41,7 +41,7 @@
 .close-button-container {
   margin-top: 1.5rem;
   text-align: right;
-  border-top: 1px solid var(--color-border-primary, #374151);
+  /* border-top: 1px solid var(--color-border-primary, #374151); */
   padding-top: 1rem;
 }
 
@@ -92,7 +92,7 @@
     max-height: 90vh;
     padding: 1.5rem;
   }
-  
+
   .close-button-container {
     margin-top: 1rem;
     padding-top: 0.75rem;

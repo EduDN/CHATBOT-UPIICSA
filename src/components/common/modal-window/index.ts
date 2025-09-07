@@ -76,6 +76,18 @@ class ModalWindow extends BaseComponent {
 
   private open() {
     this.setAttribute("open", "");
+    if (this.parentNode === document.body) {
+      const triggerId = this.getAttribute("for");
+      document.dispatchEvent(
+        new CustomEvent(`modal-portaled-${triggerId}`, {
+          bubbles: true,
+          composed: true,
+          detail: {
+            modalElement: this.shadowRoot?.host,
+          },
+        }),
+      );
+    }
   }
 
   private close() {

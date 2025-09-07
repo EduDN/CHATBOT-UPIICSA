@@ -161,3 +161,7 @@ li[data-strategy].active svg {
 .show {
   display: block;
 }
+
+.hidden {
+  display: none;
+}

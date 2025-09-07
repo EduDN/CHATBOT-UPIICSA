@@ -9,24 +9,28 @@ class ChatHeader extends BaseComponent {
   private $dropdownContent: HTMLDivElement | null = null;
   private $buttonText: HTMLParagraphElement | null = null;
   private $mobileMenuBtn: HTMLButtonElement | null = null;
+  private boundQwenModalHandler: (event: Event) => void;
 
   constructor() {
     super();
     if (!this.shadowRoot) {
       this.attachShadow({ mode: "open" });
     }
+
+    this.boundQwenModalHandler = this.handleQwenModalPortaled.bind(this);
   }
 
   protected override connectedCallback(): void {
     super.connectedCallback();
     this.handleInitStrategy();
-    
+
     document.addEventListener("strategy-ready", () => {
       this.setLoading(false);
       if (this.$button) {
         this.$button.disabled = false;
       }
     });
+    this.handleWebllmStrategy();
   }
 
   protected override get htmlTemplate(): string {
@@ -58,14 +62,13 @@ class ChatHeader extends BaseComponent {
       return;
     }
 
-    // Mobile menu button handler
     this.$mobileMenuBtn?.addEventListener("click", (e) => {
-      e.stopPropagation(); // Prevent event bubbling
+      e.stopPropagation();
       document.dispatchEvent(new CustomEvent("toggle-mobile-sidebar"));
     });
 
     this.$button.addEventListener("click", (e) => {
-      e.stopPropagation(); // Prevent event bubbling
+      e.stopPropagation();
       this.$dropdownContent?.classList.toggle("show");
       this.$dropdown?.blur();
       this.$button?.blur();
@@ -84,12 +87,19 @@ class ChatHeader extends BaseComponent {
         const strategyKey = selectedLi.getAttribute("data-strategy");
         const selectedText = selectedLi.querySelector("p")?.textContent;
 
+        // Special handling for Qwen strategy - show warning modal first
+        if (strategyKey === "qwen") {
+          this.$dropdownContent.classList.remove("show");
+          // The modal will handle the strategy change via the proceed button
+          // Modal opens automatically because of the "for" attribute
+          return;
+        }
+
         if (this.$buttonText && selectedText) {
           this.$buttonText.textContent = selectedText;
         }
 
         if (strategyKey) {
-          // --- Start Loading State ---
           this.$button?.blur();
           this.$button.disabled = true;
 
@@ -128,7 +138,6 @@ class ChatHeader extends BaseComponent {
     const $contentStrategy =
       $currentButton?.querySelector("p")?.textContent || "";
     this.$buttonText.textContent = $contentStrategy;
-    console.log("text content", $contentStrategy);
     this.showCheckedState();
   };
 
@@ -150,6 +159,89 @@ class ChatHeader extends BaseComponent {
     });
   }
 
+  private handleWebllmStrategy(): void {
+    const isWebGpuSupported = navigator.gpu !== undefined;
+    if (!isWebGpuSupported) return;
+    if (!this.$dropdownContent) return;
+
+    const $template = this.getTemplate("#qwen-strategy-template");
+    if (!$template) return;
+
+    this.$dropdownContent.appendChild($template);
+
+    // Set up modal event handlers after template is appended
+    this.setupQwenModalHandlers();
+  }
+
+  private setupQwenModalHandlers(): void {
+    // Listen for the specific modal-portaled event for the openQwenModal
+    document.addEventListener(
+      "modal-portaled-openQwenModal",
+      this.boundQwenModalHandler,
+    );
+  }
+
+  private handleQwenModalPortaled = (event: Event): void => {
+    const customEvent = event as CustomEvent;
+    const { modalElement } = customEvent.detail;
+    const $proceedBtn = modalElement.querySelector("#qwen-proceed-btn");
+
+    if (!$proceedBtn) return;
+    $proceedBtn.addEventListener("click", (e: Event) => {
+      e.preventDefault();
+      this.handleQwenProceed();
+      modalElement.removeAttribute("open");
+    });
+    const $cancelBtn = modalElement.querySelector("#qwen-cancel-btn");
+
+    if ($cancelBtn) {
+      $cancelBtn.addEventListener("click", (e: Event) => {
+        e.preventDefault();
+        this.handleQwenCancel();
+        // Close the modal
+        modalElement.removeAttribute("open");
+      });
+    } else {
+      this.handleQwenCancel();
+    }
+  };
+
+  private handleQwenProceed(): void {
+    if (this.$buttonText) {
+      this.$buttonText.textContent = "Qwen";
+    }
+
+    if (this.$button) {
+      this.$button.blur();
+      this.$button.disabled = true;
+    }
+
+    this.setLoading(true);
+
+    // Dispatch the strategy change event
+    document.dispatchEvent(
+      new CustomEvent("strategy-changed", {
+        detail: { strategy: "qwen" },
+      }),
+    );
+  }
+
+  private handleQwenCancel(): void {
+    this.handleInitStrategy();
+  }
+
+  private getTemplate(templateId: string): DocumentFragment | undefined {
+    if (this.shadowRoot === null) return;
+    const $template =
+      this.shadowRoot.querySelector<HTMLTemplateElement>(templateId);
+
+    if (!$template || !this.$dropdownContent) {
+      return;
+    }
+
+    return $template.content.cloneNode(true) as DocumentFragment;
+  }
+
   private setLoading(isLoading: boolean): void {
     if (this.$button) {
       this.$button.disabled = isLoading;
@@ -158,6 +250,11 @@ class ChatHeader extends BaseComponent {
   }
 
   protected override disconnectedCallback(): void {
+    document.removeEventListener(
+      "modal-portaled-openQwenModal",
+      this.boundQwenModalHandler,
+    );
+
     this.$button = null;
     this.$dropdown = null;
     this.$dropdownContent = null;

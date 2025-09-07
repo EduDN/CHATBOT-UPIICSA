@@ -15,6 +15,9 @@ importers:
       '@types/node':
         specifier: ^24.0.4
         version: 24.1.0
+      '@webgpu/types':
+        specifier: ^0.1.64
+        version: 0.1.64
       typescript:
         specifier: ~5.8.3
         version: 5.8.3
@@ -322,6 +325,9 @@ packages:
 
   '@types/node@24.1.0':
     resolution: {integrity: sha512-ut5FthK5moxFKH2T1CUOC6ctR67rQRvvHdFLCD2Ql6KXmMuCrjsSsRI9UsLCm9M18BMwClv4pn327UvB7eeO1w==}
+
+  '@webgpu/types@0.1.64':
+    resolution: {integrity: sha512-84kRIAGV46LJTlJZWxShiOrNL30A+9KokD7RB3dRCIqODFjodS5tCD5yyiZ8kIReGVZSDfA3XkkwyyOIF6K62A==}
 
   '@xenova/transformers@2.17.2':
     resolution: {integrity: sha512-lZmHqzrVIkSvZdKZEx7IYY51TK0WDrC8eR0c5IMnBsO8di8are1zzw8BlLhyO2TklZKLN5UffNGs1IJwT6oOqQ==}
@@ -816,6 +822,8 @@ snapshots:
   '@types/node@24.1.0':
     dependencies:
       undici-types: 7.8.0
+
+  '@webgpu/types@0.1.64': {}
 
   '@xenova/transformers@2.17.2':
     dependencies:
