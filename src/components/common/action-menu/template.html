@@ -1,0 +1,19 @@
+<div class="action-menu-backdrop" id="backdrop"></div>
+<div class="action-menu" id="menu">
+  <slot></slot>
+</div>
+
+<template id="menu-item-template">
+  <div class="menu-item" role="menuitem" tabindex="0">
+    <div class="menu-item-icon">
+      <!-- Icon will be injected here -->
+    </div>
+    <span class="menu-item-text">
+      <!-- Text will be injected here -->
+    </span>
+  </div>
+</template>
+
+<template id="menu-separator-template">
+  <div class="menu-separator" role="separator"></div>
+</template>

@@ -26,6 +26,7 @@ export interface AppState {
   activeChatId: string | null;
   theme?: "light" | "dark";
   lastSyncTime?: number;
+  tutorialCompleted: boolean;
 }
 
 export interface StorageData {

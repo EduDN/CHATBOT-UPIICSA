@@ -1,0 +1,120 @@
+:host {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 1001;
+}
+
+.action-menu-backdrop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity var(--transition-medium);
+}
+
+:host([open]) .action-menu-backdrop {
+  pointer-events: auto;
+  opacity: 1;
+}
+
+.action-menu {
+  position: absolute;
+  background-color: var(--color-border-primary, #1e293b);
+  pointer-events: auto;
+  border-radius: 0.5rem;
+  padding: 0.5rem 0.35rem;
+
+  /* Animation states */
+  transform: scale(0.8);
+  opacity: 0;
+  transition:
+    transform var(--transition-medium) var(--ease-out),
+    opacity var(--transition-medium) var(--ease-out);
+}
+
+:host([open]) .action-menu {
+  transform: scale(1);
+  opacity: 1;
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0.2rem 0.4rem;
+  border-radius: 0.3rem;
+  cursor: pointer;
+  border: 1px solid var(--color-border);
+  transition: background-color var(--transition-fast);
+  outline: none;
+  user-select: none;
+}
+
+.menu-item:hover,
+.menu-item:focus-visible {
+  background-color: var(--color-background-light);
+}
+
+.menu-item[data-variant="danger"]:hover,
+.menu-item[data-variant="danger"]:focus-visible {
+  background-color: var(--color-error-background);
+}
+
+.menu-item-icon {
+  width: 16px;
+  height: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.menu-item-icon svg {
+  width: 100%;
+  height: 100%;
+  stroke: var(--color-text-primary);
+  transition: fill var(--transition-fast);
+}
+
+.menu-item[data-variant="danger"] .menu-item-icon svg {
+  fill: transparent;
+  stroke: var(--color-error-icon);
+}
+
+.menu-item-text {
+  font-size: var(--text-sm);
+  color: var(--color-text-primary);
+  font-weight: 500;
+  white-space: nowrap;
+  transition: color var(--transition-fast);
+}
+
+.menu-item[data-variant="danger"] .menu-item-text {
+  color: var(--color-error);
+}
+
+.menu-separator {
+  height: 1px;
+  background-color: var(--color-border);
+  margin: var(--spacing-xs) 0;
+}
+
+@media (max-width: 768px) {
+  .menu-item {
+    padding: var(--spacing-md);
+    padding: 0.2rem 0.4rem;
+  }
+
+  .menu-item-icon {
+    width: 18px;
+    height: 18px;
+  }
+}

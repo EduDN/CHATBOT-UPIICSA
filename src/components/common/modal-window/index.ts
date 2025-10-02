@@ -2,7 +2,7 @@ import { BaseComponent } from "@/components/core/base-component";
 import template from "./template.html?raw";
 import style from "./style.css?inline";
 
-class ModalWindow extends BaseComponent {
+export class ModalWindow extends BaseComponent {
   private triggerElement: HTMLElement | null = null;
   private $parentElement: HTMLElement | null = null;
   private boundOpenHandler: () => void = this.open.bind(this);

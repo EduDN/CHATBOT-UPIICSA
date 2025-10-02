@@ -1,0 +1,72 @@
+<div class="search-modal-backdrop" id="backdrop"></div>
+<div class="search-modal" id="modal">
+  <div class="search-modal-header">
+    <h2>🔍 Buscar Preguntas</h2>
+    <p>Encuentra la información que necesitas en nuestra base de conocimiento</p>
+  </div>
+  
+  <div class="search-input-container">
+    <svg 
+      xmlns="http://www.w3.org/2000/svg" 
+      width="20" 
+      height="20" 
+      viewBox="0 0 24 24" 
+      fill="none" 
+      stroke="currentColor" 
+      stroke-width="2" 
+      stroke-linecap="round" 
+      stroke-linejoin="round" 
+      class="search-icon"
+    >
+      <path d="m21 21-4.34-4.34"/>
+      <circle cx="11" cy="11" r="8"/>
+    </svg>
+    <input 
+      type="text" 
+      id="searchInput" 
+      placeholder="Busca por palabras clave como 'dictamen', 'horarios', 'biblioteca'..."
+      class="search-input"
+    />
+    <div class="search-clear" id="clearSearch" style="display: none;">
+      <svg 
+        xmlns="http://www.w3.org/2000/svg" 
+        width="16" 
+        height="16" 
+        viewBox="0 0 24 24" 
+        fill="none" 
+        stroke="currentColor" 
+        stroke-width="2" 
+        stroke-linecap="round" 
+        stroke-linejoin="round"
+      >
+        <path d="M18 6L6 18"/>
+        <path d="M6 6l12 12"/>
+      </svg>
+    </div>
+  </div>
+  
+  <div class="search-results" id="searchResults">
+    <div class="search-placeholder">
+      <svg 
+        xmlns="http://www.w3.org/2000/svg" 
+        width="48" 
+        height="48" 
+        viewBox="0 0 24 24" 
+        fill="none" 
+        stroke="currentColor" 
+        stroke-width="1.5" 
+        stroke-linecap="round" 
+        stroke-linejoin="round"
+      >
+        <path d="m21 21-4.34-4.34"/>
+        <circle cx="11" cy="11" r="8"/>
+      </svg>
+      <h3>Comienza a escribir para buscar</h3>
+      <p>Escribe palabras clave para encontrar preguntas y respuestas relacionadas</p>
+    </div>
+  </div>
+  
+  <div class="search-modal-footer">
+    <button class="close-button" id="closeModal">Cerrar</button>
+  </div>
+</div>

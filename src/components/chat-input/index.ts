@@ -27,7 +27,7 @@ class ChatInput extends BaseComponent {
       return;
     }
     this.$inputElement = this.shadowRoot?.querySelector("textarea");
-    this.$sendButton = this.shadowRoot?.querySelector("button");
+    this.$sendButton = this.shadowRoot?.querySelector(".send-button");
 
     // TODO: Check why this validation is not working
     // if (!this.inputElement && !this.sendButton) return;

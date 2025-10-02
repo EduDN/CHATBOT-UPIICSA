@@ -1,5 +1,3 @@
-/* filepath: /home/gomen/Documents/proyectos-personales/proyectos-comunitarios/ai/upiichat/src/components/side-bar/style.css */
-
 :host {
   background-color: var(--color-background-medium);
   border-right: 1px solid var(--color-border-primary);
@@ -174,6 +172,51 @@
   opacity: 0.7;
 }
 
+.chat-actions-btn {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  border: none;
+  background: transparent;
+  border-radius: var(--border-radius);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  opacity: 0;
+  transition: all var(--transition-fast);
+  color: var(--color-text-secondary);
+}
+
+.chat-bubble:hover .chat-actions-btn,
+.chat-actions-btn:focus-visible {
+  opacity: 1;
+}
+
+.chat-actions-btn:hover {
+  background-color: var(--color-accent-hover);
+  color: var(--color-text-primary);
+}
+
+.chat-actions-btn svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* Mobile adjustments for action menu */
+@media (max-width: 768px) {
+  /* Hide three-dot button on mobile - rely on long-press */
+  .chat-actions-btn {
+    display: none;
+  }
+
+  /* Ensure long-press target has good touch area */
+  .chat-bubble {
+    touch-action: manipulation;
+    user-select: none;
+  }
+}
+
 /* Sidebar text (hidden when collapsed) */
 .sidebar-text,
 .chat-content {
@@ -186,7 +229,8 @@
 
 /* Hide content when collapsed - applies to both modes */
 :host(.collapsed) .sidebar-text,
-:host(.collapsed) .chat-content {
+:host(.collapsed) .chat-content,
+:host(.collapsed) .chat-actions-btn {
   opacity: 0;
   pointer-events: none;
   transform: translateX(-10px);
@@ -257,13 +301,11 @@
   border-top: 1px solid var(--color-border-primary);
 }
 
-/* SVG styling */
 svg {
   stroke: currentColor;
   flex-shrink: 0;
 }
 
-/* Custom scrollbar */
 .chat-list::-webkit-scrollbar {
   width: 6px;
 }
@@ -312,8 +354,39 @@ svg {
     min-height: 44px; /* iOS minimum touch target */
   }
 
-  /* Slightly larger text on mobile for better readability */
   .chat-title {
     font-size: 0.9rem;
   }
+}
+
+.more-tools-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  width: 100%;
+  padding: 0.875rem 1rem;
+  background: transparent;
+  border: 1px solid var(--color-border-primary);
+  border-radius: 0.5rem;
+  color: var(--color-text-primary);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 0.875rem;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+
+.more-tools-btn:hover {
+  background: rgba(168, 199, 250, 0.1);
+  border-color: var(--color-link-primary);
+  color: var(--color-link-primary);
+}
+
+.more-tools-btn svg {
+  flex-shrink: 0;
+  transition: transform 0.2s ease;
+}
+
+.more-tools-btn:hover svg {
+  transform: scale(1.05);
 }

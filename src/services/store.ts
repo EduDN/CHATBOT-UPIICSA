@@ -18,6 +18,7 @@ export class StorageService {
     activeChatId: null,
     theme: "dark",
     lastSyncTime: Date.now(),
+    tutorialCompleted: false,
   };
 
   private defaultData: StorageData = {
@@ -268,6 +269,60 @@ export class StorageService {
     this.saveData();
 
     return true;
+  }
+
+  /**
+   * Duplicates an existing chat with all its messages
+   * @param chatId - The ID of the chat to duplicate
+   * @returns The new duplicated chat or null if original not found
+   */
+  duplicateChat(chatId: string): Chat | null {
+    const data = this.loadData();
+    const originalChat = data.chats.find((c) => c.id === chatId);
+
+    if (!originalChat) return null;
+
+    const now = Date.now();
+
+    // Create a deep copy of the original chat
+    const duplicatedChat: Chat = {
+      id: crypto.randomUUID(), // New unique ID
+      title: `Copy of ${originalChat.title}`, // Add "Copy of" prefix
+      preview: originalChat.preview,
+      timestamp: now, // Current timestamp for sorting
+      createdAt: now,
+      isActive: true, // Make the new chat active
+      isEditable: true,
+      messages: originalChat.messages.map((msg) => ({
+        ...msg,
+        id: crypto.randomUUID(), // New IDs for messages too
+        timestamp: msg.timestamp, // Keep original message timestamps
+      })),
+    };
+
+    // Mark all other chats as inactive
+    data.chats.forEach((chat) => (chat.isActive = false));
+
+    // Add to beginning (most recent first)
+    data.chats.unshift(duplicatedChat);
+    data.appState.activeChatId = duplicatedChat.id;
+
+    this.saveData();
+
+    // Dispatch events for UI updates
+    document.dispatchEvent(
+      new CustomEvent("chat-duplicated", {
+        detail: {
+          originalChatId: chatId,
+          newChatId: duplicatedChat.id,
+          newChat: duplicatedChat,
+        },
+      }),
+    );
+
+    document.dispatchEvent(new CustomEvent("storage-updated"));
+
+    return duplicatedChat;
   }
 
   getAppState(): AppState {

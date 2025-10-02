@@ -69,6 +69,42 @@ textarea::placeholder {
   stroke: var(--color-text-primary, #333); /* Fallback color */
 }
 
+.search-button {
+  align-self: flex-end;
+  cursor: pointer;
+  background-color: var(--color-background-light, #f0f0f0); /* Fallback color */
+  border-radius: 50%;
+  height: 2.5rem; /* 40px */
+  width: 2.5rem; /* 40px */
+  border: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+@media (hover: hover) {
+  .search-button:hover {
+    background-color: var(
+      --color-background-medium,
+      #e0e0e0
+    ); /* Fallback color */
+    border: 1px solid var(--color-text-secondary, #ccc); /* Fallback color */
+    outline: 1px solid var(--color-text-secondary, #ccc); /* Fallback color */
+  }
+}
+
+.search-button:focus {
+  border: 1px solid var(--color-text-secondary, #ccc); /* Fallback color */
+  outline: 1px solid var(--color-text-secondary, #ccc); /* Fallback color */
+  background-color: var(
+    --color-background-medium,
+    #e0e0e0
+  ); /* Fallback color */
+}
+
+.search-button svg {
+  stroke: var(--color-text-primary, #333); /* Fallback color */
+}
+
 .hide-scrollbar {
   -ms-overflow-style: none; /* IE 10+*/
   scrollbar-width: none; /* Firefox */
@@ -76,5 +112,3 @@ textarea::placeholder {
 .hide-scrollbar::-webkit-scrollbar {
   display: none; /* Safari and Chrome */
 }
-
-/* Hello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assaHello assa */
